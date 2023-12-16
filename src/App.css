@@ -1,0 +1,72 @@
+.App {
+
+  /* align-content: center; */
+  background-color: #282c34;
+  /* overflow-y: auto; */
+  max-width: 100%;
+  min-height: 96vh;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 0.2fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "header header header header"
+    "bod bod . ."
+    "bod bod . ."
+    "bod bod . ."
+  ;
+  /* margin-top: 35px; */
+}
+
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-Body {
+  background-color: rgb(57, 64, 64);
+  color: white;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+
+  grid-area: bod;
+}
+
+.App-header {
+  /* display: flex; */
+  /* flex-direction: row; */
+  grid-area: header;
+  /* align-items: left; */
+  /* justify-content: left; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+  /* min-height: 10dvh; */
+  background-image: url('https://images.pexels.com/photos/38136/pexels-photo-38136.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
+
+
+
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
