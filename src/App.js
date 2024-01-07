@@ -27,6 +27,8 @@ function App() {
               the effort so might have to just forget the idea and leave it normal and no fancy effects.
               -01/01/24.
             </p>
+            <p>Quick change to push
+            </p>
           </div>
           <div className='codeContainer'>
               <div className='codesec'>
