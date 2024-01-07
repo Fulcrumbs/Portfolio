@@ -135,10 +135,11 @@ function ArtifactApp(){
   const [statValue4, setStatValue4] = useState('')
   const handleStatValue4 = (input) => { setStatValue4(input)}
 
+  // const handleClear = (input => {ClearObject})
   const handleLoad = (input =>{})
   const handleSave = (input => {})
   const a = ObjectCreate(piece, mainStat, mainValue, selectedStat1, statValue1, selectedStat2, statValue2, selectedStat3, statValue3, selectedStat4, statValue4)
-  
+  // const c = ClearObject(piece, mainStat, mainValue, selectedStat1, statValue1, selectedStat2, statValue2, selectedStat3, statValue3, selectedStat4, statValue4)
   //const a = ObjectCreate(piece, mainStat, mainValue, substat1.Name, substat1.Value, substat2.Name, substat2.Value, substat3.Name, substat3.Value, substat4.Name, substat4.Value)
   return(
   <div className='app'>
@@ -225,6 +226,7 @@ function ArtifactApp(){
       <div className='optionsMenu'>
         <button onClick={handleSave}>Save</button>
         <button onClick={handleLoad}>Load</button>
+        {/* <button onClick={handleClear}>Clear</button> */}
       </div>
     </div>
   </div>
@@ -280,7 +282,7 @@ function DisplayArtifact({artifact}){
 // }
 
 function PieceStringDropMenu({onChange, useArray}) {
-  return (
+  return ( //if piece is !'' > Clear Object?
   <select onChange={(event) => onChange(event.target.value)}>
     {useArray.map((stat) => (
       <option key={stat} value={stat}>{stat}</option>))}
@@ -317,6 +319,19 @@ function MainStringDropMenu({onChange, useArray}) {
   );
 }
 
+// function ClearObject(){
+//   setPiece('')
+//   setMainValue('')
+//   setMainStat('')
+//   selectedStat1('')
+//   setStatValue1('')
+//   setSelectedStat2('')
+//   setStatValue2('')
+//   setSelectedStat3('')
+//   setStatValue3('')
+//   setSelectedStat4('')
+//   setStatValue4('')
+// }
 
 /*Created to more easily display and potentially save and load artifacts when I make those functions.
 */
