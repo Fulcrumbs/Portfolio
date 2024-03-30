@@ -1,0 +1,184 @@
+/*I'm removing this code as it seems redundant 04/11/23:
+  <PieceDisplay value={piece} main={mainStat} mainVal={mainValue}/>
+  <DisplayNameValue name={selectedStat1} value={statValue1}/>
+  <DisplayNameValue name={selectedStat2} value={statValue2}/>
+  <DisplayNameValue name={selectedStat3} value={statValue3}/>
+  <DisplayNameValue name={selectedStat4} value={statValue4}/>
+  <IntegerInputBox selectedStat={mainValue} onEnter={handleMainValue}/>
+  {piece !== '' && mainStat !== '' && mainValue !== '' && selectedStat1 !== '' && selectedStat2 !== '' && selectedStat3 !== '' &&
+*/
+
+/* Combined the below commented code into the DisplayArtifact function.
+// function PieceDisplay({value, main, mainVal}){
+//   return(
+//     <>
+//     <p>{"Piece:"} {value}</p>
+//     <p>{"Main:"} {main} {"Value:"} {mainVal}</p>
+//     </>
+//   )
+// }
+// function DisplayNameValue({name, value}){
+//   return(
+//     <p>{name} : {value}</p>
+//   )
+// }
+*/
+
+/* I'm removing the below commented code as it seems redundant: 04/11/2023
+// const [pieceVal, setPieceVal] = useState('')
+// setPieceVal(passThisValue)
+// value={pieceVal || ''}
+// const passThisValue=event.target.value
+// onChange(passThisValue)
+*/
+// function PieceStringDropMenu({onChange, useArray}) {
+//   const array = useArray.map((stat) => (
+//     <option key={stat} value={stat}>{stat}</option>));
+//   const handleMenu = (event) => {
+//     onChange(event.target.value)
+//   }
+//   return (
+//   <select onChange={handleMenu}>
+//     {array}
+//   </select>
+// );
+// }
+/* I'm removing the below commented code as it seems redundant: 04/11/2023
+// const [StrVal, setStrVal] = useState('');
+// setStrVal(passThisValue) value={StrVal || ''}
+//const passThisValue=event.target.value
+//onChange(passThisValue)
+---This is the old version of the same code but not sure what's easier to understand, assigning stuff to variables, making code longer
+---but more readable (maybe?) or the below code which is more concise. 05/11/2023 
+// function MainStringDropMenu({onChange, useArray}) {
+//   const array = useArray.map((stat) => (
+//     <option key={stat} value={stat}>{stat}</option>));
+//   const handleMenu = (event) => {
+//     onChange(event.target.value)
+//   }
+//   return (
+//     <select onChange={handleMenu}> 
+//       {array}
+//     </select>
+//   );
+// }
+*/
+/* I'm removing the below commented code as it seems redundant: 04/11/2023
+// value={StrVal || ''}
+// const [StrVal, setStrVal] = useState('')
+// const passThisValue=event.target.value
+// setStrVal(passThisValue);
+// setStrVal('');
+// console.log(StrVal)
+---Old version
+// function SubStringDropMenu({onChange, main, sub1, sub2, sub3, sub4, useArray}) {
+//   const array = useArray.map((stat) => (
+//     <option key={stat} value={stat}>{stat}</option>));
+//   const handleMenu = (event) => {
+//   if(selectionValidation(event.target.value, main, sub1, sub2, sub3, sub4)){
+//     onChange(event.target.value);
+//   }
+//   else{
+//     alert("IMPOSSIBLE");
+//     event.target.value = '';
+//   }
+//   }
+//   return (
+//   <select onChange={handleMenu}>
+//     {array}
+//   </select>
+// );
+// }
+*/
+
+// function CreateSub(ms, array){
+//   const [subName, setSubName] = useState('');
+//   const handleSubName = (value) => {setSubName(value)};
+
+//   const [statValue, setStatValue] = useState('');
+//   const handleStatValue = (input) => {setStatValue(input)};
+
+//   const substat={
+//     Name: subName,
+//     Value: statValue
+//   };
+//   if(substat.Name !== '' && substat.Value !== ''){
+//     return substat;
+//   };
+// }
+
+// function IntegerInputBox({onEnter, selectedStat}) {
+//   const [inputVal, setInputVal] = useState('');
+//   const handleKey = (event) => {
+//     if(event.key === "Enter"){
+//       if(selectedStat){
+//       let valid = ValidSubStatValues(inputVal, selectedStat)
+//       if (valid){
+//         onEnter(inputVal)
+//         setInputVal(inputVal);
+//       }
+//       else{
+//         alert('nah m8');
+//         setInputVal('');
+//       }
+//     }
+//     else{
+//     alert('bad');
+//     setInputVal('');
+//   }
+//   }
+//   };
+//   return (
+//     <>
+//     {/* <StringDropMenu onChange={setSelectedStat}/> */}
+//     <input type="text"
+//     value={inputVal}
+//     onChange={(event) => setInputVal(event.target.value)}
+//     onKeyDown={handleKey}
+//     />
+//     </>
+//   );
+// }
+
+/* <option value={null}></option>
+    <option value="Elemental Mastery">Elemental Mastery</option>
+    <option value="Critical DMG">Crit DMG</option>
+    <option value="Critical Rate">Crit Rate</option>
+    <option value="ATK%">ATK %</option>
+    <option value="DEF%">DEF %</option>
+    <option value="HP%">HP %</option>
+    <option value="Energy Recharge">Energy Recharge</option> 
+    
+    <option value="0"></option>
+    <option value="Flower">Flower</option>
+    <option value="Feather">Feather</option>
+    <option value="Timepiece">Timepiece</option>
+    <option value="Goblet">Goblet</option>
+    <option value="Circlet">Circlet</option>
+    
+*/
+
+function DropMenu({onChange, useArray, reset}) {
+//   useEffect(() => {
+//     if (reset) {
+//       onChange(useArray[0]);
+//       console.log(reset)
+//     }
+//   }, [reset, onChange]);
+
+//   return ( //if piece is !'' > Clear Object?
+//     <select onChange={(event) => onChange(event.target.value)}>
+//       {useArray.map((stat) => (
+//         <option key={stat} value={stat}>{stat}</option>))}
+//     </select>
+//   );
+// }
+
+// function MainStringDropMenu({onChange, useArray}) {
+//   return (
+//     <select onChange={(event) => {onChange(event.target.value)}}> 
+//       {useArray.map((stat) => (
+//         <option key={stat} value={stat}>{stat}</option>))}
+//     </select>
+//   );
+// }

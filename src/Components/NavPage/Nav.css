@@ -2,19 +2,11 @@
   box-sizing: border-box;
 }
 .navpage{
-  /* display: flex;
-  align-items: center; */
   background-color: #333;
   color: #000;
   top: 0;
   max-width: 100vw;
   position: relative;
-  /* margin-bottom: 35px; */
-  /* position: fixed; */
-}
-
-.menu-items{
-  list-style-type: none;
 }
 
 .nav{
@@ -22,27 +14,47 @@
   background-color: #333;
   position: sticky; /*Seems to be more flexible than fixed and applies the margin automatically for some reason.*/
   top: 0;
-  /* width: 100%; */
-  padding: 4px;
-  align-content:flex-end;
-  /* margin-bottom: 35px; */
+}
+
+.submenu{
+  display: none;
+  position: absolute;
+  background-color: #333;
+  top: 100%;
+  list-style-type: none;
+  margin: 0;
+  min-width:160px;
+  z-index: 1;
+}
+.menu-items{
+  display: inline-block;
+  position: relative;
+}
+.menu-items:hover .submenu{
+  display: block;
+}
+
+.submenu .tab-link{
+  min-width: 160px;
+  border: none;
+  box-shadow:0px 8px 16px 0px #333;
 }
 
 .tab-link {
     display: inline-block;
-    padding: 5px 20px; /* Adjust the padding to your liking */
-    background-color: rgba(47, 150, 198, 0.4);/*#f0f0f0 transparent; /* Background color of the tab */
+    padding: 5px 20px; /*Adjust the padding to your liking*/
+    background-color: rgba(37, 102, 132, 0.4);/*#f0f0f0 transparent; /* Background color of the tab */
     border: 1px solid #ccc; /* Border around the tab */
-    border-radius: 5px; /* Rounded corners */
+    /* border-radius: 5px; Rounded corners */
     text-decoration: none; /* Remove underline from links */
     color: #faf6f6; /* Text color */
-    margin-right: 10px; /* Margin between tabs */
+    /* margin-right: 10px; Margin between tabs */
     
   }
   
   /* Change the background color on hover */
   .tab-link:hover {
-    background-color: #ddd;
+    background-color: rgb(26, 84, 111, 1);
   }
   
   .tab-link:active {

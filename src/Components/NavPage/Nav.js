@@ -3,70 +3,79 @@ import {Routes, Route, Link} from "react-router-dom";
 
 import "./Nav.css"
 
-import App from "../../App";
-import Board from "../TicTacToe/TicTacToe";
-import ArtifactApp from "../Artifact/ArtifactApp";
-import ReplayImages from "../YGOReplays&Images/ReplayImages";
-import Page from "../WebDev/FrontEndWebDev/Page";
-import ReactCourse from "../WebDev/ReactCourse/ReactCourse";
+import App from "../../Pages/LearningCourses/ResponsiveWebDesign/App";
+import Board from "../../Pages/Projects/TicTacToe/TicTacToe";
+import ArtifactApp from "../../Pages/Projects/Artifact/ArtifactApp";
+import ReplayImages from "../../Pages/Projects/YGOReplays&Images/ReplayImages";
+import Page from "../../Pages/LearningCourses/ReactCourse/Page";
+import ReactCourse from "../../Pages/LearningCourses/ReactCourse/ReactCourse";
+//import Experiment from "../../Pages/Projects/Artifact/Experiment";
 
-const submenu =[
-    {
-        Path: "ReactCourse/ReactCourse.js",
-        Element: <ReactCourse />,
-        Label:"WebDEV"
-    },
-    {
-        Path: "FrontEndWebDev/Page.js",
-        Element: <Page/>,
-        Label: "Course"
-    }
-]
-const WebDevRoute = () =>{
-    return(
-    <div className="navpage">
-        <nav className="nav">
-            {submenu.map((submenu, index) =>{
-                return(
-                    <li className="menu-items" key={index}>
-                        <Link to={submenu.Path} className="tab-link">{submenu.Label}</Link>
-                    </li>
-                )
-            })}
-        </nav>
-        <Routes>
-            {submenu.map((submenu, index) =>(
-                <Route key={index} path={submenu.Path} element={submenu.Element}></Route>
-            ))}
-        </Routes>
-    </div>)
-}
+/*Pages
+Home- (Nav.js) Rename App?
+        - Courses - Null Page
+            - FrontEndWebDev(Two folders currently there)
+            - App is also a course - Freecodecamp's html/css interactive course. (Rename and move)
+        - Projects - Null Page
+            - Artifact
+            - Calculators
+            - TicTacToe
+            - Webskim
+            - YGOReplays&Images
+        - Resume
+*/  
+//could probably simplify futher, I think only the submenu part really matters but I'm tired of thinking. 22-01-24        
 
 const menulinks = [
     {
-        Path: "/App",
-        Element: <App/>,
-        Label:"Learning Resources"
+        Path: "/LearningCourses/*",
+        Element: null, //CourseRoutes
+        Label: "Learning Material",
+        Submenu: [
+            {
+                Path: "ReactCourse/ReactCourse.js",
+                Element: <ReactCourse />,
+                Label:"Beginner's React Course 2022"
+            },
+            {
+                Path: "FrontEndWebDev/Page.js",
+                Element: <Page/>,
+                Label: "Course"
+            },
+            {
+                Path: "ResponsiveWebDesign/App.js",
+                Element: <App/>,
+                Label:"Responsive Web Design"
+            }
+        ]
     },
     {
-        Path:"/TicTacToe",
-        Element: <Board/>,
-        Label: "TicTacToe"
-    },
-    {
-        Path:"/ArtifactApp",
-        Element: <ArtifactApp/>,
-        Label:"Artifact Calculator"
-    },
-    {
-        Path: "/ReplayImages",
-        Element:<ReplayImages/>,
-        Label:"YGOReplays"
-    },
-    {
-        Path: "/WebDev/*",
-        Element: <WebDevRoute/>,
-        Label: "Web Development"
+        Path: "/Projects/*",
+        Element: null, //ProjectRoutes if i need to revert
+        Label: "Projects",
+        Submenu: [
+            {
+                Path:"TicTacToe/TicTacToe.js",
+                Element: <Board/>,
+                Label: "TicTacToe"
+            },
+            {
+                Path:"Artifact/ArtifactApp.js",
+                Element: <ArtifactApp/>,
+                Label:"Artifact Calculator"
+            },
+            {
+                Path: "YGOReplays&Images/ReplayImages.js",
+                Element:<ReplayImages/>,
+                Label:"YGOReplays"
+            }
+            //,
+            // {
+            //     Path:"Artifact/Experiment.js",
+            //     Element:<Experiment/>,
+            //     Label:"Artifact test area"
+            // }
+        ]
     }
 ]
 const Nav = () =>{
@@ -77,14 +86,28 @@ const Nav = () =>{
                     return(
                         <li className="menu-items" key={index}>
                             <Link to={menulinks.Path} className="tab-link">{menulinks.Label}</Link>
+                            {menulinks.Submenu &&(
+                                <nav className="submenu">
+                                    {menulinks.Submenu.map((submenuItem, index) => (
+                                        <li className="menu-items" key={index}>
+                                            <Link to={submenuItem.Path} className="tab-link">{submenuItem.Label}</Link>
+                                        </li>
+                                    ))}
+                                </nav>
+                            )}
                         </li>
-                    )
+                    );
                 })}
             </nav>
+            
             <Routes>
                 {menulinks.map((menulinks, index) =>(
                     <Route key={index} path={menulinks.Path} element={menulinks.Element}></Route>
                 ))}
+                {menulinks.map((menuLink) =>
+                    menuLink.Submenu
+                    ? menuLink.Submenu.map((submenuItem, subIndex) => (
+                        <Route key={subIndex} path={submenuItem.Path} element={submenuItem.Element}></Route>)) : null)}
             </Routes>
         </div>
     )
@@ -94,26 +117,6 @@ const Nav = () =>{
 function NavPage(){
     return <Nav/>;
 }
-// function NavPage(){
-//     return(
-//         <>
-//         <div className="navpage">
-//             <nav className="nav"> {/*<So not necessary but good semantic practice */}
-//                 <Link to="/App" className="tab-link">Learning Resources</Link>
-//                 <Link to="/TicTacToe" className="tab-link">TicTacToe</Link>
-//                 <Link to="/ArtifactApp" className="tab-link">Artifact Calculator</Link>
-//                 <Link to="/ReplayImages" className="tab-link">YGOReplays</Link>
-//             </nav>
-    
-//             <Routes>
-//                 <Route path="/App" element={<App/>}></Route>
-//                 <Route path="/TicTacToe" element={<Board/>}></Route>
-//                 <Route path="/ArtifactApp" element={<ArtifactApp/>}></Route>
-//                 <Route path="/ReplayImages" element={<ReplayImages/>}></Route>
-//             </Routes>
-//         </div>
-//         </>
-//     )
-// }
+
 
 export default NavPage;
