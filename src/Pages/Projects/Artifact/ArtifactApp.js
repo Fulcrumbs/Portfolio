@@ -1,7 +1,6 @@
-//import { json } from 'react-router-dom';
 import './Artifact.css';
 import { useState, useEffect } from 'react';
-// import { Signal } from '@preact/signals';
+
 
 /*todo: move common values to a higher scope to pass to child components*/
 
@@ -23,14 +22,16 @@ React doesn't like null values so I changed them to ''.
 
 todo:
 -if piece changes I want it to reset all values to ''. ## resets but not visually? ----Done 30/03/24 Values reset visually as well.
--Save and Load functions. ##Save works but load doesn't, I can see artifact values are saved to localstorage but load doesn't populate my object
+-Save and Load functions. ##Save works but load doesn't, 
+I can see artifact values are saved to localstorage but load doesn't populate my object-----Done 30/03/24 Values save, load and populate the fields :)
 -Artifact levels + main values
 -Sets 2p and 4p optimizer
--
-
-
-
+-Save more than 1 piece, specific pieces
+-figure out how to load individual selected pieces
+-implement S.R.P(Single Responsibility Principle)
+-Populate dropdown list from localstorage (Save an array of stuff? load array of stuff)
 */
+
 // function Piece(statArrays){
 //   const [piece, setPiece] = useState('')
 //   const handlePieceSelection = (value) => {setPiece(value)}
@@ -197,13 +198,7 @@ function ArtifactApp(){
         return;
     }
   }
-
-  // //How can I take this and make it a function? Something like: making smaller objects?
-  // const substat1 = CreateSub(mainStat, substats)
-  // const substat2 = CreateSub(mainStat, substats)
-  // const substat3 = CreateSub(mainStat, substats)
-  // const substat4 = CreateSub(mainStat, substats)
-
+  
   const [selectedStat1, setSelectedStat1] = useState('') //the value of the drop down box.
   const handleSelectedStat1 = (value) => {setSelectedStat1(value)}
   const [statValue1, setStatValue1] = useState('')//This works currently, displays correct values
@@ -222,15 +217,14 @@ function ArtifactApp(){
   const [selectedStat4, setSelectedStat4] = useState('')
   const handleSelectedStat4 = (value) => {setSelectedStat4(value)}
   const [statValue4, setStatValue4] = useState('')
-  const handleStatValue4 = (input) => { setStatValue4(input)}
+  const handleStatValue4 = (input) => {setStatValue4(input)}
 
-  const [valueReset, setValueReset] = useState('')
+  const [reset, setReset] = useState(false)
   const handleValueReset = () =>{
-    setValueReset(true);
+    setReset(true);
   }
-
   useEffect(() => {
-    if (valueReset) {
+    if (reset) {
     setPiece('');
     setMainValue('');
     setMainStat('');
@@ -242,15 +236,48 @@ function ArtifactApp(){
     setStatValue3('');
     setSelectedStat4('');
     setStatValue4('');
-    setValueReset(false);
-    console.log(valueReset);
+    setReset(false);
+    console.log(reset);
     }
-  }, [valueReset]);
+  }, [reset]);
 
 
+  const [data, setData] = useState([])
+  const [loaded, setLoaded] = useState(false)
+  const handleLoad = () => {
+    setLoaded(true)
+    load('artifact')
+  } 
+  //Change it here, reuse this part so when I click on the artifact, it'll populate fields.
+  //I'll have to save data as an array to become stringyfied? Then I have to change the use effect to load the individual artifacts into a list.
+  //So load will load the data array which is made of artifacts like data[0].Piece.
+  //I'll have to populate a list based on the loaded array>Click will then populate fields based on the above like data[0].Piece.
+
+
+
+  useEffect(()=>{
+    if(data !== null){
+      setPiece(data.Piece);
+      setMainStat(data.MainName);
+      setMainValue(data.MainStat);
+      setSelectedStat1(data.SubName1);
+      setStatValue1(data.SubValue1);
+      setSelectedStat2(data.SubName2);
+      setStatValue2(data.SubValue2);
+      setSelectedStat3(data.SubName3);
+      setStatValue3(data.SubValue3);
+      setSelectedStat4(data.SubName4);
+      setStatValue4(data.SubValue4);
+      setLoaded(false)
+      console.log('loaded')
+      console.log(data)
+    }
+  },[data])
+
+  
   const load = (key) => {
     const data = localStorage.getItem(key)
-    return data ? JSON.parse(data) : null;
+    setData(data ? JSON.parse(data) : null); //set data 
   };
 
   const save = (key, data) =>{
@@ -260,131 +287,259 @@ function ArtifactApp(){
 
   const a = ObjectCreate(piece, mainStat, mainValue, selectedStat1, statValue1, selectedStat2, statValue2, selectedStat3, statValue3, selectedStat4, statValue4)
  
-  return(
-  <div className='app'>
-    <div className='C1'>
-      <div className='C2'>
-        <div className='C3'>
-          
-          <div className='MSDDM'> {/*Main Stat Drop Down Menu*/}
-            <label for='piece'>Enter piece: 
-            <DropMenu id='piece' onChange={handlePieceSelection} useArray={statArrays.artPieces} reset={valueReset}/>
-            </label>
-            {piece === "Timepiece" && (
-              <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.sandMain} reset={valueReset}/>
-            )}
-            {piece === "Goblet" && (
-              <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.gobletMain} reset={valueReset}/>
-            )}
-            {piece === "Circlet" && (
-              <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.hatMain} reset={valueReset}/>
-            )}
-          </div>
-            <legend>Substats:
-          <div className='SSDDM'>
-          {/* {mainStat !== '' && ( */}
-          <div>
-            <SubStringDropMenu  main={mainStat} 
-                                sub1={selectedStat1}
-                                sub2={selectedStat2} 
-                                sub3={selectedStat3}
-                                sub4={selectedStat4}
-                                useArray={statArrays.substats}
-                                reset={valueReset}
-                                onChange={handleSelectedStat1}/>
-            {selectedStat1 !== '' &&(
-            <IntegerInputBox selectedStat={selectedStat1} onEnter={handleStatValue1}/>)}
-          </div>
-          {/* )} */}
+  return (
+    <div className="app">
+      <div className="LrgCont">
+        <div className="MedCont">
+          <div className="SmlCont">
+            <div className="">
+        
+              <label htmlFor="piece">
+                Enter piece:
+                <DropMenu
+                  id="piece"
+                  onChange={handlePieceSelection}
+                  useArray={statArrays.artPieces}
+                  reset={reset}
+                  load={loaded}
+                  data={data.Piece}
+                />
+              </label>
+              <MainSelectionDropMenu
+                piece={piece}
+                handleMainSelection={handleMainSelection}
+                statArrays={statArrays}
+                reset={reset}
+                load={loaded}
+                data={data}
+              />
+            </div>
 
-          {/* {statValue1 !== '' &&( */}
-          <div>
-            <SubStringDropMenu  main={mainStat} 
-                                sub1={selectedStat1} 
-                                sub2={selectedStat2}
-                                sub3={selectedStat3}
-                                sub4={selectedStat4}
-                                useArray={statArrays.substats}
-                                reset={valueReset}
-                                onChange={handleSelectedStat2}/>
-            {selectedStat2 !== '' &&(
-            <IntegerInputBox selectedStat={selectedStat2} onEnter={handleStatValue2}/>)}
-          </div>
-          {/* )} */}
+            <legend>
+              Substats:
+              <div className="">
+                {/* {mainStat !== '' && ( */}
+                <div>
+                  <SubStringDropMenu
+                    main={mainStat}
+                    sub1={selectedStat1}
+                    sub2={selectedStat2}
+                    sub3={selectedStat3}
+                    sub4={selectedStat4}
+                    useArray={statArrays.substats}
+                    reset={reset}
+                    load={loaded}
+                    data={data.SubName1}
+                    onChange={handleSelectedStat1}
+                  />
+                  {selectedStat1 !== "" && (
+                    <IntegerInputBox
+                      selectedStat={selectedStat1}
+                      onEnter={handleStatValue1}
+                      data={data.SubValue1}
+                    />
+                  )}
+                </div>
+                {/* )} */}
 
-          {/* {statValue2 !== '' && ( */}
-          <div>
-            <SubStringDropMenu  main={mainStat} 
-                                sub1={selectedStat1} 
-                                sub2={selectedStat2} 
-                                sub3={selectedStat3}
-                                sub4={selectedStat4}
-                                useArray={statArrays.substats}
-                                reset={valueReset}
-                                onChange={handleSelectedStat3}/>
-            {selectedStat3 !== '' &&(
-            <IntegerInputBox    selectedStat={selectedStat3} 
-                                onEnter={handleStatValue3}/>)}
-          </div>
-          {/* )} */}
+                {/* {statValue1 !== '' &&( */}
+                <div>
+                  <SubStringDropMenu
+                    main={mainStat}
+                    sub1={selectedStat1}
+                    sub2={selectedStat2}
+                    sub3={selectedStat3}
+                    sub4={selectedStat4}
+                    useArray={statArrays.substats}
+                    reset={reset}
+                    load={loaded}
+                    data={data.SubName2}
+                    onChange={handleSelectedStat2}
+                  />
+                  {selectedStat2 !== "" && (
+                    <IntegerInputBox
+                      selectedStat={selectedStat2}
+                      onEnter={handleStatValue2}
+                      data={data.SubValue2}
+                    />
+                  )}
+                </div>
+                {/* )} */}
 
-          {/* {statValue3 !== '' &&( */}
-          <div>
-            <SubStringDropMenu  main={mainStat} 
-                                sub1={selectedStat1} 
-                                sub2={selectedStat2} 
-                                sub3={selectedStat3}
-                                sub4={selectedStat4}
-                                useArray={statArrays.substats}
-                                reset={valueReset}
-                                onChange={handleSelectedStat4}/>
-            {selectedStat4 !== '' &&(
-            <IntegerInputBox   selectedStat={selectedStat4} 
-                              onEnter={handleStatValue4}/>)}
+                {/* {statValue2 !== '' && ( */}
+                <div>
+                  <SubStringDropMenu
+                    main={mainStat}
+                    sub1={selectedStat1}
+                    sub2={selectedStat2}
+                    sub3={selectedStat3}
+                    sub4={selectedStat4}
+                    useArray={statArrays.substats}
+                    reset={reset}
+                    load={loaded}
+                    data={data.SubName3}
+                    onChange={handleSelectedStat3}
+                  />
+                  {selectedStat3 !== "" && (
+                    <IntegerInputBox
+                      selectedStat={selectedStat3}
+                      onEnter={handleStatValue3}
+                      data={data.SubValue3}
+                    />
+                  )}
+                </div>
+                {/* )} */}
+
+                {/* {statValue3 !== '' &&( */}
+                <div>
+                  <SubStringDropMenu
+                    main={mainStat}
+                    sub1={selectedStat1}
+                    sub2={selectedStat2}
+                    sub3={selectedStat3}
+                    sub4={selectedStat4}
+                    useArray={statArrays.substats}
+                    reset={reset}
+                    load={loaded}
+                    data={data.SubName4}
+                    onChange={handleSelectedStat4}
+                  />
+                  {selectedStat4 !== "" && (
+                    <IntegerInputBox
+                      selectedStat={selectedStat4}
+                      onEnter={handleStatValue4}
+                      data={data.SubValue4}
+                    />
+                  )}
+                </div>
+                {/* )} */}
+              </div>
+            </legend>
           </div>
-          {/* )} */}
-         </div>
-         </legend>
         </div>
-      </div>
 
-      {/*statValue4 !== '' &&*/(
-        <div className='displayContainer'>
-          <DisplayArtifact artifact={a}/>
+        {
+          /*statValue4 !== '' &&*/ <div className="MedCont">
+            <div className="SmlCont">
+              <DisplayArtifact artifact={a} />
+            </div>
+          </div>
+        }
+
+        <div className="optionsMenu">
+          <button onClick={() => save("artifact", a)}>Save</button>
+          <button onClick={handleLoad}>Load</button>
+          <button onClick={handleValueReset}>Clear</button>
         </div>
-      )}
-
-      <div className='optionsMenu'>
-        <button onClick={()=> save('artifact', a)}>Save</button>
-        <button onClick={() => load('artifact')}>Load</button>
-        <button onClick={handleValueReset}>Clear</button>
       </div>
     </div>
-  </div>
+  );
+}
+
+// function LoadReset(useArray, reset, data, load){
+//   if(reset){
+//     return( //if piece is !'' > Clear Object?
+//       <select>
+//         <option key={useArray[0]} value={useArray[0]}>{useArray[0]}</option>
+//       </select>
+//       );
+//     }
+//     if(load){
+//       return(
+//       <select>
+//         <option key={data} value={data}>{data}</option>
+//       </select>
+//       )
+//     }
+// }
+
+
+function LoadedArtifactMenu(){
+  let items ={}
+  return(
+    <select>
+      <option></option>
+    </select>
   )
 }
 
+function MainSelectionDropMenu({piece, handleMainSelection, statArrays, reset, loaded, data}) {
+  if (piece === "Timepiece")
+    return (
+      <DropMenu
+        piece={piece}
+        onChange={handleMainSelection}
+        useArray={statArrays.sandMain}
+        reset={reset}
+        load={loaded}
+        data={data.Piece}
+      />
+    );
+  if (piece === "Goblet")
+    return (
+      <DropMenu
+        piece={piece}
+        onChange={handleMainSelection}
+        useArray={statArrays.gobletMain}
+        reset={reset}
+        load={loaded}
+        data={data.Piece}
+      />
+    );
+  if (piece === "Circlet")
+    return (
+      <DropMenu
+        piece={piece}
+        onChange={handleMainSelection}
+        useArray={statArrays.hatMain}
+        reset={reset}
+        load={loaded}
+        data={data.Piece}
+      />
+    );
+}
 
-
-function DropMenu({onChange, useArray, reset}) {
-  if(!reset){
-  return ( //if piece is !'' > Clear Object?
-    <select onChange={(event) => onChange(event.target.value)}>
-      {useArray.map((stat) => (
-        <option key={stat} value={stat}>{stat}</option>))}
-    </select>
-       );
-    }
+function DropMenu({onChange, useArray, reset, load, data}) {
+  if(reset){
+  return( //if piece is !'' > Clear Object?
     <select>
       <option key={useArray[0]} value={useArray[0]}>{useArray[0]}</option>
     </select>
+    );
+  }
+  if(load){
+    return(
+    <select>
+      <option key={data} value={data}>{data}</option>
+    </select>
+    )
+  }
+  return(
+    <select onChange={(event) => onChange(event.target.value)}>
+    {useArray.map((stat) => (
+      <option key={stat} value={stat}>{stat}</option>))}
+  </select>
+  )
 };
 
-function SubStringDropMenu({onChange, main, sub1, sub2, sub3, sub4, useArray, reset}) {
-  if(!reset){
-  return (
+function SubStringDropMenu({onChange, useArray, reset, load, data, main, sub1, sub2, sub3, sub4}) {
+  if(reset){
+    return(
+      <select>
+        <option key={useArray[0]} value={useArray[0]}>{useArray[0]}</option>
+      </select>
+    );
+  };
+  if(load){
+    return(
+      <select>
+        <option key={data} value={data}>{data}</option>
+      </select>
+    );
+  };
+  return(
   <select onChange={(e) => {
-    if(selectionValidation(e.target.value, main, sub1, sub2, sub3, sub4)){
+    if(SelectionValidation(e.target.value, main, sub1, sub2, sub3, sub4)){
       onChange(e.target.value);
     }
     else{
@@ -395,10 +550,70 @@ function SubStringDropMenu({onChange, main, sub1, sub2, sub3, sub4, useArray, re
     <option key={stat} value={stat}>{stat}</option>))}
   </select>
   );
+};
+
+function SelectionValidation(value, main ,sub1, sub2, sub3, sub4){
+  return(value !== main && value !== sub1 && value !== sub2 && value !== sub3 && value !== sub4 && main !== '') ? true : false;
+}
+
+// function Valid({value, main, sub1, sub2, sub3, sub4}){
+//   if(!SelectionValidation(value, main, sub1, sub2, sub3, sub4)){
+//     alert("IMPOSSIBLE")
+//     return false;
+//   }
+//   return true;
+// }
+
+function IntegerInputBox({onEnter, selectedStat, data}){
+  const handleKey = (e) => {
+    if(e.key === "Enter"){
+      if(selectedStat){
+        let inputVal = e.target.value; //simplfies it slightly for only two instances, guess it saves a few characters.
+        let valid = ValidSubStatValues(inputVal, selectedStat)
+        if (valid){
+          onEnter(inputVal)
+        }
+        else{
+          alert('nah m8');
+          e.target.value= '';
+        }
+      }
+      else{
+      alert('bad');
+      }
     }
-  <select>
-    <option key={useArray[0]} value={useArray[0]}>{useArray[0]}</option>
-  </select>
+  };
+  if(data){
+    return(
+      <input placeholder={data} onChange = {() => data}/>
+    )
+  }
+  return (
+    <>
+    <input placeholder='Substat Value'
+    onChange={(event) => event.target.value}
+    onKeyDown={handleKey}
+    />
+    </>
+  );
+}
+
+/*Created to more easily display and potentially save and load artifacts when I make those functions.*/
+function ObjectCreate(p, mn, ms, sn1, sv1, sn2, sv2, sn3, sv3, sn4, sv4){
+  const artifact = {
+    Piece: p, 
+    MainName: mn,
+    MainStat: ms,
+    SubName1: sn1,
+    SubValue1: sv1,
+    SubName2: sn2,
+    SubValue2: sv2,
+    SubName3: sn3,
+    SubValue3: sv3,
+    SubName4: sn4,
+    SubValue4: sv4,
+  };
+  return artifact;
 }
 
 function ValidSubStatValues(uinput, sn){
@@ -474,58 +689,6 @@ function ValidSubStatValues(uinput, sn){
   }
 }
 
-function selectionValidation(value, main ,sub1, sub2, sub3, sub4){
-  return (value !== main && value !== sub1 && value !==sub2 && value !== sub3 && value !== sub4 && main !== '') ? true : false;
-}
-
-function IntegerInputBox({onEnter, selectedStat}){
-  const handleKey = (event) => {
-    if(event.key === "Enter"){
-      if(selectedStat){
-        let inputVal = event.target.value; //simplfies it slightly for only two instances, guess it saves a few characters.
-        let valid = ValidSubStatValues(inputVal, selectedStat)
-        if (valid){
-          onEnter(inputVal)
-        }
-        else{
-          alert('nah m8');
-          event.target.value= '';
-        }
-      }
-      else{
-      alert('bad');
-      }
-    }
-  };
-  return (
-    <>
-    <input placeholder='Substat Value'
-    onChange={(event) => event.target.value}
-    onKeyDown={handleKey}
-    />
-    </>
-  );
-}
-
-
-/*Created to more easily display and potentially save and load artifacts when I make those functions.
-*/
-function ObjectCreate(p, mn, ms, sn1, sv1, sn2, sv2, sn3, sv3, sn4, sv4){
-  const artifact = {
-    Piece: p, 
-    MainName: mn,
-    MainStat: ms,
-    SubName1: sn1,
-    SubValue1: sv1,
-    SubName2: sn2,
-    SubValue2: sv2,
-    SubName3: sn3,
-    SubValue3: sv3,
-    SubName4: sn4,
-    SubValue4: sv4,
-  };
-  return artifact;
-}
 function DisplayArtifact({artifact}){
   return(
     <>
@@ -538,6 +701,7 @@ function DisplayArtifact({artifact}){
     </>
   )
 }
+
 function Arrays(){
   const statSelector = {
     artPieces: ['', "Flower", "Feather", "Timepiece", "Goblet", "Circlet"],
@@ -548,4 +712,5 @@ function Arrays(){
   }
 return statSelector;
 }
+
 export default ArtifactApp;

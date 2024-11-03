@@ -86,4 +86,6 @@ function coefficient(n, s){
     return factorial(n) / (factorial(s) * factorial((n - s)))
 }
 
+print(binominalProbabilityCalc(500, 0.05, 1));
+
 export default binominalProbabilityCalc;

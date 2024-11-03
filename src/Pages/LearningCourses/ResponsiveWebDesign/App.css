@@ -28,7 +28,6 @@
   ;
 }
 
-
 .codeContainer{
   color: white;
   border: 3px solid blue;
@@ -54,6 +53,9 @@
   color:white;
 }
 
+.iframe{
+  background-color: white;
+}
 pre{
   padding: 2px 5px;
   font-size: 13px;

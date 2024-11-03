@@ -182,3 +182,14 @@ function DropMenu({onChange, useArray, reset}) {
 //     </select>
 //   );
 // }
+
+Old conditional rendering version of my mainstat and values dropdown menus - Made a function for it instead.
+{/* {piece === "Timepiece" && (
+              <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.sandMain} reset={reset} load={loaded} data={data.Piece} />
+            )}
+            {piece === "Goblet" && (
+              <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.gobletMain} reset={reset} load={loaded} data={data.Piece}/>
+            )}
+            {piece === "Circlet" && (
+              <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.hatMain} reset={reset} load={loaded} data={data.Piece}/>
+            )} */}

@@ -10,6 +10,7 @@ import ReplayImages from "../../Pages/Projects/YGOReplays&Images/ReplayImages";
 import Page from "../../Pages/LearningCourses/ReactCourse/Page";
 import ReactCourse from "../../Pages/LearningCourses/ReactCourse/ReactCourse";
 //import Experiment from "../../Pages/Projects/Artifact/Experiment";
+import MainApp from "../../Pages/Projects/Artifact/ArtTest";
 
 /*Pages
 Home- (Nav.js) Rename App?
@@ -69,12 +70,12 @@ const menulinks = [
                 Element:<ReplayImages/>,
                 Label:"YGOReplays"
             }
-            //,
-            // {
-            //     Path:"Artifact/Experiment.js",
-            //     Element:<Experiment/>,
-            //     Label:"Artifact test area"
-            // }
+            ,
+            {
+                Path:"Artifact/ArtTest.js",
+                Element:<MainApp/>,
+                Label:"Artifact test area"
+            }
         ]
     }
 ]

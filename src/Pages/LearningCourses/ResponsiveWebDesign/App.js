@@ -1,5 +1,6 @@
 
 import './App.css';
+//import './CatPhoto.html';
 
 function App() {
   return (
@@ -29,27 +30,35 @@ function App() {
           <div className='codeContainer'>
               <div className='codesec'>
                 <FccCatPhoto/>
+                <iframe src='/StaticHTML/CatPhoto.html' width="100%" height="600px" title='CatPhoto' style={{backgroundColor:'white'}}/>
               </div>
               <div className='codesec'>
                 <Menu/>
+                <iframe src='/StaticHTML/Menu.html' width="100%" height="600px" title='Menu'/>
               </div>
               <div className='codesec'>
                 <ColorMarkers/>
+                <iframe src='/StaticHTML/ColorMarkers.html' width="100%" height="600px" title='ColorMarkers'/>
               </div>
               <div className='codesec'>
                 <RegistrationForm/>
+                <iframe src='/StaticHTML/RegistrationForm.html' width="100%" height="600px" title='RegoForm'/>
               </div>
               <div className='codesec'>
                 <SurveyForm/>
+                <iframe src='/StaticHTML/SurveyForm.html' width="100%" height="600px" title='SurveyForm'/>
               </div>
               <div className='codesec'>
                 <RothkoPainting/>
+                <iframe src='/StaticHTML/RothkoPainting.html' width="100%" height="600px" title='RothkoPainting'/>
               </div>
               <div className='codesec'>
                 <PhotoGallery/>
+                <iframe src='/StaticHTML/PhotoGallery.html' width="100%" height="600px" title='PhotoGallery'/>
               </div>
               <div className='codesec'>
-                <NutritionLabel/> 
+                <NutritionLabel/>
+                <iframe src='/StaticHTML/NutritionLabel.html' width="100%" height="600px" title='NutritionLabel'/>
               </div>
             
           </div>
