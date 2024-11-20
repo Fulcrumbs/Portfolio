@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+  <link rel="stylesheet" href="/Styles/SurveyForm.css">
+  <h1 id='title'>TITLE</h1>
+  <p id='description'>Paragraph</p>
+  <form id='survey-form'>
+    <label id='name-label' for='name'>Name: <input required id='name' type='text' placeholder='Please enter name'</label>
+    <label id='email-label' for='email'>Email: <input required id='email' type='email' placeholder='Enter email'></label>
+    <label id='number-label' for='number'>Number: <input id='number' type='number' pattern='[0-9]' min='4' max='8' placeholder='Enter number'></label>
+    <select id='dropdown'>
+      <option>1</option>
+      <option>2</option>
+    </select>
+    <input name='radio' type="radio" value='1'>
+    <input name='radio' type="radio" value='2'>
+    <input type='checkbox' value='1'>
+    <input type='checkbox' value='2'>
+    <textarea placeholder='Additional comments'></textarea>
+    <input id='submit' type='submit'>
+  <form>
