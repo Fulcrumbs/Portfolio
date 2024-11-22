@@ -10,3 +10,4 @@ http.createServer(function (req, res){ //Seems to be the basic syntax for runnin
     res.end();
 }).listen(8080) //We're listening on this port
 
+//Next time I commit staged changes, I gotta do this: git rm -r --cached .git add . >git commit -m"removed all files from gitignore" > git push origin master
