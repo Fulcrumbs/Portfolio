@@ -1,0 +1,81 @@
+/* .app{
+    margin-top: 35px;
+} */
+
+.LrgCont{
+    display: flex; 
+    color:white;
+    background: linear-gradient(45deg, purple, black);
+    background-size: 100%;
+    min-width: auto;
+    
+    padding: 5px;
+    margin: 5px;
+}
+  
+.MedCont{
+    display: flex;
+    flex-direction: row; 
+    color:white;
+    background: black;
+    
+    min-width: 33dvw;
+    
+    margin: 10px;
+    border: 2px solid #17387b;
+    padding: 5px;
+
+    transition: background 1s ease-in-out 0.1s;
+}
+.MedCont:hover{
+    background: purple;  
+}
+
+  
+.SmlContainer{
+    background:linear-gradient( rgb(0, 0, 0), purple, black);
+    min-width: 15dvw;
+
+    display: flex;
+    flex-direction: column;
+    border: #61dafb;
+    margin: 5px;
+    padding: 10px;
+}
+
+.displayContainer{
+    background-color: rgb(73, 28, 28); 
+    min-width: 33dvw;
+
+    display: block; 
+    min-height: auto;
+    
+    margin: 10px;
+    padding: 5px;
+
+    transition: box-shadow ease-in-out 0.1s;
+}
+.displayContainer:hover{
+box-shadow: 5px 5px 6px 1px rgba(85, 28, 28)inset,
+     -5px -5px 6px 0px rgba(53, 28, 28, 0.5) inset;
+}
+
+.inputbox{
+    padding: 10px;
+}
+
+/* .MSDDM{
+    margin: 0.5rem 0;
+} */
+
+/* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
+/* background-image: url('https://images.pexels.com/photos/1493226/pexels-photo-1493226.jpeg');
+    background-size: 100%; */
+    /* background: linear-gradient(45deg, rgb(126, 22, 22), rgb(63, 5, 5)); */
+
+    /* background: linear-gradient(90deg, rgb(116, 86, 86), rgb(255, 255, 255)); This isn't supported for transitioning*/
+    /* transition: background 1s ease-in-out 0.1s; */
+
+    /* border: 2px solid #17387b; */
+
+    /* background-image: url('https://images.pexels.com/photos/4994765/pexels-photo-4994765.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); */
