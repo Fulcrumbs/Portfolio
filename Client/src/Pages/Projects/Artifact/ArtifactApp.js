@@ -30,6 +30,8 @@ I can see artifact values are saved to localstorage but load doesn't populate my
 -figure out how to load individual selected pieces
 -implement S.R.P(Single Responsibility Principle)
 -Populate dropdown list from localstorage (Save an array of stuff? load array of stuff)
+-Idea I had is to just move duplicate check to the create/save button and exit with an error if there is a dupe, rather than check if there's a dupe
+while assigning states.
 */
 
 // function Piece(statArrays){

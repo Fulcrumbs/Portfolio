@@ -1,13 +1,8 @@
+import './RWD.css';
 
-import { wait } from '@testing-library/user-event/dist/utils';
-import './App.css';
-import { defer } from 'react-router-dom';
-import { useEffect } from 'react';
-//import './CatPhoto.html';
-
-function App() {
+function RWD() {
   return (
-      <div className="App">      
+      <div className="RWD noScroll">      
         <header className='head'>
           <HeaderMenu/>
         </header>
@@ -29,8 +24,12 @@ function App() {
               -01/01/24.
             </p>
             <p>Quick change to push</p>
+            <p>27/11/24 - Been working on making the two sections overlap and add a button that'll change the size of the sections to swap between
+              the finished result and the html code used to create it. Still some of the sections are looking a bit icky so I want to tidy up the
+              appearance and the code.
+            </p>
           </div>
-          <div className='codeContainer'>
+          <div className='codeContainer noScroll'>
               <div className='codesec'>
                
                 <FccCatPhoto/>
@@ -153,16 +152,16 @@ function FccCatPhoto(){
 </html>
   `
   return(
-  <>
+  <div className='codePair flexCol'>
     <h1>Cat Photo HTML</h1>
-    <pre>
+    <pre className='noScroll'>
       <code>
         <div className={'html overl1'}>
           {html}
         </div>
       </code>
     </pre>
-  </>
+  </div>
   );
 }
 
@@ -328,27 +327,27 @@ function Menu(){
       }
       `
   return(
-    <div className='codePair'>
-    <div>
-    <h1>Menu HTML</h1>
-      <pre>
-        <code>
-          <div className='html'>
-            {html}
-          </div>
-        </code>
-      </pre>
-    </div>
-    <div>
-    <h1>Menu CSS</h1>
-      <pre>
-        <code>
-          <div className='css'>
-            {css}
-          </div>
-        </code>
-      </pre>
-    </div>
+    <div className='codePair noScroll'>
+      <div>
+      <h1>Menu HTML</h1>
+        <pre className=''>
+          <code>
+            <div className='html'>
+              {html}
+            </div>
+          </code>
+        </pre>
+      </div>
+    <div>   
+      <h1>Menu CSS</h1>
+        <pre>
+          <code>
+            <div className='css'>
+              {css}
+            </div>
+          </code>
+        </pre>
+      </div>
     </div>
   )
 }
@@ -589,7 +588,7 @@ function RegistrationForm(){
   <div className='codePair'>
   <div>
     <h1>Registration Form HTML</h1>
-      <pre>
+      <pre className='noScroll'>
         <code>
           <div className='html'>
             {html}
@@ -1033,53 +1032,30 @@ return(
 )
 }
 
-// window.onload = function () {
-//   // This runs when the page has loaded, ensuring elements are available in the DOM
-
-//   // Get references to the button and the elements
-//   let overl1 = document.querySelector('.overl1');
-//   let overl2 = document.querySelector('.overl2');
-//   let button = document.querySelector('.overButton');
-
-//   // Check if the elements are found before adding an event listener
-//   if (overl1 && overl2 && button) {
-//     button.addEventListener('click', seeCode);
-//   }
-// };
-
 
 function seeCode(){
   let overl1 = (document.querySelector('.overl1'));
   let overl2 = (document.querySelector('.overl2'));
   
+  //overl1 starts at 0%
 
-  // if(overl1.style.zIndex === '1'){
-  //  overl1.style.zIndex = '2'; 
-  //  overl2.style.zIndex = '1';
-    
-  // }else{
-  //   overl1.style.zIndex = '1';
-  //   overl2.style.zIndex = '2';
-  //   }
-  // }
-
-  if(overl2.style.width === '0%'){
-    overl1.style.width = '0%';
-    overl1.style.height = '0%';
+  if(overl1.style.width === '0%'){
+    overl1.style.width = '100%';
+    overl1.style.height = '100%';
     // overl1.style.zIndex = '2';
   
-    overl2.style.width = '100%';
-    overl2.style.height = '100%';
+    overl2.style.width = '0%';
+    overl2.style.height = '0%';
     // overl2.style.zIndex = '1';
 
    
   }else{
-    overl2.style.width = '0%';
-    overl2.style.height = '0%';
+    overl2.style.width = '100%';
+    overl2.style.height = '100%';
     // overl2.style.zIndex = '2'
 
-    overl1.style.width = '100%';
-    overl1.style.height = '100%';
+    overl1.style.width = '0%';
+    overl1.style.height = '0%';
     // overl1.style.zIndex = '1';
   }
 }
@@ -1147,4 +1123,4 @@ function seeCode(){
 //     </div>);
 // }
 //#endregion
-export default App;
+export default RWD;

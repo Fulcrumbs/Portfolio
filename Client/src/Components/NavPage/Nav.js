@@ -3,14 +3,14 @@ import {Routes, Route, Link} from "react-router-dom";
 
 import "./Nav.css"
 
-import App from "../../Pages/LearningCourses/ResponsiveWebDesign/App";
+import RWD from "../../Pages/LearningCourses/ResponsiveWebDesign/RWD";
 import Board from "../../Pages/Projects/TicTacToe/TicTacToe";
 import ArtifactApp from "../../Pages/Projects/Artifact/ArtifactApp";
 import ReplayImages from "../../Pages/Projects/YGOReplays&Images/ReplayImages";
 import Page from "../../Pages/LearningCourses/ReactCourse/Page";
 import ReactCourse from "../../Pages/LearningCourses/ReactCourse/ReactCourse";
 //import Experiment from "../../Pages/Projects/Artifact/Experiment";
-import MainApp from "../../Pages/Projects/Artifact/ArtTest";
+import BookingApp from "../../Pages/Projects/BookingApp/AppointmentSys";
 
 /*Pages
 Home- (Nav.js) Rename App?
@@ -44,8 +44,8 @@ const menulinks = [
                 Label: "Course"
             },
             {
-                Path: "ResponsiveWebDesign/App.js",
-                Element: <App/>,
+                Path: "ResponsiveWebDesign/RWD.js",
+                Element: <RWD/>,
                 Label:"Responsive Web Design"
             }
         ]
@@ -72,9 +72,9 @@ const menulinks = [
             }
             ,
             {
-                Path:"Artifact/ArtTest.js",
-                Element:<MainApp/>,
-                Label:"Artifact test area"
+                Path:"BookingApp/AppointmentSys.js",
+                Element:<BookingApp/>,
+                Label:"Booking App"
             }
         ]
     }
@@ -112,12 +112,11 @@ const Nav = () =>{
             </Routes>
         </div>
     )
-}
-;
+};
 
 function NavPage(){
-    return <Nav/>;
-}
+    return <Nav/>
+};
 
 
 export default NavPage;
