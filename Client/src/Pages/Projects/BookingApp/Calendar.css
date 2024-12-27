@@ -1,0 +1,14 @@
+.calendar{
+    width:350px;
+    background: #fff;
+    display: flex;
+    align-items: flex-end;
+    border-radius: 3px;
+}
+
+.calendar button{
+    background: none;
+    margin: 0;
+    border: 0;
+    align-items: center;
+}

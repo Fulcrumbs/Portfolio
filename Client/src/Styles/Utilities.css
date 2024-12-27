@@ -1,4 +1,57 @@
+/*Hide stuff*/
+.noScroll{
+  /*v removes the scrollbar from the pre sections v*/
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.hidden{
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.visible{
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visinility 0.5s ease;
+}
+
+/*Grid*/
+.overlap{
+  grid-row: 1;
+  grid-column: 1;
+}
+
+/*Flex options*/
 .flexCol{
   display: flex;
   flex-direction: column;
+}
+.flexRow{
+  display: flex;
+  flex-direction: row;
+}
+
+/*Box model*/
+.margin-5{
+  margin: 5px;
+}
+
+.padding-5{
+  padding: 5px;
+}
+
+.border-round1{
+  border-radius: 15px 25px;
+}
+
+.border-round2{
+  border-radius: 25px 10px;
+}
+
+/*Font*/
+.text-white{
+  color: white;
 }

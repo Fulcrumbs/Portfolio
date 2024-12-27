@@ -1,0 +1,11 @@
+*{
+  box-sizing: border-box;
+}
+
+h1{ /*Global reference, will apply across all pages*/
+    padding: 5px;
+    margin: 5px; /*Top, Right, Bottom, Left
+    /* border: solid red; */
+    background-color: rgb(65, 65, 65);
+    /* border-radius: 15px; */
+  }

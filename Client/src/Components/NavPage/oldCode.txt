@@ -88,3 +88,94 @@
 //         </Routes>
 //     </div>)
 // }
+
+// function seeCode(){ // This whole bit is redundant now, much easier way discovered
+//   let codePair = (document.querySelector('.codePair'));
+//   let iframe = (document.querySelector('.iframe'));
+  
+//   //overl1 starts at 0%
+
+//   if(codePair.style.width === '0%'){
+//     codePair.style.width = '100%';
+//     codePair.style.height = '100%';
+//     // overl1.style.zIndex = '2';
+  
+//     iframe.style.width = '0%';
+//     iframe.style.height = '0%';
+//     // overl2.style.zIndex = '1';
+
+   
+//   }else{
+//     iframe.style.width = '100%';
+//     iframe.style.height = '100%';
+//     // overl2.style.zIndex = '2'
+
+//     codePair.style.width = '0%';
+//     codePair.style.height = '0%';
+//     // overl1.style.zIndex = '1';
+//   }
+// }
+
+//template:
+{/* <div className='codesec'>
+
+</div> */}
+{/* <div>
+    <h1></h1>
+      <pre>
+        <code>
+          <div className=''>
+            {}
+          </div>
+        </code>
+      </pre>
+    </div> */}
+
+
+// {/* <div>
+//     <iframe src='https://www.youtube.com/watch?v=1WIMcknKQPg'>
+//     </iframe>
+//     </div> */}
+
+// function InputValidation(uinput, arr) //isNaN = Is not a number| The drop down box invalidates this
+// {
+//     let valid = parseInt(uinput); // checks to make sure the user has entrered an interger. 
+//     return (isNaN(valid) || uinput > arr.Length || uinput <= 0) ? false : true;
+// } 
+// function StringInputBox({onEnter}) {
+//   const [inputVal, setInputVal] = useState('')
+//   const handleKey = (event) => {
+//     if(event.key === "Enter"){
+//       onEnter(inputVal)
+//       setInputVal('');
+//     }
+//   };
+//   return (<input type="text"
+//   value={inputVal}
+//   onChange={(event) => setInputVal(event.target.value)}
+//   onKeyDown={handleKey}
+//   />
+// );
+// }
+
+//Original kind of working idea
+// function UInputBox1({value}) {
+//   const [inputVal, setInputVal] = useState('');
+//   const [displayVal, setDisplayVal] = useState('');
+//   const handleKey = (event) => {
+//     if(event.key === "Enter"){
+//       setDisplayVal(inputVal);
+//       setInputVal('');
+//     }
+//   };
+//   return (
+//     <div className='container'>
+//     <input type="text"
+//     value={inputVal}
+//     onChange={(event) => setInputVal(event.target.value)}
+//     onKeyDown={handleKey}
+//     />
+//     <p>{value}: {displayVal}</p>
+//     </div>);
+// }
+//#endregion

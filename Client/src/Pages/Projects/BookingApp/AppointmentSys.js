@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import Calendar from 'react-calendar'
+import './Calendar.css'
+// import { Calendar } from '@demark-pro/react-booking-calendar';
+// import '@demark-pro/react-booking-calendar/dist/react-booking-calendar.css';
+
+//@demark-pro/react-booking-calendar
 
 function BookingApp(){
     /**use effect will fetch data from the api setup in server/index, which then queries the data from the database and returns it here
@@ -8,6 +14,15 @@ function BookingApp(){
      */
     const [booking, setBooking] = useState([]);
     const [loading, setLoading] = useState();
+    const CalendarSection =() => {
+        const [date, setDate] = useState(null);
+        return(
+            <div className="calendar">
+              <Calendar onChange={setDate}/>  
+            </div>
+        )}
+    
+    
 
     const fetchBooking = () =>{
         axios.get('http://localhost:8080/api/appointment')
@@ -19,7 +34,7 @@ function BookingApp(){
             setBooking(undefined)
         });
     }
-    
+
     useEffect(() => {
         fetchBooking();
         const interval = setInterval(() => {
@@ -42,9 +57,9 @@ function BookingApp(){
 
     return(
         <div> 
-            {/* <input type="text" value={booking.Name} onEnter={"handleNameChange"}/><br/>
-            <input type="number" value={booking.Time} onEnter={'handleTimeChange'}/> */}
-            <br></br>
+            <input type="text" value={booking.Name} placeholder="Name"/><br/>
+            <CalendarSection/>
+            <br/>
             <h1>Listed bookings:</h1>
             {booking !== undefined && booking.length > 0 ? ( //booking is defined and has elements
                 <ul>

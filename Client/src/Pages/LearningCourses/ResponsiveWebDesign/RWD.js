@@ -1,12 +1,63 @@
+import { useState } from 'react';
 import './RWD.css';
 
 function RWD() {
+  //CatPhoto
+  const [catPhotoLoaded, setCatPhotoLoaded] = useState(false); // gonna have to make loaded states for each menu :/
+  const [showCatPhotoCode, setShowCatPhotoCode] = useState(false);
+  const toggleCatPhotoCode = () => {//I'll also have to make individual code toggles for each one too.
+      setShowCatPhotoCode((prev) => !prev);
+    };
+
+  //Menu
+  const [menuLoaded, setMenuLoaded] = useState(false);
+  const [showMenuCode, setShowMenuCode] = useState(false);
+  const toggleMenuCode = () => {
+    setShowMenuCode((prev) => !prev);
+  };
+
+  //colorMarker
+  const [colorMarkerLoaded, setColorMarkerLoaded] = useState(false);
+  const [showColorMarkerCode, setShowColorMarkerCode] = useState(false);
+  const toggleColorMarkerCode = () => {
+    setShowColorMarkerCode((prev) => !prev);
+  };
+  //RegistrationForm
+  const [regoFormLoaded, setRegoFormLoaded] = useState(false);
+  const [showRegoFormCode, setShowRegoFormCode] = useState(false);
+  const toggleRegoFormCode = () => {
+    setShowRegoFormCode((prev) => !prev);
+  };
+  //surveyForm
+  const [surveyFormLoaded, setSurveyFormLoaded] = useState(false);
+  const [showSurveyFormCode, setShowSurveyFormCode] = useState(false);
+  const toggleSurveyFormCode = () => {
+    setShowSurveyFormCode((prev) => !prev);
+  };
+  //rothkoPainting
+  const [rothkoPaintingLoaded, setRothkoPaintingLoaded] = useState(false);
+  const [showRothkoPaintingCode, setShowRothkoPaintingCode] = useState(false);
+  const toggleRothkoPaintingCode = () => {
+    setShowRothkoPaintingCode((prev) => !prev);
+  };
+  //photoGallery
+  const [photoGalleryLoaded, setPhotoGalleryLoaded] = useState(false);
+  const [showPhotoGalleryCode, setShowPhotoGalleryCode] = useState(false);
+  const togglePhotoGalleryCode = () => {
+    setShowPhotoGalleryCode((prev) => !prev);
+  };
+  //nutritionLabel
+  const [nutritionLoaded, setNutritionLoaded] = useState(false);
+  const [showNutritionCode, setShowNutritionCode] = useState(false);
+  const toggleNutritionCode = () => {
+    setShowNutritionCode((prev) => !prev);
+  };
   return (
-      <div className="RWD noScroll">      
+      <div className="RWD padding-5 noScroll">      
         <header className='head'>
           <HeaderMenu/>
         </header>
-          <div className='desc'>
+          <div className='desc border-round2'>
             <p>These are <i>some</i> of the resources I've been using to try and learn.</p>
             <p>So this div and the code div were stacked because they were both inside of the body tag, so moved it outside and it
             is back to the being beside this desc div. Though I wonder if I change the body tag to have the css property of
@@ -29,43 +80,98 @@ function RWD() {
               appearance and the code.
             </p>
           </div>
-          <div className='codeContainer noScroll'>
+          <div className='codeContainer'>
+
               <div className='codesec'>
-               
-                <FccCatPhoto/>
-                <iframe className='overl2' src='/StaticHTML/CatPhoto.html' title='CatPhoto' style={{backgroundColor:'white'}}/> 
-                <button className='overButton' onClick={seeCode}>toggle code/result</button>
+                <FccCatPhoto className={`${showCatPhotoCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showCatPhotoCode ? 'visible' : 'hidden'} `} 
+                        src='/StaticHTML/CatPhoto.html' 
+                        title='CatPhoto' 
+                        onLoad={() => setCatPhotoLoaded(true)}/>
+                {catPhotoLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleCatPhotoCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <Menu/>
-                <iframe src='/StaticHTML/Menu.html' width="100%" height="600px" title='Menu'/>
+                <Menu className={`${showMenuCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round2 overlap ${showMenuCode ? 'visible': 'hidden'}`} 
+                        src='/StaticHTML/Menu.html' 
+                        title='Menu' 
+                        onLoad={() => setMenuLoaded(true)}/>
+                {menuLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleMenuCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <ColorMarkers/>
-                <iframe src='/StaticHTML/ColorMarkers.html' width="100%" height="600px" title='ColorMarkers'/>
+                <ColorMarkers className={`${showColorMarkerCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showColorMarkerCode ? 'visible' : 'hidden'}`} 
+                        src='/StaticHTML/ColorMarkers.html' 
+                        title='ColorMarkers'
+                        onLoad={() => setColorMarkerLoaded(true)}/>
+                {colorMarkerLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleColorMarkerCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <RegistrationForm/>
-                <iframe src='/StaticHTML/RegistrationForm.html' width="100%" height="600px" title='RegoForm'/>
+                <RegistrationForm className={`${showRegoFormCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showRegoFormCode ? 'visible' : 'hidden'}`}
+                        src='/StaticHTML/RegistrationForm.html'
+                        title='RegoForm'
+                        onLoad={() => setRegoFormLoaded(true)}/>
+                        {regoFormLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleRegoFormCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <SurveyForm/>
-                <iframe src='/StaticHTML/SurveyForm.html' width="100%" height="600px" title='SurveyForm'/>
+                <SurveyForm className={`${showSurveyFormCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showSurveyFormCode ? 'visible' : 'hidden'}`}
+                        src='/StaticHTML/SurveyForm.html'
+                        title='SurveyForm'
+                        onLoad={() => setSurveyFormLoaded(true)}/>
+                        {surveyFormLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleSurveyFormCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <RothkoPainting/>
-                <iframe src='/StaticHTML/RothkoPainting.html' width="100%" height="600px" title='RothkoPainting'/>
+                <RothkoPainting className={`${showRothkoPaintingCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showRothkoPaintingCode ? 'visible' : 'hidden'}`}
+                        src='/StaticHTML/RothkoPainting.html'
+                        title='RothkoPainting'
+                        onLoad={() => setRothkoPaintingLoaded(true)}/>
+                        {rothkoPaintingLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleRothkoPaintingCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <PhotoGallery/>
-                <iframe src='/StaticHTML/PhotoGallery.html' width="100%" height="600px" title='PhotoGallery'/>
+                <PhotoGallery className={`${showPhotoGalleryCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showPhotoGalleryCode ? 'visible' : 'hidden'}`}
+                        src='/StaticHTML/PhotoGallery.html'
+                        title='PhotoGallery'
+                        onLoad={() => setPhotoGalleryLoaded(true)}/>
+                        {photoGalleryLoaded && (
+                <button className='overButton border-round1 overlap' onClick={togglePhotoGalleryCode}>toggle code/result</button>
+                )}
               </div>
+
               <div className='codesec'>
-                <NutritionLabel/>
-                <iframe src='/StaticHTML/NutritionLabel.html' width="100%" height="600px" title='NutritionLabel'/>
+                <NutritionLabel className={`${showNutritionCode ? 'hidden' : 'visible'}`}/>
+                <iframe className={`iframe noScroll border-round1 overlap ${showNutritionCode ? 'visible' : 'hidden'}`}
+                        src='/StaticHTML/NutritionLabel.html'
+                        title='NutritionLabel'
+                        onLoad={() => setNutritionLoaded(true)}/>
+                        {nutritionLoaded && (
+                <button className='overButton border-round1 overlap' onClick={toggleNutritionCode}>toggle code/result</button>
+                )}
               </div>
+
           </div>
-      </div>
+     </div>
   );
 }
 
@@ -152,11 +258,11 @@ function FccCatPhoto(){
 </html>
   `
   return(
-  <div className='codePair flexCol'>
-    <h1>Cat Photo HTML</h1>
-    <pre className='noScroll'>
+  <div className='codePair flexCol overlap'>
+    <h1 className='border-round1'>Cat Photo HTML</h1>
+    <pre className='noScroll margin-5 border-round2'>
       <code>
-        <div className={'html overl1'}>
+        <div className='html'>
           {html}
         </div>
       </code>
@@ -327,10 +433,10 @@ function Menu(){
       }
       `
   return(
-    <div className='codePair noScroll'>
-      <div>
-      <h1>Menu HTML</h1>
-        <pre className=''>
+    <div className='codePair flexRow overlap'>
+      <div className='fillHalf'>
+      <h1 className='border-round2'>Menu HTML</h1>
+        <pre className='noScroll margin-5 border-round1'>
           <code>
             <div className='html'>
               {html}
@@ -338,9 +444,9 @@ function Menu(){
           </code>
         </pre>
       </div>
-    <div>   
-      <h1>Menu CSS</h1>
-        <pre>
+    <div className='fillHalf'>   
+      <h1 className='border-round1'>Menu CSS</h1>
+        <pre className='noScroll margin-5 border-round2'>
           <code>
             <div className='css'>
               {css}
@@ -382,57 +488,57 @@ function ColorMarkers(){
   </html>
   `
   const css = `
- h1 {
-  text-align: center;
-}
+  h1 {
+    text-align: center;
+  }
 
-.container {
-  background-color: rgb(255, 255, 255);
-  padding: 10px 0;
-}
+  .container {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 0;
+  }
 
-.marker {
-  width: 200px;
-  height: 25px;
-  margin: 10px auto;
-}
+  .marker {
+    width: 200px;
+    height: 25px;
+    margin: 10px auto;
+  }
 
-.cap {
-  width: 60px;
-  height: 25px;
-}
+  .cap {
+    width: 60px;
+    height: 25px;
+  }
 
-.sleeve {
-  width: 110px;
-  height: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-left: 10px double rgba(0, 0, 0, 0.75);
-}
+  .sleeve {
+    width: 110px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-left: 10px double rgba(0, 0, 0, 0.75);
+  }
 
-.cap, .sleeve {
-  display: inline-block;
-}
+  .cap, .sleeve {
+    display: inline-block;
+  }
 
-.red {
-  background: linear-gradient(rgb(122, 74, 14), rgb(245, 62, 113), rgb(162, 27, 27));
-  box-shadow: 0 0 20px 0 rgba(83, 14, 14, 0.8);
-}
+  .red {
+    background: linear-gradient(rgb(122, 74, 14), rgb(245, 62, 113), rgb(162, 27, 27));
+    box-shadow: 0 0 20px 0 rgba(83, 14, 14, 0.8);
+  }
 
-.green {
-  background: linear-gradient(#55680D, #71F53E, #116C31);
-  box-shadow: 0 0 20px 0 #3B7E20CC;
-}
+  .green {
+    background: linear-gradient(#55680D, #71F53E, #116C31);
+    box-shadow: 0 0 20px 0 #3B7E20CC;
+  }
 
-.blue {
-  background: linear-gradient(hsl(186, 76%, 16%), hsl(223, 90%, 60%), hsl(240, 56%, 42%));
-  box-shadow: 0 0 20px 0 hsla(223, 59%, 31%, 0.8);
-}
+  .blue {
+    background: linear-gradient(hsl(186, 76%, 16%), hsl(223, 90%, 60%), hsl(240, 56%, 42%));
+    box-shadow: 0 0 20px 0 hsla(223, 59%, 31%, 0.8);
+  }
 `
 return(
-  <div className='codePair'>
-    <div>
-    <h1>Color Markers HTML</h1>
-      <pre>
+  <div className='codePair flexRow overlap'>
+    <div className='fillHalf'>
+    <h1 className='border-round2'>Color Markers HTML</h1>
+      <pre className='noScroll margin-5 border-round2'>
         <code>
           <div className='html'>
             {html}
@@ -440,9 +546,9 @@ return(
         </code>
       </pre>
     </div>
-    <div>
-    <h1>Colour Markers CSS</h1>
-      <pre>
+    <div className='fillHalf'>
+    <h1 className='border-round1'>Colour Markers CSS</h1>
+      <pre className='noScroll margin-5 border-round1'>
         <code>
           <div className='css'>
             {css}
@@ -585,10 +691,10 @@ function RegistrationForm(){
   }
   `
   return(
-  <div className='codePair'>
-  <div>
-    <h1>Registration Form HTML</h1>
-      <pre className='noScroll'>
+  <div className='codePair flexRow overlap'>
+  <div className='fillHalf'>
+    <h1 className='border-round2'>Registration Form HTML</h1>
+      <pre className='noScroll margin-5 border-round2'>
         <code>
           <div className='html'>
             {html}
@@ -596,9 +702,9 @@ function RegistrationForm(){
         </code>
       </pre>
     </div>
-    <div>
-    <h1>Registration Form CSS</h1>
-      <pre>
+    <div className='fillHalf'>
+    <h1 className='border-round1'>Registration Form CSS</h1>
+      <pre className='noScroll margin-5 border-round1'>
         <code>
           <div className='css'>
             {css}
@@ -614,28 +720,34 @@ function SurveyForm(){
   const html =`
   <!DOCTYPE html>
   <link rel="stylesheet" href="styles.css">
-  <h1 id='title'>TITLE</h1>
-  <p id='description'>Paragraph</p>
-  <form id='survey-form'>
-    <label id='name-label' for='name'>Name: <input required id='name' type='text' placeholder='Please enter name'</label>
-    <label id='email-label' for='email'>Email: <input required id='email' type='email' placeholder='Enter email'></label>
-    <label id='number-label' for='number'>Number: <input id='number' type='number' pattern='[0-9]' min='4' max='8' placeholder='Enter number'></label>
-    <select id='dropdown'>
-      <option>1</option>
-      <option>2</option>
-    </select>
-    <input name='radio' type="radio" value='1'>
-    <input name='radio' type="radio" value='2'>
-    <input type='checkbox' value='1'>
-    <input type='checkbox' value='2'>
-    <textarea placeholder='Additional comments'></textarea>
-    <input id='submit' type='submit'>
-  <form>
-  `
+    <head>
+      <meta charset='UTF-8'>
+      <title>Survey Form</title>
+    </head>
+    <body>
+      <h1 id='title'>TITLE</h1>
+      <p id='description'>Paragraph</p>
+      <form id='survey-form'>
+        <label id='name-label' for='name'>Name: <input required id='name' type='text' placeholder='Please enter name'</label><br>
+        <label id='email-label' for='email'>Email: <input required id='email' type='email' placeholder='Enter email'></label><br>
+        <label id='number-label' for='number'>Number: <input id='number' type='number' pattern='[0-9]' min='4' max='8' placeholder='Enter number'></label><br>
+        <select id='dropdown'>
+          <option>1</option>
+          <option>2</option>
+        </select>
+        <input name='radio' type="radio" value='1'>
+        <input name='radio' type="radio" value='2'>
+        <input type='checkbox' value='1'>
+        <input type='checkbox' value='2'>
+        <textarea placeholder='Additional comments'></textarea>
+        <input id='submit' type='submit'>
+      </form>
+    </body>
+    `
   return(
-    <div>
-    <h1>Survey Form HTML</h1>
-      <pre>
+    <div className='codePair flexCol overlap'>
+    <h1 className='border-round1'>Survey Form HTML</h1>
+      <pre className='noScroll margin-5 border-round2'>
         <code>
           <div className='html'>
             {html}
@@ -718,20 +830,20 @@ function RothkoPainting(){
   }
   `
   return(
-    <div className='codePair'>
-      <div>
-      <h1>Rothko Painting HTML</h1>
-        <pre>
-          <code>
-            <div className='html'>
-              {html}
-            </div>
-          </code>
-        </pre>
+    <div className='codePair flexRow overlap'>
+      <div className='fillHalf'>
+        <h1 className='border-round2'>Rothko Painting HTML</h1>
+          <pre className='noScroll margin-5 border-round1'>
+            <code>
+              <div className='html'>
+                {html}
+              </div>
+            </code>
+          </pre>
       </div>
-      <div>
-    <h1>Rothko Painting CSS</h1>
-      <pre>
+    <div className='fillHalf'>
+    <h1 className='border-round1'>Rothko Painting CSS</h1>
+      <pre className='noScroll margin-5 border-round2'>
         <code>
           <div className='css'>
             {css}
@@ -817,10 +929,10 @@ body {
 }
 `
 return(
-  <div className='codePair'>
-    <div>
-    <h1>Photo Gallery HTML</h1>
-      <pre>
+  <div className='codePair flexRow overlap'>
+    <div className='fillHalf'>
+    <h1 className='border-round2'>Photo Gallery HTML</h1>
+      <pre className='noScroll margin-5 border-round2'>
         <code>
           <div className='html'>
             {html}
@@ -828,9 +940,9 @@ return(
         </code>
       </pre>
     </div>
-    <div>
-    <h1>Photo Gallery CSS</h1>
-      <pre>
+    <div className='fillHalf'>
+    <h1 className='border-round1'>Photo Gallery CSS</h1>
+      <pre className='noScroll margin-5 border-round1'>
         <code>
           <div className='css'>
             {css}
@@ -1007,10 +1119,10 @@ function NutritionLabel(){
   }
 `
 return(
-  <div className='codePair'>
-    <div>
-    <h1>Nutrition Label HTML</h1>
-      <pre>
+  <div className='codePair flexRow overlap'>
+    <div className='fillHalf'>
+    <h1 className='border-round2'>Nutrition Label HTML</h1>
+      <pre className='noScroll margin-5 border-round2'>
         <code>
           <div className='html'>
             {html}
@@ -1018,9 +1130,9 @@ return(
         </code>
       </pre>
     </div>
-    <div>
-    <h1>Nutrition Label CSS</h1>
-      <pre>
+    <div className='fillHalf'>
+    <h1 className='border-round1'>Nutrition Label CSS</h1>
+      <pre className='noScroll margin-5 border-round1'>
         <code>
           <div className='css'>
             {css}
@@ -1032,95 +1144,4 @@ return(
 )
 }
 
-
-function seeCode(){
-  let overl1 = (document.querySelector('.overl1'));
-  let overl2 = (document.querySelector('.overl2'));
-  
-  //overl1 starts at 0%
-
-  if(overl1.style.width === '0%'){
-    overl1.style.width = '100%';
-    overl1.style.height = '100%';
-    // overl1.style.zIndex = '2';
-  
-    overl2.style.width = '0%';
-    overl2.style.height = '0%';
-    // overl2.style.zIndex = '1';
-
-   
-  }else{
-    overl2.style.width = '100%';
-    overl2.style.height = '100%';
-    // overl2.style.zIndex = '2'
-
-    overl1.style.width = '0%';
-    overl1.style.height = '0%';
-    // overl1.style.zIndex = '1';
-  }
-}
-
-//template:
-{/* <div className='codesec'>
-
-</div> */}
-{/* <div>
-    <h1></h1>
-      <pre>
-        <code>
-          <div className=''>
-            {}
-          </div>
-        </code>
-      </pre>
-    </div> */}
-
-
-// {/* <div>
-//     <iframe src='https://www.youtube.com/watch?v=1WIMcknKQPg'>
-//     </iframe>
-//     </div> */}
-
-// function InputValidation(uinput, arr) //isNaN = Is not a number| The drop down box invalidates this
-// {
-//     let valid = parseInt(uinput); // checks to make sure the user has entrered an interger. 
-//     return (isNaN(valid) || uinput > arr.Length || uinput <= 0) ? false : true;
-// } 
-// function StringInputBox({onEnter}) {
-//   const [inputVal, setInputVal] = useState('')
-//   const handleKey = (event) => {
-//     if(event.key === "Enter"){
-//       onEnter(inputVal)
-//       setInputVal('');
-//     }
-//   };
-//   return (<input type="text"
-//   value={inputVal}
-//   onChange={(event) => setInputVal(event.target.value)}
-//   onKeyDown={handleKey}
-//   />
-// );
-// }
-
-//Original kind of working idea
-// function UInputBox1({value}) {
-//   const [inputVal, setInputVal] = useState('');
-//   const [displayVal, setDisplayVal] = useState('');
-//   const handleKey = (event) => {
-//     if(event.key === "Enter"){
-//       setDisplayVal(inputVal);
-//       setInputVal('');
-//     }
-//   };
-//   return (
-//     <div className='container'>
-//     <input type="text"
-//     value={inputVal}
-//     onChange={(event) => setInputVal(event.target.value)}
-//     onKeyDown={handleKey}
-//     />
-//     <p>{value}: {displayVal}</p>
-//     </div>);
-// }
-//#endregion
 export default RWD;

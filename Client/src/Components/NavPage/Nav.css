@@ -1,6 +1,4 @@
-*{
-  box-sizing: border-box;
-}
+
 .navpage{
   background-color: #333;
   color: #000;
@@ -11,7 +9,7 @@
 
 .nav{
   display: flex;
-  background-color: #333;
+  background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
   position: sticky; /*Seems to be more flexible than fixed and applies the margin automatically for some reason.*/
   top: 0;
   z-index: 3;
