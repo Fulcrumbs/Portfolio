@@ -1,6 +1,8 @@
 /*Hide stuff*/
 .noScroll{
   /*v removes the scrollbar from the pre sections v*/
+  /* overflow: none; */
+  overflow-x:hidden;
   overflow-y: scroll;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
@@ -35,12 +37,38 @@
 }
 
 /*Box model*/
+.marginRight-2{
+  margin-right: 2.5px;
+}
+.marginLeft-2{
+  margin-left: 2.5px;
+}
 .margin-5{
   margin: 5px;
 }
+.margin-10{
+  margin:10px
+}
 
+.marginTop-5{
+  margin-top:5px;
+}
+.marginBottom-5{
+  margin-bottom: 5px;
+}
+
+.paddingRight-2{
+  padding-right: 2.5px;
+}
+
+.paddingLeft-2{
+  padding-left: 2.5px;
+}
 .padding-5{
   padding: 5px;
+}
+.padding-10{
+  padding:10px;
 }
 
 .border-round1{

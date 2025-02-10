@@ -3,27 +3,28 @@
   background-color: rgb(27, 26, 26);
   color:white;
   display: grid;
-  grid-template-columns: 20% 20% 60%;
+  grid-template-columns: 20% 80%;
   grid-template-areas:
-    "menu menu menu"
-    "desc code code";
-  
+    "desc code"
+    "foot foot";
+  height: calc(100vh - 5vh); /*Had to set the nav at a height fo 32px*/
+}
+
+.RWD h1{
+  background-color: #3b3b3b;
 }
 
 .codeContainer{
   grid-area: code;
-  height:100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-margin: 1rem;
+  min-height: 100%;
 }
-
 .codesec{
   display: grid;
-  grid-column: 1fr;
-  grid-row: 1fr;
   scroll-snap-align: start;
-  height: 100vh;
+  min-height: 100%;
 }
 
 /* So overButton will sit on top as long as the z-index is 3 */
@@ -41,29 +42,29 @@ pre{
   white-space: -moz-pre-wrap;
   white-space: pre-line;
   white-space: pre-wrap;
-  overflow: scroll;
+  /* max-height: 82vh; */
   max-height: 76ch;
-  
 }
 
 .fillHalf{
-  min-height: 100%;
   min-width: 50%; /*Gotta find a better way to make sure that it's forced to fill but also share space evenly*/
 }
 
 .html{
   background-color: rgb(45, 43, 41);
+  min-height: 100%;
 }
 
 .css{
   background-color: rgb(60, 58, 56);
+  min-height: 100%;
 }
 
 .iframe{
   background-color: #ededed;
-  width:99%;
-  height:99%;
-  margin: 5px;
+  overflow-y: scroll;
+  width:100%;
+  height: 98%;
 }
 
 /* .codePair{
@@ -73,13 +74,13 @@ pre{
 .desc {
   background-color: rgb(57, 64, 64);
   grid-area: desc;
-  margin: 5px;
-  padding: 10px;
+  overflow-y: scroll;
 }
+
 
 .head {
   margin: 10px;
-  grid-area: menu;
+  grid-area: head;
   font-size: calc(10px + 2vmin);
 }
 
@@ -94,4 +95,9 @@ pre{
 
 a:hover {
   background-color: rgb(255, 255, 255);
+}
+
+footer{
+  grid-area: foot;
+  background-image: linear-gradient(to right, rgb(24, 42, 42), rgb(36, 91, 100) );
 }

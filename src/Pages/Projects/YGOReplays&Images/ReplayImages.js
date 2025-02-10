@@ -16,7 +16,6 @@ function ReplayImages(){
 
     const imageUrls = [
         '/Images/Decklist_Altergeist.png',
-        '/Images/Decklist_Branded_Bystial.png',
         '/Images/Decklist_Dogmatika.png',
         '/Images/Decklist_Floowandereeze.png',
         '/Images/Decklist_Ghostrick.png',

@@ -1,11 +1,17 @@
+import "./Home.css"
+
 
 function ResumePage () {
-    return(
-        <>
+    return( 
+        <div className="homepage padding-10">
+
+        <img className="pfp" src="https://images.unsplash.com/photo-1734004997284-475f71f8e161?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pic"/>
+    
         <h1>Jason Callaghan-Barrett</h1>
-        <h2>About Me</h2>
-        <p>I have been working as a disibility support worker for the past 7 years. It has been a life enriching and character growing career
-            but I am currently seeking a switch in career paths. As such I have undergone study and completed a certIV in IT{'(Programming)'} at TAFE
+        <h2>Who am I?</h2>
+        <p>I have been working as a disibility support worker for the past 8 years.<br></br>
+            It has been a life enriching and character growing career.<br></br>
+            I am currently seeking a switch in career paths. As such I have undergone study and completed a certIV in IT{'(Programming)'} at TAFE
             through online study. As I completed this course in 2022 as a complete beginner and have since continued working as a support worker
             while participating in self learning to improve upon my programming skills.
 
@@ -19,15 +25,17 @@ function ResumePage () {
             I'd want to be useful.
 
         </p>
-        <h2>Work history</h2>
-        <ul>
-            <li>1 Thing</li>
-            <li>2 Things</li>
-        </ul>
         <h2>Skills & Experience</h2>
+        <p>I have been developing my skills in a broad spectrum in an attempt to grasp full stacks concepts in a somewhat practical sense 
+            as quickly as possible.<br></br>
+            React has been my library of choice to practice my frontend development.
+            Node.js and Express for backend and server capabilities.
+            In terms of database intergration I've been utilising PostgreSQL
+        </p>
         <h2>Projects</h2>
+        I suppose this is where I'll put my projects so you can see what I can do.
 
-        </>
+        </div>
     )
 }
 

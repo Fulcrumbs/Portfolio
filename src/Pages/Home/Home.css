@@ -1,0 +1,14 @@
+
+.homepage{
+    display: grid;
+    justify-items: auto;
+    max-width: 100%;
+    height: calc(100vh - 5vh); 
+}
+
+.pfp{
+   border-radius: 50%;
+   height: 300px;
+   width: 300px;
+   justify-self: center;
+}

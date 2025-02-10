@@ -12,3 +12,10 @@
     border: 0;
     align-items: center;
 }
+
+.booking_list{
+    display: grid;
+    grid-template-columns: auto, auto, auto, auto;
+    grid-auto-flow: row;
+    padding: 8px;
+}

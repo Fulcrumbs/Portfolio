@@ -2,10 +2,29 @@
   box-sizing: border-box;
 }
 
+a{
+  color:#faf6f6;
+  text-decoration: none;  /*Remove underline from links*/
+}
+
+html, body, h1, p, pre{
+  margin:0;
+  padding:0;
+
+}
+
+  /*v removes the scrollbar from the pre sections v*/
+  /* overflow: none; */
+  /* overflow-x:hidden; */
+  /* overflow-y: scroll; */
+  /* scrollbar-width: none; Firefox */
+  /* -ms-overflow-style: none;  Internet Explorer 10+ */
+/* }*/
+
 h1{ /*Global reference, will apply across all pages*/
-    padding: 5px;
-    margin: 5px; /*Top, Right, Bottom, Left
+    padding: 0;
+    margin: 0; /*Top, Right, Bottom, Left
     /* border: solid red; */
-    background-color: rgb(65, 65, 65);
+    /* background-color: rgb(65, 65, 65); */
     /* border-radius: 15px; */
-  }
+}

@@ -1,62 +1,50 @@
 
 .navpage{
   background-color: #333;
-  color: #000;
-  top: 0;
-  max-width: 100vw;
-  position: relative;
+  color: #d4d4d4;
+  /* top: 0; */
+  /* max-width: 100vw; */
+  /* position: relative; */
 }
 
 .nav{
-  display: flex;
   background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
-  position: sticky; /*Seems to be more flexible than fixed and applies the margin automatically for some reason.*/
-  top: 0;
-  z-index: 3;
+  min-height:5vh;
+}
+
+.menu-items{
+  display: inline-block;
+  position: relative;
+}
+
+.menu-items:hover .submenu{
+  display: block;
 }
 
 .submenu{
   display: none;
   position: absolute;
-  background-color: #333;
-  top: 100%;
-  list-style-type: none;
-  margin: 0;
-  min-width:160px;
-  z-index: 1;
-}
-.menu-items{
-  display: inline-block;
-  position: relative;
-}
-.menu-items:hover .submenu{
-  display: block;
 }
 
 .submenu .tab-link{
   min-width: 160px;
   border: none;
   box-shadow:0px 8px 16px 0px #333;
+  border: 1px solid #ccc;
 }
 
 .tab-link {
-    display: inline-block;
-    padding: 5px 20px; /*Adjust the padding to your liking*/
-    background-color: rgba(37, 102, 132, 0.4);/*#f0f0f0 transparent; /* Background color of the tab */
-    border: 1px solid #ccc; /* Border around the tab */
-    /* border-radius: 5px; Rounded corners */
-    text-decoration: none; /* Remove underline from links */
-    color: #faf6f6; /* Text color */
-    /* margin-right: 10px; Margin between tabs */
-    
-  }
+  display: inline-block;
+  padding: 5px 20px;
+  background-color: rgba(37, 102, 132, 1);
+  border: 1px solid #ccc; 
+  min-height: 5vh;
+}
   
-  /* Change the background color on hover */
-  .tab-link:hover {
-    background-color: rgb(26, 84, 111, 1);
-  }
-  
-  .tab-link:active {
-    background-color: #007bff; /* Background color of the active tab */
-    color: #fff; /* Text color for active tab */
-  }
+.tab-link:hover {
+  background-color: rgb(26, 84, 111, 1);
+}
+
+.tab-link:active {
+  background-color: #007bff; 
+}

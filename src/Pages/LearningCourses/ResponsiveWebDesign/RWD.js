@@ -53,129 +53,114 @@ function RWD() {
     setShowNutritionCode((prev) => !prev);
   };
   return (
-      <div className="RWD padding-5 noScroll">      
-        <header className='head'>
-          <HeaderMenu/>
-        </header>
-          <div className='desc border-round2'>
-            <p>These are <i>some</i> of the resources I've been using to try and learn.</p>
-            <p>So this div and the code div were stacked because they were both inside of the body tag, so moved it outside and it
-            is back to the being beside this desc div. Though I wonder if I change the body tag to have the css property of
-            inline I can bring it back?</p>
-
-            <p>Was using all kinds of silly things to get my code from the freeCodeCamp courses to display like 
-            {'<xmp></xmp>'} and {'<pre></pre>'} by itself, didn't realise that {'<pre></pre>'} actually only means
-            that it pays attention to white space?<br/>However I wasn't able to turn the code into a string but discovered that
-            react uses ``{'(Backtick)'} for its multiline strings; Thought my single quotes weren't working and didn't know
-            that the backtick was even a character. 24-12-23</p>
-
-            <p>So I'm trying to work with transition effects but its weird and the smaller I make
-              the individual sections the further apart they keep getting, might not even be worth
-              the effort so might have to just forget the idea and leave it normal and no fancy effects.
-              -01/01/24.
+      <div className="RWD">
+        {/* <header className='head'>
+          <Header/> 
+        </header> */}
+          <div className='desc margin-5 padding-10 border-round2 noScroll'>
+            <p>This is some of the material from FreeCodeCamp's Responsive Web Design course, it basically walks you through it step by step, 
+              so I can't take too much credit, but I figured I'd try and put the learning material and the work I've done on display. <br></br>
+              It's basically become the page of practicing different CSS stuff such as grid, alignment and toggling between making elements 
+              visible or hidden and a couple of other things.
             </p>
-            <p>Quick change to push</p>
-            <p>27/11/24 - Been working on making the two sections overlap and add a button that'll change the size of the sections to swap between
-              the finished result and the html code used to create it. Still some of the sections are looking a bit icky so I want to tidy up the
-              appearance and the code.
-            </p>
+            
           </div>
-          <div className='codeContainer'>
-
+          <div className='codeContainer margin-5 noScroll'>
               <div className='codesec'>
                 <FccCatPhoto className={`${showCatPhotoCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showCatPhotoCode ? 'visible' : 'hidden'} `} 
+                <iframe className={`iframe border-round2 overlap ${showCatPhotoCode ? 'visible' : 'hidden'} `} 
                         src='/StaticHTML/CatPhoto.html' 
                         title='CatPhoto' 
                         onLoad={() => setCatPhotoLoaded(true)}/>
                 {catPhotoLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleCatPhotoCode}>toggle code/result</button>
+                  <button className='overButton border-round1 overlap' onClick={toggleCatPhotoCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <Menu className={`${showMenuCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round2 overlap ${showMenuCode ? 'visible': 'hidden'}`} 
+                <iframe className={`iframe border-round2 overlap ${showMenuCode ? 'visible': 'hidden'}`} 
                         src='/StaticHTML/Menu.html' 
                         title='Menu' 
                         onLoad={() => setMenuLoaded(true)}/>
                 {menuLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleMenuCode}>toggle code/result</button>
+                  <button className='overButton border-round1 overlap' onClick={toggleMenuCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <ColorMarkers className={`${showColorMarkerCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showColorMarkerCode ? 'visible' : 'hidden'}`} 
+                <iframe className={`iframe noScroll border-round2 overlap ${showColorMarkerCode ? 'visible' : 'hidden'}`} 
                         src='/StaticHTML/ColorMarkers.html' 
                         title='ColorMarkers'
                         onLoad={() => setColorMarkerLoaded(true)}/>
                 {colorMarkerLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleColorMarkerCode}>toggle code/result</button>
+                  <button className='overButton border-round1 overlap' onClick={toggleColorMarkerCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <RegistrationForm className={`${showRegoFormCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showRegoFormCode ? 'visible' : 'hidden'}`}
+                <iframe className={`iframe noScroll border-round2 overlap ${showRegoFormCode ? 'visible' : 'hidden'}`}
                         src='/StaticHTML/RegistrationForm.html'
                         title='RegoForm'
                         onLoad={() => setRegoFormLoaded(true)}/>
-                        {regoFormLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleRegoFormCode}>toggle code/result</button>
+                {regoFormLoaded && (
+                  <button className='overButton border-round1 overlap' onClick={toggleRegoFormCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <SurveyForm className={`${showSurveyFormCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showSurveyFormCode ? 'visible' : 'hidden'}`}
+                <iframe className={`iframe noScroll border-round2 overlap ${showSurveyFormCode ? 'visible' : 'hidden'}`}
                         src='/StaticHTML/SurveyForm.html'
                         title='SurveyForm'
                         onLoad={() => setSurveyFormLoaded(true)}/>
-                        {surveyFormLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleSurveyFormCode}>toggle code/result</button>
+                {surveyFormLoaded && (
+                  <button className='overButton border-round1 overlap' onClick={toggleSurveyFormCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <RothkoPainting className={`${showRothkoPaintingCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showRothkoPaintingCode ? 'visible' : 'hidden'}`}
+                <iframe className={`iframe noScroll border-round2 overlap ${showRothkoPaintingCode ? 'visible' : 'hidden'}`}
                         src='/StaticHTML/RothkoPainting.html'
                         title='RothkoPainting'
                         onLoad={() => setRothkoPaintingLoaded(true)}/>
-                        {rothkoPaintingLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleRothkoPaintingCode}>toggle code/result</button>
+                {rothkoPaintingLoaded && (
+                  <button className='overButton border-round1 overlap' onClick={toggleRothkoPaintingCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <PhotoGallery className={`${showPhotoGalleryCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showPhotoGalleryCode ? 'visible' : 'hidden'}`}
+                <iframe className={`iframe noScroll border-round2 overlap ${showPhotoGalleryCode ? 'visible' : 'hidden'}`}
                         src='/StaticHTML/PhotoGallery.html'
                         title='PhotoGallery'
                         onLoad={() => setPhotoGalleryLoaded(true)}/>
-                        {photoGalleryLoaded && (
-                <button className='overButton border-round1 overlap' onClick={togglePhotoGalleryCode}>toggle code/result</button>
+                {photoGalleryLoaded && (
+                  <button className='overButton border-round1 overlap' onClick={togglePhotoGalleryCode}>toggle code/result</button>
                 )}
               </div>
 
               <div className='codesec'>
                 <NutritionLabel className={`${showNutritionCode ? 'hidden' : 'visible'}`}/>
-                <iframe className={`iframe noScroll border-round1 overlap ${showNutritionCode ? 'visible' : 'hidden'}`}
+                <iframe className={`iframe noScroll border-round2 overlap ${showNutritionCode ? 'visible' : 'hidden'}`}
                         src='/StaticHTML/NutritionLabel.html'
                         title='NutritionLabel'
                         onLoad={() => setNutritionLoaded(true)}/>
-                        {nutritionLoaded && (
-                <button className='overButton border-round1 overlap' onClick={toggleNutritionCode}>toggle code/result</button>
+                {nutritionLoaded && (
+                  <button className='overButton border-round1 overlap' onClick={toggleNutritionCode}>toggle code/result</button>
                 )}
               </div>
 
           </div>
-     </div>
+            <Footer className='footer'/>
+     </div>  
   );
 }
 
-function HeaderMenu(){
+function Header(){
   return(
     <div>
       <a href='https://react.dev' target='_blank' rel='noreferrer'>React site</a>
@@ -187,6 +172,14 @@ function HeaderMenu(){
       <a href='https://www.youtube.com/watch?v=bMknfKXIFA8&t=13s' target='_blank' rel='noreferrer'>React Course</a>
     </div>
     )
+}
+
+function Footer(){
+  return(
+    <footer>
+      <p>All code displayed was taught by <a href='https://www.freecodecamp.org/learn/2022/responsive-web-design/' target='_blank' rel='noreferrer'> FreeCodeCamp</a>'s Responsive Web Design Course</p>
+    </footer>
+  )
 }
 
 /*https://blog.logrocket.com/how-create-multilevel-dropdown-menu-react/#multi-level-dropdown-menu-project-setup-react*/
@@ -259,8 +252,8 @@ function FccCatPhoto(){
   `
   return(
   <div className='codePair flexCol overlap'>
-    <h1 className='border-round1'>Cat Photo HTML</h1>
-    <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round2 padding-5 marginBottom-5'>Cat Photo HTML</h1>
+    <pre className='noScroll border-round2'>
       <code>
         <div className='html'>
           {html}
@@ -434,9 +427,9 @@ function Menu(){
       `
   return(
     <div className='codePair flexRow overlap'>
-      <div className='fillHalf'>
-      <h1 className='border-round2'>Menu HTML</h1>
-        <pre className='noScroll margin-5 border-round1'>
+      <div className='fillHalfx'>
+      <h1 className='border-round2 padding-5 marginBottom-5 marginRight-2'>Menu HTML</h1>
+        <pre className='noScroll marginTop-5 border-round1 marginRight-2'>
           <code>
             <div className='html'>
               {html}
@@ -444,9 +437,9 @@ function Menu(){
           </code>
         </pre>
       </div>
-    <div className='fillHalf'>   
-      <h1 className='border-round1'>Menu CSS</h1>
-        <pre className='noScroll margin-5 border-round2'>
+    <div className='fillHalfx'>   
+      <h1 className='border-round1 padding-5 marginBottom-5 marginLeft-2'>Menu CSS</h1>
+        <pre className='noScroll marginTop-5 border-round2  marginLeft-2'>
           <code>
             <div className='css'>
               {css}
@@ -537,8 +530,8 @@ function ColorMarkers(){
 return(
   <div className='codePair flexRow overlap'>
     <div className='fillHalf'>
-    <h1 className='border-round2'>Color Markers HTML</h1>
-      <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round2 padding-5 marginBottom-5 marginRight-2'>Color Markers HTML</h1>
+      <pre className='noScroll marginTop-5 border-round1 marginRight-2'>
         <code>
           <div className='html'>
             {html}
@@ -547,8 +540,8 @@ return(
       </pre>
     </div>
     <div className='fillHalf'>
-    <h1 className='border-round1'>Colour Markers CSS</h1>
-      <pre className='noScroll margin-5 border-round1'>
+    <h1 className='border-round1 padding-5 marginBottom-5 marginLeft-2'>Colour Markers CSS</h1>
+      <pre className='noScroll marginTop-5 border-round2 marginLeft-2'>
         <code>
           <div className='css'>
             {css}
@@ -693,8 +686,8 @@ function RegistrationForm(){
   return(
   <div className='codePair flexRow overlap'>
   <div className='fillHalf'>
-    <h1 className='border-round2'>Registration Form HTML</h1>
-      <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round2 padding-5 marginBottom-5 marginRight-2'>Registration Form HTML</h1>
+      <pre className='noScroll marginTop-5 border-round1 marginRight-2'>
         <code>
           <div className='html'>
             {html}
@@ -703,8 +696,8 @@ function RegistrationForm(){
       </pre>
     </div>
     <div className='fillHalf'>
-    <h1 className='border-round1'>Registration Form CSS</h1>
-      <pre className='noScroll margin-5 border-round1'>
+    <h1 className='border-round1 padding-5 marginBottom-5 marginLeft-2'>Registration Form CSS</h1>
+      <pre className='noScroll marginTop-5 border-round2 marginLeft-2'>
         <code>
           <div className='css'>
             {css}
@@ -746,8 +739,8 @@ function SurveyForm(){
     `
   return(
     <div className='codePair flexCol overlap'>
-    <h1 className='border-round1'>Survey Form HTML</h1>
-      <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round2 padding-5 marginBottom-5'>Survey Form HTML</h1>
+      <pre className='noScroll border-round2'>
         <code>
           <div className='html'>
             {html}
@@ -832,8 +825,8 @@ function RothkoPainting(){
   return(
     <div className='codePair flexRow overlap'>
       <div className='fillHalf'>
-        <h1 className='border-round2'>Rothko Painting HTML</h1>
-          <pre className='noScroll margin-5 border-round1'>
+        <h1 className='border-round2 padding-5 marginBottom-5 marginRight-2'>Rothko Painting HTML</h1>
+          <pre className='noScroll marginTop-5 border-round1 marginRight-2'>
             <code>
               <div className='html'>
                 {html}
@@ -842,8 +835,8 @@ function RothkoPainting(){
           </pre>
       </div>
     <div className='fillHalf'>
-    <h1 className='border-round1'>Rothko Painting CSS</h1>
-      <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round1 padding-5 marginBottom-5 marginLeft-2'>Rothko Painting CSS</h1>
+      <pre className='noScroll marginTop-5 border-round2 marginLeft-2'>
         <code>
           <div className='css'>
             {css}
@@ -931,8 +924,8 @@ body {
 return(
   <div className='codePair flexRow overlap'>
     <div className='fillHalf'>
-    <h1 className='border-round2'>Photo Gallery HTML</h1>
-      <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round2 padding-5 marginBottom-5 marginRight-2'>Photo Gallery HTML</h1>
+      <pre className='noScroll marginTop-5 border-round1 marginRight-2'>
         <code>
           <div className='html'>
             {html}
@@ -941,8 +934,8 @@ return(
       </pre>
     </div>
     <div className='fillHalf'>
-    <h1 className='border-round1'>Photo Gallery CSS</h1>
-      <pre className='noScroll margin-5 border-round1'>
+    <h1 className='border-round1 padding-5 marginBottom-5 marginLeft-2'>Photo Gallery CSS</h1>
+      <pre className='noScroll marginTop-5 border-round2 marginLeft-2'>
         <code>
           <div className='css'>
             {css}
@@ -1121,8 +1114,8 @@ function NutritionLabel(){
 return(
   <div className='codePair flexRow overlap'>
     <div className='fillHalf'>
-    <h1 className='border-round2'>Nutrition Label HTML</h1>
-      <pre className='noScroll margin-5 border-round2'>
+    <h1 className='border-round2 padding-5 marginBottom-5 marginRight-2'>Nutrition Label HTML</h1>
+      <pre className='noScroll marginTop-5 border-round1 marginRight-2'>
         <code>
           <div className='html'>
             {html}
@@ -1131,8 +1124,8 @@ return(
       </pre>
     </div>
     <div className='fillHalf'>
-    <h1 className='border-round1'>Nutrition Label CSS</h1>
-      <pre className='noScroll margin-5 border-round1'>
+    <h1 className='border-round1 padding-5 marginBottom-5 marginLeft-2'>Nutrition Label CSS</h1>
+      <pre className='noScroll marginTop-5 border-round2 marginLeft-2'>
         <code>
           <div className='css'>
             {css}
