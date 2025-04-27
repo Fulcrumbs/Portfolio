@@ -15,6 +15,7 @@ const BookingApp = lazy(() => import("../../Pages/Projects/BookingApp/Appointmen
 const Home = lazy(() => import("../../Pages/Home/Home.js"));
 
 const RWD = lazy(() => import("../../Pages/LearningCourses/ResponsiveWebDesign/RWD"));
+const TodoApp = lazy(() => import("../../Pages/Projects/To-Do/TodoApp.js"));
 /*Pages
 Home- (Nav.js) Rename App?
         - Courses - Null Page
@@ -50,7 +51,8 @@ const menulinks = [
       Submenu: [
           {Path:"Artifact/ArtifactApp.js", Element: <ArtifactApp/>, Label:"Artifact Calculator"},
           {Path: "YGOReplays&Images/ReplayImages.js", Element:<ReplayImages/>, Label:"YGOReplays"},
-          {Path:"BookingApp/AppointmentSys.js", Element:<BookingApp/>, Label:"Booking App"}
+          {Path:"BookingApp/AppointmentSys.js", Element:<BookingApp/>, Label:"Booking App"},
+          {Path:"TodoApp/TodoApp.js", Element:<TodoApp/>, Label:"To-Do App"},
         ]
     }
 ]

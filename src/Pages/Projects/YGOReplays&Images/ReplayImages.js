@@ -12,8 +12,7 @@ function ReplayImages(){
     const videoUrls = [
         '/Videos/ShaddollDespia_VS_Lyrilcus.mp4',
         '/Videos/Altergeist_VS_Dragonmaid.mp4'
-    ]
-
+    ];
     const imageUrls = [
         '/Images/Decklist_Altergeist.png',
         '/Images/Decklist_Dogmatika.png',
@@ -66,12 +65,14 @@ function ReplayImages(){
     };
 
     const [currentVidIndex, setCurrentVidIndex] = useState(0);
+    
     const previousVid = () => {
         if (currentVidIndex > 0) {
         setCurrentVidIndex(currentVidIndex - 1);
         console.log("video should change to" )
         }
     };
+
     const nextVid = () => {
         if (currentVidIndex < videoUrls.length - 1) {
         setCurrentVidIndex(currentVidIndex + 1);

@@ -12,6 +12,9 @@ html, body, h1, p, pre{
   padding:0;
 
 }
+/* input:invalid{
+  border: 1px solid red;
+} */
 
   /*v removes the scrollbar from the pre sections v*/
   /* overflow: none; */

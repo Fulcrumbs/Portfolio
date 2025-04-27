@@ -193,3 +193,194 @@ Old conditional rendering version of my mainstat and values dropdown menus - Mad
             {piece === "Circlet" && (
               <DropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.hatMain} reset={reset} load={loaded} data={data.Piece}/>
             )} */}
+
+
+// function Piece(statArrays){
+//   const [piece, setPiece] = useState('')
+//   const handlePieceSelection = (value) => {setPiece(value)}
+//   return(
+//     <>
+//     <label for='piece'>Enter piece: 
+//       <PieceStringDropMenu id='piece' onChange={handlePieceSelection} useArray={statArrays.artPieces}/>
+//     </label>
+//     <Main piece={piece}/>
+//     <ObjectCreate p={piece}/>
+//     </>
+//   )
+// }
+
+//Use effect for the new object thing
+  // const [piece, setPiece] = useState();
+  // const handlePieceSelection = (value) => {setPiece(value)};
+
+  // const [mainStat, setMainStat] = useState();
+  // const handleMainSelection = (value) => (setMainStat(value));
+  // useEffect(() => {MainStat(piece);}, [piece]); 
+  // const [mainValue, setMainValue] = useState('');
+  // useEffect(() => {MainValue(mainStat)}, [mainStat]); 
+// const [selectedStat1, setSelectedStat1] = useState(''); //the value of the drop down box.
+  // const handleSelectedStat1 = (value) => {setSelectedStat1(value)};
+  // const [statValue1, setStatValue1] = useState(''); //This works currently, displays correct values
+  // const handleStatValue1 = (input) => { setStatValue1(input)};
+
+  // const [selectedStat2, setSelectedStat2] = useState('');
+  // const handleSelectedStat2 = (value) => {setSelectedStat2(value)};
+  // const [statValue2, setStatValue2] = useState('');
+  // const handleStatValue2 = (input) => { setStatValue2(input)};
+
+  // const [selectedStat3, setSelectedStat3] = useState('');
+  // const handleSelectedStat3 = (value) => {setSelectedStat3(value)};
+  // const [statValue3, setStatValue3] = useState('');
+  // const handleStatValue3 = (input) => { setStatValue3(input)};
+
+  // const [selectedStat4, setSelectedStat4] = useState('');
+  // const handleSelectedStat4 = (value) => {setSelectedStat4(value)};
+  // const [statValue4, setStatValue4] = useState('');
+  // const handleStatValue4 = (input) => {setStatValue4(input)};
+
+  // useEffect(() => {
+  //   if (reset) {
+  //   setPiece('');
+  //   setMainValue('');
+  //   setMainStat('');
+  //   setSelectedStat1('');
+  //   setStatValue1('');
+  //   setSelectedStat2('');
+  //   setStatValue2('');
+  //   setSelectedStat3('');
+  //   setStatValue3('');
+  //   setSelectedStat4('');
+  //   setStatValue4('');
+  //   setReset(false);
+  //   console.log(reset);
+  //   }
+  // }, [reset]);
+
+/*Created to more easily display and potentially save and load artifacts when I make those functions.*/
+// function ObjectCreate(p, mn, ms, sn1, sv1, sn2, sv2, sn3, sv3, sn4, sv4){
+//   const artifact = {
+//     Piece: p, 
+//     MainName: mn,
+//     MainStat: ms,
+//     SubName1: sn1,
+//     SubValue1: sv1,
+//     SubName2: sn2,
+//     SubValue2: sv2,
+//     SubName3: sn3,
+//     SubValue3: sv3,
+//     SubName4: sn4,
+//     SubValue4: sv4,
+//   };
+//   return artifact;
+// };
+
+
+//// //Trying to modularize the big chuck of code into smaller parts 24-01-24
+// function Main(piece, statArrays){
+//   const [mainStat, setMainStat] = useState('')
+//   useEffect(() => {MainStat(piece);}, [piece]);
+//   const handleMainSelection = (value) => (setMainStat(value))
+
+//   function MainStat(piece){
+//     switch(piece){
+//       case "Flower":
+//         setMainStat("HP");
+//         return;
+//       case "Feather":
+//         setMainStat("ATK");
+//         return;
+//       default:
+//         setMainStat('')
+//         return;
+//     }
+//   }
+
+//   const [mainValue, setMainValue] = useState('')
+//   useEffect(() => {MainValue(mainStat)}, [mainStat]);
+
+//   function MainValue(mainStat){
+//     switch(mainStat){
+//       case '':
+//         setMainValue('')
+//         return;
+//       case "HP":
+//         setMainValue("100")
+//         return;
+//       case "ATK":
+//         setMainValue("todo1")
+//         return;
+//       case "HP%":
+//         setMainValue("todo")
+//         return;
+//       case "DEF%":
+//         setMainValue("Value go here")
+//         return;
+//       case "ATK%":
+//         setMainValue("words words")
+//         return;
+//       case "Energy Recharge":
+//         setMainValue("huh")
+//         return;
+//       case "Elemental Mastery":
+//         setMainValue("this stuff confusing")
+//         return;
+//       case "Healing Bonus":
+//         setMainValue("hey")
+//         return;
+//       case "Elemental DMG Bonus":
+//         setMainValue("ugh")
+//         return;
+//       case "Critical DMG":
+//         setMainValue("moving varibles and values around is tough :(")
+//         return;
+//       case "Critical Rate":
+//         setMainValue("good stat")
+//         return;   
+//       default:
+//         setMainValue('')
+//         return;
+//     }
+//   }
+//   return(
+//     <>
+//     {piece === "Timepiece" && (
+//     <MainStringDropMenu  piece={piece} onChange={handleMainSelection} useArray={statArrays.sandMain}/>
+//     )}
+//     {piece === "Goblet" && (
+//       <MainStringDropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.gobletMain}/>
+//     )}
+//     {piece === "Circlet" && (
+//       <MainStringDropMenu piece={piece} onChange={handleMainSelection} useArray={statArrays.hatMain}/>
+//     )}
+//     <SubStringDropMenu main={mainValue}/>
+//     <ObjectCreate mn={mainStat} ms={mainStat}/>
+//     </>
+//   )
+// } 
+// 
+// useEffect(()=>{
+//   if(selectedData !== null){
+//     setPiece(selectedData.Piece);
+//     setMainStat(selectedData.MainName);
+//     setMainValue(selectedData.MainStat);
+//     setSelectedStat1(selectedData.SubName1);
+//     setStatValue1(selectedData.SubValue1);
+//     setSelectedStat2(selectedData.SubName2);
+//     setStatValue2(selectedData.SubValue2);
+//     setSelectedStat3(selectedData.SubName3);
+//     setStatValue3(selectedData.SubValue3);
+//     setSelectedStat4(selectedData.SubName4);
+//     setStatValue4(selectedData.SubValue4);
+//     setLoaded(false)
+//     console.log('loaded')
+//     console.log(selectedData)
+//   }
+// },[selectedData]);
+
+// const a = ObjectCreate(
+//   piece, mainStat, mainValue, 
+//   selectedStat1, statValue1, 
+//   selectedStat2, statValue2, 
+//   selectedStat3, statValue3, 
+//   selectedStat4, statValue4
+// );

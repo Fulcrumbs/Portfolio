@@ -1,21 +1,32 @@
-.calendar{
-    width:350px;
-    background: #fff;
-    display: flex;
-    align-items: flex-end;
-    border-radius: 3px;
-}
 
-.calendar button{
-    background: none;
-    margin: 0;
-    border: 0;
-    align-items: center;
-}
-
-.booking_list{
+.appointments{
+    height: calc(100vh - 5vh);
     display: grid;
-    grid-template-columns: auto, auto, auto, auto;
-    grid-auto-flow: row;
-    padding: 8px;
+    gap: 10px;
+    padding:10px;
+    grid-template-areas: "form edit display";
+    border-image: linear-gradient(blue, red) 30;
 }
+
+.appointments button, select{
+    width: max-content;
+}
+
+.form{
+    grid-area: form;
+    max-height: 50%;
+}
+
+.display{
+    max-height: 50%;
+    grid-area: display;
+}
+.selection{
+    display: grid;
+    grid-area: edit;
+    max-height: 50%;
+}
+
+/* .editSection select{
+height: min-content;
+} */
