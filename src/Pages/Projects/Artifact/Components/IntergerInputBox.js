@@ -1,4 +1,4 @@
- import ValidSubStatValues from "./ValidSubStatValues";
+ import ValidSubStatValues from "../Functions/ValidSubStatValues";
  
  export default function IntegerInputBox({handleValue, selectedStat, data}){
     const handleKey = (e) => {

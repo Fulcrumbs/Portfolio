@@ -12,7 +12,11 @@
     padding: 5px;
     margin: 5px;
 }
-  
+
+fieldset{
+    display:flex;
+    flex-direction: column;
+}
 .MedCont{
     display: flex;
     flex-direction: row; 
@@ -32,8 +36,9 @@
 }
 
   
-.SmlContainer{
-    background:linear-gradient( rgb(0, 0, 0), purple, black);
+.SmlCont{
+    /* background:linear-gradient( rgb(0, 0, 0), purple, black); */
+    background-image: url("https://cdn.pixabay.com/animation/2023/03/19/02/34/02-34-11-741_512.gif");
     min-width: 15dvw;
 
     display: flex;

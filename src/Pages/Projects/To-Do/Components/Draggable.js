@@ -5,15 +5,12 @@ export default function Draggable(props){
     const {attributes, listeners, setNodeRef, transform} = useDraggable({
         id: 'draggable',
     })
-    // const style = transform ? {
-    //     transform: `transform3d(${transform.x}px, ${transform.y}px, 0`,
-    // } : undefined;
     const style = {
         transform: CSS.Translate.toString(transform),
     }
 
     return(
-        <button ref={setNodeRef} style={style} {...listeners} {...attributes} >
+        <button className="draggable" ref={setNodeRef} style={style} {...listeners} {...attributes} >
             {props.children}
         </button>
     );

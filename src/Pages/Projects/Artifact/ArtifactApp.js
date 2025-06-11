@@ -1,13 +1,13 @@
 import './Artifact.css';
 import { useState, useEffect } from 'react';
 import IntegerInputBox from './Components/IntergerInputBox';
-import Arrays from './Components/Arrays';
 import SubStringDropMenu from './Components/SubStringDropMenu';
 import MainSelectionDropMenu from './Components/MainSelectionDropMenu';
 import DropMenu from './Components/DropMenu';
-import save from './Components/Save';
-import load from './Components/Load';
-import CritValue from './Components/CritValue';
+import save from './Functions/Save';
+import load from './Functions/Load';
+import CritValue from './Functions/CritValue';
+import Arrays from './Functions/Arrays';
 
 /*
 This is my main state functionality practice, moving states around and working with them in different ways and trying to keep it neat and tidy
@@ -43,7 +43,7 @@ function ArtifactApp(){
       Sub3: {Stat:'', Value:''},
       Sub4: {Stat:'', Value:''}
   };
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); //On load this becomes an array of artifact objects
   const [selectedData, setSelectedData] = useState({
     ID: null,
     Piece: {Type:null, Stat:null, Value:null},
@@ -52,16 +52,12 @@ function ArtifactApp(){
     Sub3: {Stat:null, Value:null},
     Sub4: {Stat:null, Value:null}
   });
-  const [reset, setReset] = useState(false);
+  
   const handleValueReset = () =>{
-    setReset(true);
+    setLoaded(false)
+    setArtifact(emptyArtifact)
+    setSelectedData(emptyArtifact)
   };
-  useEffect(() => {
-    if (reset) {
-      setArtifact(emptyArtifact)
-      setReset(false)
-    }
-  }, [reset]);
 
   const handleArtifactValues = (e, parentKey, childKey) => {
     setArtifact({
@@ -165,156 +161,116 @@ function ArtifactApp(){
         <div className="MedCont">
           <div className="SmlCont">
             <div className="">
-        
-              <label htmlFor="piece">
-                Enter piece:
-                <DropMenu
-                  handleValue={(e) => handleArtifactValues(e, "Piece", "Type")} //handlePieceSelection
-                  useArray={Arrays().artPieces}
-                  reset={reset}
-                  load={loaded}
-                  data={selectedData.Piece.Type}
-                />
-              </label>
+            <form>
+              <fieldset>
+                <legend>Artifact Entry</legend>
+                <div>
+                  <label htmlFor='piece'>Enter piece: </label>
+                  <DropMenu
+                    handleValue={(e) => handleArtifactValues(e, "Piece", "Type")} //handlePieceSelection
+                    useArray={Arrays().artPieces}
+                    data={selectedData.Piece.Type}/>
 
-              <MainSelectionDropMenu
-                piece={artifact.Piece.Stat}//Piece //would probably access this similar to parentKey ChildKey?
-                handleValue={(e) => handleArtifactValues(e, "Piece", "Stat")} //handleMainSelection
-                statArrays={Arrays()}
-                reset={reset}
-                load={loaded}
-                data={selectedData.Piece.Stat}
-              />
-            </div>
-
-            <legend>
-              Substats:
+                  <MainSelectionDropMenu
+                    piece={artifact.Piece.Type}//Piece //would probably access this similar to parentKey ChildKey?
+                    handleValue={(e) => handleArtifactValues(e, "Piece", "Stat")} //handleMainSelection
+                    statArrays={Arrays()}
+                    data={selectedData.Piece.Stat}/>
+                </div>
+              <label htmlFor='Subs'>Substats:</label>
               <div>
-                {/* {mainStat !== '' && ( */}
-                <div>
-                  <SubStringDropMenu
-                    main={artifact.Piece.Stat} //   mainStat
-                    sub1={artifact.Sub1.Stat} //selectedStat1
-                    sub2={artifact.Sub2.Stat}//selectedStat2
-                    sub3={artifact.Sub3.Stat}//selectedStat3
-                    sub4={artifact.Sub4.Stat}//selectedStat4
-                    useArray={Arrays().substats}
-                    reset={reset}
-                    load={loaded}
-                    data={selectedData.Sub1.Stat}
-                    handleValue={(e) => handleArtifactValues(e, "Sub1", "Stat")} //handleSelectedStat1
+                <SubStringDropMenu
+                  artifact={artifact} //See if we can remove the next four lines - Coolio finally have a data structure which saves all these characters              
+                  useArray={Arrays().substats}
+                  data={selectedData.Sub1.Stat}
+                  handleValue={(e) => handleArtifactValues(e, "Sub1", "Stat")} //handleSelectedStat1
+                />
+                {artifact.Sub1.Stat !== "" && (
+                  <IntegerInputBox
+                    selectedStat={artifact.Sub1.Stat} //selectedStat1
+                    handleValue={(e) => handleArtifactValues(e, "Sub1", "Value")} //handleStatValue1
+                    data={selectedData.Sub1.Value}
                   />
-                  {artifact.Sub1.Stat !== "" && (
-                    <IntegerInputBox
-                      selectedStat={artifact.Sub1.Stat} //selectedStat1
-                      handleValue={(e) => handleArtifactValues(e, "Sub1", "Value")} //handleStatValue1
-                      data={selectedData.Sub1.Value}
-                    />
-                  )}
-                </div>
-                {/* )} */}
-
-                {/* {statValue1 !== '' &&( */}
-                <div>
-                  <SubStringDropMenu
-                    main={artifact.Piece.Stat} //mainStat
-                    sub1={artifact.Sub1.Stat} //   selectedStat1  
-                    sub2={artifact.Sub2.Stat}//selectedStat2
-                    sub3={artifact.Sub3.Stat}//selectedStat3
-                    sub4={artifact.Sub4.Stat}// selectedStat4
-                    useArray={Arrays().substats}
-                    reset={reset}
-                    load={loaded}
-                    data={selectedData.Sub2.Stat}//
-                    handleValue={(e) => handleArtifactValues(e, "Sub2", "Stat")} //handleSelectedStat2
-                  />
-                  {artifact.Sub2.Stat !== "" && (
-                    <IntegerInputBox
-                      selectedStat={artifact.Sub2.Stat} //selectedStat2
-                      handleValue={(e) => handleArtifactValues(e, "Sub2", "Value")} //handleStatValue2
-                      data={selectedData.Sub2.Value} //selectedData.SubValue2
-                    />
-                  )}
-                </div>
-                {/* )} */}
-
-                {/* {statValue2 !== '' && ( */}
-                <div>
-                  <SubStringDropMenu
-                    main={artifact.Piece.Stat} //mainStat
-                    sub1={artifact.Sub1.Stat} //     selectedStat1
-                    sub2={artifact.Sub2.Stat}//selectedStat2
-                    sub3={artifact.Sub3.Stat}//selectedStat3
-                    sub4={artifact.Sub4.Stat}// selectedStat4
-                    useArray={Arrays().substats}
-                    reset={reset}
-                    load={loaded}
-                    data={selectedData.Sub3.Stat} //SubName3
-                    handleValue={(e) => handleArtifactValues(e, "Sub3", "Stat")} //handleSelectedStat3
-                  />
-                  {artifact.Sub3.Stat !== "" && (
-                    <IntegerInputBox
-                      selectedStat={artifact?.Sub3?.Stat} //selectedStat3
-                      handleValue={(e) => handleArtifactValues(e, "Sub3", "Value")}//handleStatValue3
-                      data={selectedData.Sub3.Value} 
-                    />
-                  )}
-                </div>
-                {/* )} */}
-
-                {/* {statValue3 !== '' &&( */}
-                <div>
-                  <SubStringDropMenu
-                    main={artifact.Piece.Stat} // mainStat      
-                    sub1={artifact.Sub1.Stat}//selectedStat1
-                    sub2={artifact.Sub2.Stat}//selectedStat2
-                    sub3={artifact.Sub3.Stat}//selectedStat3
-                    sub4={artifact.Sub4.Stat}//selectedStat4
-                    useArray={Arrays().substats}
-                    reset={reset}
-                    load={loaded}
-                    data={selectedData.Sub4.Stat}
-                    handleValue={(e) => handleArtifactValues(e, "Sub4", "Stat")} //handleSelectedStat4
-                  />
-                  {artifact.Sub4.Stat !== "" && (
-                    <IntegerInputBox
-                      selectedStat={artifact.Sub4.Stat} //selectedStat4
-                      handleValue={(e) => handleArtifactValues(e, "Sub4", "Value")} //handleStatValue4
-                      data={selectedData.Sub4.Value} 
-                    />
-                  )}
-                </div>
-                {/* )} */}
+                )}
               </div>
-            </legend>
+              <div>
+                <SubStringDropMenu
+                  artifact={artifact}
+                  useArray={Arrays().substats}
+                  data={selectedData.Sub2.Stat}//
+                  handleValue={(e) => handleArtifactValues(e, "Sub2", "Stat")} //handleSelectedStat2
+                />
+                {artifact.Sub2.Stat !== "" && (
+                  <IntegerInputBox
+                    selectedStat={artifact.Sub2.Stat} //selectedStat2
+                    handleValue={(e) => handleArtifactValues(e, "Sub2", "Value")} //handleStatValue2
+                    data={selectedData.Sub2.Value} //selectedData.SubValue2
+                  />
+                )}
+              </div>
+              <div>
+                <SubStringDropMenu
+                  artifact={artifact}
+                  useArray={Arrays().substats}
+                  data={selectedData.Sub3.Stat} //SubName3
+                  handleValue={(e) => handleArtifactValues(e, "Sub3", "Stat")} //handleSelectedStat3
+                />
+                {artifact.Sub3.Stat !== "" && (
+                  <IntegerInputBox
+                    selectedStat={artifact?.Sub3?.Stat} //selectedStat3
+                    handleValue={(e) => handleArtifactValues(e, "Sub3", "Value")}//handleStatValue3
+                    data={selectedData.Sub3.Value} 
+                  />
+                )}
+              </div>
+              <div>
+                <SubStringDropMenu
+                  artifact={artifact}
+                  useArray={Arrays().substats}
+                  data={selectedData.Sub4.Stat}
+                  handleValue={(e) => handleArtifactValues(e, "Sub4", "Stat")} //handleSelectedStat4
+                />
+                {artifact.Sub4.Stat !== "" && (
+                  <IntegerInputBox
+                    selectedStat={artifact.Sub4.Stat} //selectedStat4
+                    handleValue={(e) => handleArtifactValues(e, "Sub4", "Value")} //handleStatValue4
+                    data={selectedData.Sub4.Value} 
+                  />
+                )}
+              </div>
+            </fieldset>
+            </form>
           </div>
         </div>
 
-        {
-          /*statValue4 !== '' &&*/ <div className="MedCont">
-            <div className="SmlCont">
-              <DisplayArtifact artifact={artifact} critVal={cv} />
-            </div>
-          </div>
-        }
+        
+        <div className="SmlCont">
+            <img src={'/images/Icon_Flower_of_Life.png'} alt='flower icon' width="60px" height="60px"/>
+            <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Flower"/>
+            <DisplayArtifact artifact={artifact} critVal={cv} filter="Flower" /> 
+        </div>
 
+        
+      </div>
         <div className="optionsMenu">
           <button onClick={() => save("artifact", artifact)}>Save</button>
           <button onClick={handleLoad}>Load</button>
           <button onClick={handleValueReset}>Clear</button>
         </div>
+        <div>
+        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Feather"/>
+        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Timepiece"/>
+        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Goblet"/>
+        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Circlet"/>
       </div>
-      <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Flower"/>
-      <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Feather"/>
-      <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Timepiece"/>
-      <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Goblet"/>
-      <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Circlet"/>
+    </div>
     </div>
   );
 };
 
 
-function DisplayArtifact({artifact, critVal}){
+function DisplayArtifact({artifact, critVal, filter}){
+  if(artifact.Piece.Type === filter){
   return(
     <>
       <p>{"Piece:"} {artifact.Piece.Type}</p>
@@ -325,7 +281,7 @@ function DisplayArtifact({artifact, critVal}){
       <p>{artifact.Sub4.Stat} : {artifact.Sub4.Value}</p>
       <p>Bonus critical damage: {critVal} </p>
     </>
-  )
+  )}
 };
 
 function LoadedArtifactMenu({savedArray, filter, setSelectedData, setLoaded}){

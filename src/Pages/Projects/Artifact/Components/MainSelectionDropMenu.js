@@ -1,13 +1,11 @@
 import DropMenu from "./DropMenu";
 
-export default function MainSelectionDropMenu({piece, handleValue, statArrays, reset, loaded, data}) {
+export default function MainSelectionDropMenu({piece, handleValue, statArrays, data}) {
     if (piece === "Timepiece")
       return (
         <DropMenu
           handleValue={handleValue}
           useArray={statArrays.sandMain}
-          reset={reset}
-          load={loaded}
           data={data}
         />
       );
@@ -16,8 +14,6 @@ export default function MainSelectionDropMenu({piece, handleValue, statArrays, r
         <DropMenu
           handleValue={handleValue}
           useArray={statArrays.gobletMain}
-          reset={reset}
-          load={loaded}
           data={data}
         />
       );
@@ -26,9 +22,8 @@ export default function MainSelectionDropMenu({piece, handleValue, statArrays, r
         <DropMenu
           handleValue={handleValue}
           useArray={statArrays.hatMain}
-          reset={reset}
-          load={loaded}
           data={data}
         />
       );
   };
+  

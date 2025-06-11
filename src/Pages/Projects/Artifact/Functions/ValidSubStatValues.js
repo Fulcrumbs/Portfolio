@@ -7,7 +7,7 @@ export default function ValidSubStatValues(uinput, sn){
     switch (sn)//Using the actual values but not the practical values
     {
       case "Elemental Mastery":
-          modVal = [16, 19, 21, 23]; //16.32, 18.65, 20.98, 23.31
+          modVal = [16, 19, 21, 23]; //16.32, 18.65, 20.98, 23.31 totals round to nearest 0.1
           low = 16;
           high = 140;
           if (val >= low && val <= high && (val % modVal[0] === 0 | 

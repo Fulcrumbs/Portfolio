@@ -384,3 +384,37 @@ Old conditional rendering version of my mainstat and values dropdown menus - Mad
 //   selectedStat3, statValue3, 
 //   selectedStat4, statValue4
 // );
+
+// const [reset, setReset] = useState(false);
+  // // setReset(true);
+  // useEffect(() => {
+  //   if (reset) {
+      
+  //     setReset(false)
+  //   }
+  // }, [reset]);
+
+  //main={artifact.Piece.Stat} //   mainStat
+                    //sub1={artifact.Sub1.Stat} //selectedStat1
+                    //sub2={artifact.Sub2.Stat}//selectedStat2
+                    //sub3={artifact.Sub3.Stat}//selectedStat3
+                    //sub4={artifact.Sub4.Stat}//selectedStat4
+
+                    // reset={reset}
+                    // load={loaded}
+export default function Reset(reset, setArtifact){
+    if (reset) {
+        setArtifact(artifact.piece.type)};
+        setArtifact(artifact.piece.stat);
+        setArtifact(artifact.piece.value);
+        setArtifact(artifact.sub1.stat);
+        setArtifact(artifact.sub1.value);
+        setArtifact(artifact.sub2.stat);
+        setArtifact(artifact.sub2.value);
+        setArtifact(artifact.sub3.stat);
+        setArtifact(artifact.sub3.value);
+        setArtifact(artifact.sub4.stat);
+        setArtifact(artifact.sub4.value);
+        setReset(false);
+        console.log(reset);
+};
