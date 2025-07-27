@@ -1,9 +1,8 @@
 import Load from "../Functions/Load";
 
-export default function LoadButton({data, setData}){
+export default function LoadButton({setColumns}){
 const handleLoad = () => {
-      Load('todoList', setData)
-      console.log(data)
+      Load('todoList', setColumns)
     };
 return(
     <button onClick={handleLoad}>Load</button>)

@@ -1,6 +1,6 @@
 
-export default function Load(key, setData){
+export default function Load(key, setColumns){
     const data = localStorage.getItem(key)
-    setData(data ? JSON.parse(data) : []); //set data
+    setColumns(data ? JSON.parse(data) : []);
     console.log('Loaded Data:', data)
 };

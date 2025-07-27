@@ -42,6 +42,7 @@ function ReplayImages(){
 
     const [currentImgIndex, setCurrentImgIndex] = useState(0);
     const [clickedImage, setClickedImage] = useState('');
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = (image) => {

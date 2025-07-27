@@ -8,6 +8,7 @@ import save from './Functions/Save';
 import load from './Functions/Load';
 import CritValue from './Functions/CritValue';
 import Arrays from './Functions/Arrays';
+import { setAppElement } from 'react-modal';
 
 /*
 This is my main state functionality practice, moving states around and working with them in different ways and trying to keep it neat and tidy
@@ -137,11 +138,15 @@ function ArtifactApp(){
     }
   }, [artifact?.Piece?.Stat]);
   
-  const [loaded, setLoaded] = useState(false)
-  const handleLoad = () => {
+  useEffect(() => {
     load('artifact', setData)
     setLoaded(true)
-  };
+  }, [])
+  const [loaded, setLoaded] = useState(false)
+  // const handleLoad = () => {
+  //   load('artifact', setData)
+  //   setLoaded(true)
+  // };
   useEffect(()=>{
     if(selectedData && loaded){
       setArtifact(selectedData)
@@ -243,18 +248,16 @@ function ArtifactApp(){
           </div>
         </div>
 
-        
         <div className="SmlCont">
             <img src={'/images/Icon_Flower_of_Life.png'} alt='flower icon' width="60px" height="60px"/>
             <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Flower"/>
             <DisplayArtifact artifact={artifact} critVal={cv} filter="Flower" /> 
         </div>
-
-        
+     
       </div>
         <div className="optionsMenu">
           <button onClick={() => save("artifact", artifact)}>Save</button>
-          <button onClick={handleLoad}>Load</button>
+          {/* <button onClick={handleLoad}>Load</button> */}
           <button onClick={handleValueReset}>Clear</button>
         </div>
         <div>

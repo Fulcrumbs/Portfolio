@@ -67,6 +67,7 @@
 
 .completed{
     color: #0fc30f;
+    text-decoration: line-through;
 }
 .started{
     color:#fefe05;
@@ -83,37 +84,8 @@
     /* border: 2px solid red ; */
 }
 
-.draggable .completed{
-    font-family: 'osrs';
-    width:100%;
-    font-size: 15px;
-    border-radius: 2px;
-    background-color: #554c41;
-    border-color: #726451;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
 
-.draggable .unstarted{
-    font-family: 'osrs';
-    width:100%;
-    font-size: 15px;
-    border-radius: 2px;
-    background-color: #554c41;
-    border-color: #726451;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-} 
-
-.draggable .started{
-    font-family: 'osrs';
-    width:100%;
-    font-size: 15px;
-    border-radius: 2px;
-    background-color: #554c41;
-    border-color: #726451;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-} 
-
-.draggable{
+.osrsButton{
     font-family: 'osrsBold';
     width:100%;
     font-size: 15px;
@@ -121,5 +93,128 @@
     background-color: #554c41;
     border-color: #726451;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-} 
+    /* outline: 2px dashed red; */
+}
+
+.osrsButtonSml{
+    font-family: 'osrsBold';
+    width:80px;
+    font-size: 15px;
+    border-radius: 2px;
+    background-color: #554c41;
+    border-color: #726451;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    /* outline: 2px dashed red; */
+}
+
+.osrsExit{
+    position: absolute;
+    top: 15%;
+    right: 11%;
+    height: 23px;
+    width: 23px;
+    border: none;
+    background-image: url("../../../Assets/Images/osrsExit.png");
+}
+
+.osrsModal{
+    position: relative;
+    height: 100%;
+    width: auto;
+    aspect-ratio: 100/65.5;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'osrs';
+    background-image:url("../../../Assets/Images/QuestScroll2.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.osrsModalOverlay{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.osrsModal input, textarea{
+    font-family: 'osrs';
+    background-color: #b9a469;
+    border: none;
+    padding:10px;
+    border-image-slice: 6 6 6 6;
+    border-image-width: 5px 5px 5px 5px;
+    border-image-outset: 0px 0px 0px 0px;
+    border-image-repeat: stretch stretch;
+    border-image-source: url("../../../Assets/Images/Border1.png");
+}
+
+.osrsModal > .viewTitle, .osrsModal > .editTitle{
+    font-family: 'osrsBold';
+    width:300px;
+    font-size: 25px;
+    text-align: center;
+    border: none;
+    padding:10px;
+}
+.osrsModal > .editTitle{
+    /* font-family: 'osrsBold';
+    width:300px;
+    font-size: 25px;
+    text-align: center;
+    border: none;
+    padding:10px; */
+    border-image-slice: 6 6 6 6;
+    border-image-width: 5px 5px 5px 5px;
+    border-image-outset: 0px 0px 0px 0px;
+    border-image-repeat: stretch stretch;
+    border-image-source: url("../../../Assets/Images/Border1.png");
+    /* background-color: #b9a469;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-image: url("../../../Assets/Images/osrsTitleBannerEmpty.png"); */
+}
+
+.titleBanner:focus{
+    outline: none;
+}
+.osrsModal form{
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonrow{
+    flex-direction: row;
+}
+textarea{
+    height: 200px;
+    width: 300px;
+    resize: none;
+}
+
+.osrsModal .osrsButtonSml{
+    background-color: #9e8c76;
+    width:fit-content;
+}
+/* .sortable{
+    outline: 2px dashed purple;
+}
+.droparea{
+    outline: 2px dashed blue ;
+}
+.invisible{
+    opacity: 0;
+} */
 /* color:#ee922d; */
