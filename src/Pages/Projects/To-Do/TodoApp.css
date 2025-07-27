@@ -114,9 +114,9 @@
     height: 23px;
     width: 23px;
     border: none;
-    background-image: url("../../../Assets/Images/osrsExit.png");
+    background-image: url("../../../Assets/Images/osrsExit.png");   
 }
-
+/*  /Images/osrsExit.png*/
 .osrsModal{
     position: relative;
     height: 100%;
