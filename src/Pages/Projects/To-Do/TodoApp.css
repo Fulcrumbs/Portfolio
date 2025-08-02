@@ -2,19 +2,19 @@
 /* TodoApp.css */
 @font-face {
     font-family: 'osrsBold';
-    src: url(/public/Assets/Fonts/runescape_bold.ttf) format('truetype');
+    src: url(/src/Assets/Fonts/runescape_bold.ttf) format('truetype');
     /*  runescape_uf.ttf*/
     /* src\Assets\Fonts\ SYNNovaVFGX.ttf*/
 }
 @font-face {
     font-family: 'osrsSmall';
-    src: url(/public/Assets/Fonts/runescape_small.ttf) format('truetype');
+    src: url(/src/Assets/Fonts/runescape_small.ttf) format('truetype');
     /*  runescape_uf.ttf*/
     /* src\Assets\Fonts\ SYNNovaVFGX.ttf*/
 }
 @font-face {
     font-family: 'osrs';
-    src: url(/public/Assets/Fonts/runescape.ttf) format('truetype');
+    src: url(/src/Assets/Fonts/runescape.ttf) format('truetype');
     /*  runescape_uf.ttf*/
     /* src\Assets\Fonts\ SYNNovaVFGX.ttf*/
 }
@@ -52,7 +52,7 @@
     border-image-width: 10px 10px 10px 10px;
     border-image-outset: 0px 0px 0px 0px;
     border-image-repeat: stretch stretch;
-    border-image-source: url(/public/Assets/Images/Border1.png); 
+    border-image-source: url(/src/Assets/Images/Border1.png); 
     /*  (/Assets/Images/Border1.png)*/
 }
 
@@ -62,7 +62,7 @@
     border-image-width: 10px 10px 10px 10px;
     border-image-outset: 0px 0px 0px 0px;
     border-image-repeat: stretch stretch;
-    border-image-source: url(/public/Assets/Images/Border2.png);
+    border-image-source: url(/src/Assets/Images/Border2.png);
     border-style: solid;
 }
 
@@ -116,7 +116,7 @@
     height: 23px;
     width: 23px;
     border: none;
-    background-image: url(/public/Assets/Images/osrsExit.png);   
+    background-image: url(/src/Assets/Images/osrsExit.png);   
 }
 /*  /Images/osrsExit.png*/
 .osrsModal{
@@ -131,7 +131,7 @@
     justify-content: center;
 
     font-family: 'osrs';
-    background-image:url(/public/Assets/Images/QuestScroll2.png);
+    background-image:url(/src/Assets/Images/QuestScroll2.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -160,7 +160,7 @@
     border-image-width: 5px 5px 5px 5px;
     border-image-outset: 0px 0px 0px 0px;
     border-image-repeat: stretch stretch;
-    border-image-source: url(/public/Assets/Images/Border1.png);
+    border-image-source: url(/src/Assets/Images/Border1.png);
 }
 
 .osrsModal > .viewTitle, .osrsModal > .editTitle{
@@ -182,7 +182,7 @@
     border-image-width: 5px 5px 5px 5px;
     border-image-outset: 0px 0px 0px 0px;
     border-image-repeat: stretch stretch;
-    border-image-source: url(/public/Assets/Images/Border1.png);
+    border-image-source: url(/src/Assets/Images/Border1.png);
     /* background-color: #b9a469;
     background-size:cover;
     background-repeat: no-repeat;
