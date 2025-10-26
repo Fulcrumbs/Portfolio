@@ -5,17 +5,19 @@ import { lazy, Suspense } from "react";
 import "./Nav.css"
 
 
-const Board = lazy(() => import("../../Pages/LearningCourses/TicTacToe/TicTacToe.js"));
-const ArtifactApp = lazy(() => import("../../Pages/Projects/Artifact/ArtifactApp"));
-const ReplayImages = lazy(() => import("../../Pages/Projects/YGOReplays&Images/ReplayImages"));
+const Board = lazy(() => import("../Pages/LearningCourses/TicTacToe/TicTacToe.jsx"));
+const ArtifactApp = lazy(() => import("../Pages/Projects/Artifact/ArtifactApp.jsx"));
+const ReplayImages = lazy(() => import("../Pages/Projects/YGOReplays&Images/ReplayImages.jsx"));
 // import Page from "../../Pages/LearningCourses/ReactCourse/Page";
-const ReactCourse = lazy(() => import("../../Pages/LearningCourses/ReactCourse/ReactCourse"));
+const ReactCourse = lazy(() => import("../Pages/LearningCourses/ReactCourse/ReactCourse.jsx"));
 //import Experiment from "../../Pages/Projects/Artifact/Experiment";
-const BookingApp = lazy(() => import("../../Pages/Projects/BookingApp/AppointmentSys"));
-const Home = lazy(() => import("../../Pages/Home/Home.js"));
+const BookingApp = lazy(() => import("../Pages/Projects/BookingApp/AppointmentSys.jsx"));
+const Home = lazy(() => import("../Pages/Home/Home.jsx"));
 
-const RWD = lazy(() => import("../../Pages/LearningCourses/ResponsiveWebDesign/RWD"));
-const TodoApp = lazy(() => import("../../Pages/Projects/To-Do/TodoApp.js"));
+const RWD = lazy(() => import("../Pages/LearningCourses/ResponsiveWebDesign/RWD.jsx"));
+const TodoApp = lazy(() => import("../Pages/Projects/To-Do/TodoApp.jsx"));
+const CalculatorPage = lazy(() => import("../Pages/Projects/Calculators/Calcs.jsx"))
+
 /*Pages
 Home- (Nav.js) Rename App?
         - Courses - Null Page
@@ -40,19 +42,20 @@ const menulinks = [
       Element: <Home/>, //CourseRoutes
       Label: "Learning Material",
       Submenu: [
-          {Path:"TicTacToe/TicTacToe.js", Element: <Board/>, Label: "React Tic-Tac-Toe Tutorial"},
-          {Path: "ReactCourse/ReactCourse.js", Element: <ReactCourse />, Label:"Beginner's React Course 2022"},
-          {Path: "ResponsiveWebDesign/RWD.js", Element: <RWD/>, Label:"Responsive Web Design"}
+          {Path:"TicTacToe/TicTacToe.jsx", Element: <Board/>, Label: "React Tic-Tac-Toe Tutorial"},
+          {Path:"ReactCourse/ReactCourse.jsx", Element: <ReactCourse />, Label:"Beginner's React Course 2022"},
+          {Path:"ResponsiveWebDesign/RWD.jsx", Element: <RWD/>, Label:"Responsive Web Design"}
         ]
     },
     { Path: "/Projects/*",
       Element: <Home/>, //ProjectRoutes if i need to revert
       Label: "Projects",
       Submenu: [
-          {Path:"Artifact/ArtifactApp.js", Element: <ArtifactApp/>, Label:"Artifact Calculator"},
-          {Path: "YGOReplays&Images/ReplayImages.js", Element:<ReplayImages/>, Label:"YGOReplays"},
-          {Path:"BookingApp/AppointmentSys.js", Element:<BookingApp/>, Label:"Booking App"},
-          {Path:"TodoApp/TodoApp.js", Element:<TodoApp/>, Label:"To-Do App"},
+          {Path:"Artifact/ArtifactApp.jsx", Element: <ArtifactApp/>, Label:"Artifact Calculator"},
+          {Path:"YGOReplays&Images/ReplayImages.jsx", Element:<ReplayImages/>, Label:"YGOReplays"},
+          {Path:"BookingApp/AppointmentSys.jsx", Element:<BookingApp/>, Label:"Booking App"},
+          {Path:"TodoApp/TodoApp.jsx", Element:<TodoApp/>, Label:"To-Do App"},
+          {Path:"Calculators/Calcs.jsx", Element:<CalculatorPage/>, Label:"Calculators"}
         ]
     }
 ]
@@ -77,6 +80,7 @@ const Nav = () =>{
             );
           })}
         </nav>
+        <div className="Page-Container">
         <Suspense fallback={<div>'...Loading'</div>}>
           <Routes>
             {menulinks.map((menulinks, index) => (
@@ -91,6 +95,7 @@ const Nav = () =>{
             )}
           </Routes>
         </Suspense>
+        </div>
       </div>
     );
 };

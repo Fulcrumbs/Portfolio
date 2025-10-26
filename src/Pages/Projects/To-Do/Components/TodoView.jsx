@@ -1,6 +1,6 @@
-import ModalFunction from "../Components/Modal";
+import ModalFunction from "./Modal";
 import { useState } from "react";
-import save from "./Save";
+import save from "../Functions/Save";
 
 /**
  * This function will be for the Sortable components, which are buttons, that when clicked, I guess this function will populate the

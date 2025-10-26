@@ -9,9 +9,12 @@
 */
 export default function main()
 {
+    function Greet({word}:{word:string}){
+        return <>Hello {word}</>
+    }
     return(
         <div>
-
+            <Greet word="World"/>
         </div>
     );
     

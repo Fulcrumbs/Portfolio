@@ -1,7 +1,7 @@
 import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities'
 import { useState } from 'react';
-import TodoView from '../Functions/TodoView';
+import TodoView from './TodoView';
 
 export default function Sortable(props){
     const [isOpen, setIsOpen] = useState(false);

@@ -2,14 +2,12 @@
 .navpage{
   background-color: #333;
   color: #d4d4d4;
-  /* top: 0; */
-  /* max-width: 100vw; */
-  /* position: relative; */
 }
 
-.nav{
+nav{
   background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
   min-height:5vh;
+  box-shadow: 0px 5px #333;
 }
 
 .menu-items{
@@ -19,11 +17,13 @@
 
 .menu-items:hover .submenu{
   display: block;
+  z-index: 10;
 }
 
 .submenu{
   display: none;
   position: absolute;
+  z-index: 10;
 }
 
 .submenu .tab-link{
@@ -47,4 +47,9 @@
 
 .tab-link:active {
   background-color: #007bff; 
+}
+
+.Page-Container{
+  flex: 1;
+  overflow-y: auto;
 }

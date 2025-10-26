@@ -1,14 +1,13 @@
 import './Artifact.css';
 import { useState, useEffect } from 'react';
-import IntegerInputBox from './Components/IntergerInputBox';
-import SubStringDropMenu from './Components/SubStringDropMenu';
-import MainSelectionDropMenu from './Components/MainSelectionDropMenu';
-import DropMenu from './Components/DropMenu';
+import IntegerInputBox from './Components/IntergerInputBox.jsx';
+import SubStringDropMenu from './Components/SubStringDropMenu.jsx';
+import MainSelectionDropMenu from './Components/MainSelectionDropMenu.jsx';
+import DropMenu from './Components/DropMenu.jsx';
 import save from './Functions/Save';
 import load from './Functions/Load';
 import CritValue from './Functions/CritValue';
 import Arrays from './Functions/Arrays';
-import { setAppElement } from 'react-modal';
 
 /*
 This is my main state functionality practice, moving states around and working with them in different ways and trying to keep it neat and tidy

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter} from 'react-router-dom';
-import NavPage from './Components/NavPage/Nav';
+import NavPage from './NavPage/Nav';
 
 import './Styles/Global.css'
 import './Styles/Utilities.css'

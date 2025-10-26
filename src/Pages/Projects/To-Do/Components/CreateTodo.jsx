@@ -15,12 +15,15 @@ export default function CreateTodo({columnState}){
     );
 
     const content = (
+        <>
+        <h1>Create Task</h1>
         <form onSubmit={handleSubmit}>
             <input type='text' autoComplete="off" onChange={handleChange} name='Title' id="Title" placeholder="Title" maxLength={30}></input>
             <textarea type='text' autoComplete="off" onChange={handleChange} name='Desc' id='Desc' placeholder="Description"></textarea>
             <input type='date' onChange={handleChange} name='Deadline' id='Deadline'/>
-            <button className="osrsButtonSml">Submit</button>
+            <button className="osrsButtonSml">Create</button>
         </form>
+        </>
     );
 
     function AddNewTodoToColumn(newTodo, columns){
@@ -57,7 +60,7 @@ export default function CreateTodo({columnState}){
 
     return(
         <>
-        <button className='osrsButtonSml' onClick={() => setIsOpen(true)}>Add Task</button>
+        <button className='osrsButtonSml' onClick={() => setIsOpen(true)}>Create Task</button>
         <ModalFunction content={content} modalState={{isOpen: isOpen, setIsOpen: setIsOpen}} className='add'/> 
         </>
     )
