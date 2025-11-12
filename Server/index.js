@@ -45,11 +45,11 @@ const bookings = new Pool({
  */
 
 const media = new Pool({
-    host: 'localhost',
+    host: process.env.DB_HOST,
     port: 5432, //default port apparently, I wonder if I can change it?
     database: 'ImagesAndVideos',
-    user: 'Fulcrumbs',
-    password: 'FerynysSeven7!',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     idleTimeoutMillis: 1000,
     connectionTimeoutMillis: 1000
 });
