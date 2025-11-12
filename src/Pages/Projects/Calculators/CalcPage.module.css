@@ -1,0 +1,14 @@
+.page{
+    height: calc(100vh - 5vh)
+}
+
+.active{
+    height: 40%;
+    width: 60%;
+}
+
+.inactive{
+    height: 10%;
+    width:20%;
+    overflow: hidden;
+}

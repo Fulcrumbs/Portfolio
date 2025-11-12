@@ -15,15 +15,15 @@ export async function deleteBooking({selected, setBooking}){
 };
 
 export async function fetchBooking({setBooking}){
-        axios.get('/api/appointment')
-        .then((response) =>{
-            setBooking(response.data)
-        })
-        .catch((error)=>{
-            console.error('Error retreiving booking data: ', error)
-            setBooking(undefined)
-        });
-    };
+    axios.get('/api/appointment')
+    .then((response) =>{
+        setBooking(response.data)
+    })
+    .catch((error)=>{
+        console.error('Error retreiving booking data: ', error)
+        setBooking(undefined)
+    });
+};
 
 export async function registerBooking({formData, booking, setBooking}){
     e.preventDefault()

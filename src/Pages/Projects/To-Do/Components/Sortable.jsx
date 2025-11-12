@@ -20,7 +20,7 @@ export default function Sortable(props){
         <button onClick={() => setIsOpen(true)} className="osrsButton" ref={setNodeRef} style={style} {...listeners} {...attributes}>
            {props.task.Title}
         </button>
-        <TodoView columnState={props.columnState} task={props.task} modalState={{isOpen:isOpen, setIsOpen:setIsOpen}}/>
+        <TodoView columns={props.columns} setColumns={props.setColumns} task={props.task} modalState={{isOpen:isOpen, setIsOpen:setIsOpen}}/>
         </>
     );
 }

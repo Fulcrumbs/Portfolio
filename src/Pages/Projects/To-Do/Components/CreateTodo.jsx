@@ -2,8 +2,8 @@ import { useState } from "react";
 import save from "../Functions/Save";
 import ModalFunction from "./Modal";
 
-export default function CreateTodo({columnState}){
-    const {columns, setColumns} = columnState;
+export default function CreateTodo({columns, setColumns}){
+    // const {columns, setColumns} = columnState;
     const [isOpen, setIsOpen] = useState(false);  
     const [newTodo, setNewTodo] = useState({
         ID: '', 
@@ -27,6 +27,7 @@ export default function CreateTodo({columnState}){
     );
 
     function AddNewTodoToColumn(newTodo, columns){
+        console.log(columns, newTodo)
         const updatedTasks = {
         ...newTodo,
             ID: newTodo.ID || crypto.randomUUID(),

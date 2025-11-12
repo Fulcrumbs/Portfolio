@@ -1,7 +1,7 @@
 import { useState } from "react";
+import styles from "./BinominalProb.module.css"
 
-
-export default function CalculatorPage(){
+export default function BinomialProb(){
 //b(x; n, P) = nCx * Px * (1 – P)n – x
     const [formData, setFormData] = useState({
         attempts: null,
@@ -10,7 +10,7 @@ export default function CalculatorPage(){
     })
     const [answer, setAnswer] = useState();
 
-    function binominalProbabilityCalc({attempts, probability, successes}){
+    function calcBinominalProbability({attempts, probability, successes}){
         const n = Number(attempts);
         const p = Number(probability);
         const k = Number(successes);
@@ -40,13 +40,13 @@ export default function CalculatorPage(){
     }
     function handleSubmit(e){
         e.preventDefault();
-        const result = binominalProbabilityCalc(formData)
+        const result = calcBinominalProbability(formData)
         setAnswer(result.toFixed(6))
         return
     }
 
     return(
-        <>
+        <div className={styles.page}>
             <form onSubmit={handleSubmit}>
                 <input type="number" onChange={handleChange} name='attempts' placeholder="Number of Attempts"></input>
                 <input type='number' step='any' onChange={handleChange} name='probability' placeholder="Probability"></input>
@@ -54,7 +54,7 @@ export default function CalculatorPage(){
                 <button>Submit</button>
             </form>
             <p>Answer:{answer}</p>
-        </>
+        </div>
     )
 }
  // console.log(binominalProbabilityCalc(500, 0.05, 1));

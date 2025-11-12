@@ -119,7 +119,7 @@ export default function TodoApp() {
   };
   
   useEffect(() => {
-    Load('todoList', setColumns)
+    Load('todoList', columns, setColumns)
   }, [])
   
 
@@ -129,10 +129,10 @@ export default function TodoApp() {
     <DndContext sensors={sensors} onDragOver={handleDragOver} collisionDetection={rectIntersection}>
       <DragMonitor setColumns={setColumns} activeID={activeID} setActiveID={setActiveID}/>
        <div className="Page"> 
-        <Column items={columns.Focus} columnName='Focus' activeID={activeID} columnState={{columns:columns, setColumns:setColumns}}/>
-        <Column items={columns.Incomplete} columnName='Incomplete' activeID={activeID} columnState={{columns:columns, setColumns:setColumns}}/>
-        <Column items={columns.Unstarted} columnName='Unstarted' activeID={activeID} columnState={{columns:columns, setColumns:setColumns}}/>   
-        <Column items={columns.Completed} columnName='Completed' activeID={activeID} columnState={{columns:columns, setColumns:setColumns}}/>
+        <Column items={columns.Focus} columnName='Focus' activeID={activeID} columns={columns} setColumns={setColumns}/>
+        <Column items={columns.Incomplete} columnName='Incomplete' activeID={activeID} columns={columns} setColumns={setColumns}/>
+        <Column items={columns.Unstarted} columnName='Unstarted' activeID={activeID} columns={columns} setColumns={setColumns}/>   
+        <Column items={columns.Completed} columnName='Completed' activeID={activeID} columns={columns} setColumns={setColumns}/>
       </div>
       <DragOverlay>
         {activeID ? <TaskCopy task={findTask(columns, activeID)}/> : null}

@@ -1,13 +1,13 @@
-import './Artifact.css';
+import './GenshinArtifact.css';
 import { useState, useEffect } from 'react';
 import IntegerInputBox from './Components/IntergerInputBox.jsx';
 import SubStringDropMenu from './Components/SubStringDropMenu.jsx';
 import MainSelectionDropMenu from './Components/MainSelectionDropMenu.jsx';
 import DropMenu from './Components/DropMenu.jsx';
-import save from './Functions/Save';
-import load from './Functions/Load';
-import CritValue from './Functions/CritValue';
-import Arrays from './Functions/Arrays';
+import save from './Functions/Save.js';
+import load from './Functions/Load.js';
+import CritValue from './Functions/CritValue.js';
+import Arrays from './Functions/Arrays.js';
 
 /*
 This is my main state functionality practice, moving states around and working with them in different ways and trying to keep it neat and tidy
@@ -26,7 +26,7 @@ todo:
 while assigning states.
 */
 
-function ArtifactApp(){
+function GenshinArtifact(){
   const [artifact, setArtifact] = useState({
     ID: '',
     Piece: {Type:'', Stat:'', Value:''},
@@ -312,4 +312,4 @@ function LoadedArtifactMenu({savedArray, filter, setSelectedData, setLoaded}){
   )
 };
 
-export default ArtifactApp;
+export default GenshinArtifact;

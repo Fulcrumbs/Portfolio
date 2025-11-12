@@ -7,7 +7,8 @@ export default function FormSection(){
     const handleFormData = (e) => { 
         setFormData({...formData, [e.target.name]: e.target.value })
     };
-    return( 
+    return(
+        <>
         <form className="form" onSubmit={(e)=>registerBooking(e, formData, booking, setBooking)}>
             <fieldset>
                 <label>Enter First Name:</label><br/>
@@ -19,5 +20,7 @@ export default function FormSection(){
                 <input type="time" name="time" value={formData.time} onChange={handleFormData} required></input><br/>
                 <input type="submit" value="Submit"></input>
             </fieldset>
-        </form>  
+        </form>
+        <button className="logoutButton">Logout</button>
+        </>
 )};

@@ -1,18 +1,118 @@
 
 .homepage{
     display: grid;
-    justify-items: auto;
-    max-width: 100%;
-    height: calc(100vh - 5vh); 
+    grid-template-areas:
+    "about pfp skills" 
+    "project project project";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 80% 20%;
+
+    /* justify-items: auto; */
+    width: 100%;
+    height: calc(100vh - 5vh);
+    gap: 10px;
+    padding: 20px;
+}
+
+.about h2{
+    text-align: center;
+}
+
+.about{
+    grid-area: about;
+    /* text-align: center; */
+    overflow-y: scroll;
+    /* border: 2px solid black; */
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
+    padding:5px;
+    /* border-radius: 50%; */
+    /* border-bottom-right-radius: 50%; */
+    /* transform: rotate(-45deg); */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.about::-webkit-scrollbar{
+    display: none;
+}
+.skills{
+    grid-area: skills;
+    overflow-y: scroll;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
+    padding:5px;
+}
+.project{
+    grid-area: project;
+    overflow-y: scroll;
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
+    padding: 5px;
 }
 
 .pfp{
+  grid-area: pfp;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
+  border-radius: 50%;
+  /* clip-path: polygon(50% 25%, 75% 50%, 50% 75%, 25% 50%); */
+   
+}
+/* .pfp-wrap{
+    grid-area: pfp-wrap;
+    filter: drop-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.638)); 
+} */
+
+
+.pfp h3{
+    align-self: start;
+    padding: 0;
+    margin: 0;
+}
+.pfp img{
    border-radius: 50%;
-   height: 300px;
-   width: 300px;
-   justify-self: center;
+   height: 250px;
+   width: 250px;
+   /* justify-self: center; */
+   
 }
 
-p{
-    margin-bottom: 1.5em;
+
+@media screen and (max-width: 600px){
+    .homepage{
+    display: grid;
+    grid-template-areas:
+    "pfp"
+    "about"
+    "skills" 
+    "project";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+    /* justify-items: auto; */
+    width: 100%;
+    height: calc(100vh - 5vh);
+    gap: 10px;
+    padding: 10px;
+}
+
+.pfp{
+  grid-area: pfp;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.pfp h3{
+    align-self: start;
+    padding: 0;
+    margin: 0;
+}
+.pfp img{
+   border-radius: 50%;
+   height: 250px;
+   width: 250px;
+   /* justify-self: center; */
+   
+}
 }

@@ -27,6 +27,25 @@
     max-height: 50%;
 }
 
+.loginPage{
+    display: grid;
+    height: calc(100vh - 5vh);
+    /* grid-template-areas: "h1" "form"; */
+    /* justify-content: center; */
+    justify-content: center;
+    /* align-items: center; */
+    align-content: center;
+    grid-template-columns: 20%;
+    gap: 20px;
+    
+}
+
+.logoutButton{
+    max-height: 25px;
+}
+/* .loginBar{
+    align-items: ;
+} */
 /* .editSection select{
 height: min-content;
 } */

@@ -14,7 +14,7 @@ import save from "../Functions/Save";
  * 
  * 
  */
-export default function TodoView({columnState, task, modalState}){
+export default function TodoView({columns, setColumns, task, modalState}){
     const[edit, setEdit] = useState(false);
     const [editedTodo, setEditedTodo] = useState({
         ID: task.ID, 
@@ -25,10 +25,10 @@ export default function TodoView({columnState, task, modalState}){
         }
     );
 
-    function deleteTask(task, columnState){
+    function deleteTask(task, columns, setColumns){
         //find tasks and remove it from columns
-        console.log(task, columnState);
-        const {columns, setColumns} = columnState;
+        console.log(task, columns, setColumns);
+        // const {columns, setColumns} = columnState;
         const sourceColumn = Object.keys(columns).find((columnName) => //Column we need to remove task from
         columns[columnName].some((todo) => todo.ID === task.ID))
         if(!sourceColumn) return;
@@ -49,8 +49,6 @@ export default function TodoView({columnState, task, modalState}){
         
     };
 
-    
-
     function handleChange(e){
         setEditedTodo({...editedTodo,
             [e.target.name]: e.target.value
@@ -59,8 +57,8 @@ export default function TodoView({columnState, task, modalState}){
 
     function editTask(){
        //find tasks and remove it from columns
-        console.log(task, columnState);
-        const {columns, setColumns} = columnState;
+        console.log(task, columns, setColumns);
+        // const {columns, setColumns} = columnState;
         const sourceColumn = Object.keys(columns).find((columnName) => //Column we need to remove task from
         columns[columnName].some((todo) => todo.ID === task.ID))
         if(!sourceColumn) return;
@@ -92,7 +90,7 @@ export default function TodoView({columnState, task, modalState}){
             <div className="buttonrow">
             <button className='osrsButtonSml' onClick={editTask}>Confirm Edit</button>
             <button className='osrsButtonSml' onClick={() => {setEdit(false)}}>Cancel Edit</button>
-            <button className='osrsButtonSml' onClick={() => deleteTask(task, columnState)}>Delete Task</button>
+            <button className='osrsButtonSml' onClick={() => deleteTask(task, columns, setColumns)}>Delete Task</button>
             </div>
         </>
     )

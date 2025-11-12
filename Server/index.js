@@ -10,20 +10,37 @@ const {Pool} = pkg
 const app = express();
 const port = 8080;
 
+
+// const corsOptions = {
+//     origin: 'http://localhost:5173', // Your React app's address
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type'],
+// };
+
 const corsOptions = {
-    origin: 'http://localhost:5173', // Your React app's address
+    origin: 'https://portfolio-8625.onrender.com', // Your React app's address
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
-  };
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
 
 //postgres connection
-const pool = new Pool({
+const bookings = new Pool({
     host: 'localhost',
     port: 5432, //default port apparently, I wonder if I can change it?
     database: 'Bookings',
+    user: 'Fulcrumbs',
+    password: 'FerynysSeven7!',
+    idleTimeoutMillis: 1000,
+    connectionTimeoutMillis: 1000
+});
+
+const media = new Pool({
+    host: 'localhost',
+    port: 5432, //default port apparently, I wonder if I can change it?
+    database: 'ImagesAndVideos',
     user: 'Fulcrumbs',
     password: 'FerynysSeven7!',
     idleTimeoutMillis: 1000,
@@ -39,7 +56,7 @@ const pool = new Pool({
 
 app.get('/api/appointment', async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
-        const result = await pool.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
+        const result = await bookings.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
         res.json(result.rows.map(row => ({
             id: row.id,
             fname: row.first_name,
@@ -58,7 +75,7 @@ app.delete('/api/appointment', async(req,res) => {
     try{
         console.log("Deleting data:", req.query);
         const {id} = req.query;
-        const remove = await pool.query(
+        const remove = await bookings.query(
             "DELETE FROM appointments WHERE id = $1", [id]
         );
         res.status(201).send({Message:"Deleted booking for:", remove});
@@ -72,7 +89,7 @@ app.put('/api/appointment', async(req,res) =>{
     try{
         console.log("Updating data:", req.body);
         const {id, first_name, last_name, time, date} = req.body;
-        const update = await pool.query(
+        const update = await bookings.query(
             "UPDATE appointments SET first_name=$2, last_name=$3, time=$4, date=$5 WHERE id = $1", [id, first_name, last_name, time, date]
         );
         res.status(200).send({Message:"Updated booking for:", update});
@@ -86,7 +103,7 @@ app.post('/api/appointment', async(req, res)=>{
     try{
         console.log("Data recieved:", req.body);
         const {first_name, last_name, time, date} = req.body;
-        const result = await pool.query(
+        const result = await bookings.query(
            "INSERT INTO appointments (first_name, last_name, time, date) VALUES($1,$2,$3,$4)" , [first_name, last_name, time, date]
         );
         res.status(201).send({Message:"Submitted a booking for:", result});

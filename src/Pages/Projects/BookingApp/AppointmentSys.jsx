@@ -4,6 +4,7 @@ import FormSection from "./Components/FormSection";
 import BookingDisplay from "./Components/BookingDisplay";
 import BookingSelector from "./Components/BookingSelector";
 import { BookingContext } from "./Services/BookingContext";
+import LoginPage from "./Components/LoginPage";
 import './AppointmentSys.css'
 
 
@@ -13,6 +14,7 @@ function BookingApp(){
      *      !ID is actually setup to auto increment in postgres via the identity constraint
      */
 
+    const [loginStatus, setLoginStatus] = useState(false)
     const [booking, setBooking] = useState([]);
 
     const [selected, setSelected] = useState({
@@ -35,14 +37,24 @@ function BookingApp(){
         fetchBooking({setBooking})
     },[])
     
-    return(
-        <div className="appointments"> 
-        <BookingContext.Provider value={contextValues}>
-            <FormSection/>
-            <BookingSelector/>
-            <BookingDisplay/>
-        </BookingContext.Provider>
-        </div>);
+    return( 
+        <>
+        {loginStatus !== true ? 
+            <LoginPage setLoginStatus={setLoginStatus}/>
+        :
+        <div className="appointments">
+               
+            <BookingContext.Provider value={contextValues}>
+                <FormSection/>
+                <BookingSelector/>
+                <BookingDisplay/>
+                
+            </BookingContext.Provider>
+        
+        </div>}
+        
+        </>
+    );
 };
 
 export default BookingApp;

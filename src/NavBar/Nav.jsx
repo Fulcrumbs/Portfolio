@@ -4,19 +4,19 @@ import { lazy, Suspense } from "react";
 
 import "./Nav.css"
 
-
+const CalcPages = lazy(() => import("../Pages/Projects/Calculators/CalcPage.jsx"))
 const Board = lazy(() => import("../Pages/LearningCourses/TicTacToe/TicTacToe.jsx"));
-const ArtifactApp = lazy(() => import("../Pages/Projects/Artifact/ArtifactApp.jsx"));
+const GenshinArtifact = lazy(() => import("../Pages/Projects/Calculators/Genshin/GenshinArtifact.jsx"));
 const ReplayImages = lazy(() => import("../Pages/Projects/YGOReplays&Images/ReplayImages.jsx"));
 // import Page from "../../Pages/LearningCourses/ReactCourse/Page";
 const ReactCourse = lazy(() => import("../Pages/LearningCourses/ReactCourse/ReactCourse.jsx"));
 //import Experiment from "../../Pages/Projects/Artifact/Experiment";
 const BookingApp = lazy(() => import("../Pages/Projects/BookingApp/AppointmentSys.jsx"));
 const Home = lazy(() => import("../Pages/Home/Home.jsx"));
-
+const CssPracticePage = lazy(() => import("../Pages/LearningCourses/CSS_Practice/Page.jsx"));
 const RWD = lazy(() => import("../Pages/LearningCourses/ResponsiveWebDesign/RWD.jsx"));
 const TodoApp = lazy(() => import("../Pages/Projects/To-Do/TodoApp.jsx"));
-const CalculatorPage = lazy(() => import("../Pages/Projects/Calculators/Calcs.jsx"))
+const BinomialProb = lazy(() => import("../Pages/Projects/Calculators/Probability/BinominalProb.jsx"))
 
 /*Pages
 Home- (Nav.js) Rename App?
@@ -44,18 +44,20 @@ const menulinks = [
       Submenu: [
           {Path:"TicTacToe/TicTacToe.jsx", Element: <Board/>, Label: "React Tic-Tac-Toe Tutorial"},
           {Path:"ReactCourse/ReactCourse.jsx", Element: <ReactCourse />, Label:"Beginner's React Course 2022"},
-          {Path:"ResponsiveWebDesign/RWD.jsx", Element: <RWD/>, Label:"Responsive Web Design"}
+          {Path:"ResponsiveWebDesign/RWD.jsx", Element: <RWD/>, Label:"Responsive Web Design"},
+          {Path:"CSS_Practice/Page.jsx", Element:<CssPracticePage/>, Label:"CSS Visualizer"}
         ]
     },
     { Path: "/Projects/*",
       Element: <Home/>, //ProjectRoutes if i need to revert
       Label: "Projects",
       Submenu: [
-          {Path:"Artifact/ArtifactApp.jsx", Element: <ArtifactApp/>, Label:"Artifact Calculator"},
-          {Path:"YGOReplays&Images/ReplayImages.jsx", Element:<ReplayImages/>, Label:"YGOReplays"},
-          {Path:"BookingApp/AppointmentSys.jsx", Element:<BookingApp/>, Label:"Booking App"},
-          {Path:"TodoApp/TodoApp.jsx", Element:<TodoApp/>, Label:"To-Do App"},
-          {Path:"Calculators/Calcs.jsx", Element:<CalculatorPage/>, Label:"Calculators"}
+          // {Path:"Calculators/GenshinArtifact.jsx", Element: <GenshinArtifact/>, Label:"Artifact Calculator"},
+          {Path:"YGOReplays&Images/ReplayImages.jsx", Element:<ReplayImages/>, Label:"Image Gallery"},
+          {Path:"BookingApp/AppointmentSys.jsx", Element:<BookingApp/>, Label:"Bookings"},
+          {Path:"TodoApp/TodoApp.jsx", Element:<TodoApp/>, Label:"To-Do"},
+          // {Path:"Calculators/BinominalProb.jsx", Element:<BinomialProb/>, Label:"Probability Calc"},
+          {Path:"Calculators/CalcPage.jsx", Element:<CalcPages/>, Label:"Calculators" }
         ]
     }
 ]
@@ -80,7 +82,7 @@ const Nav = () =>{
             );
           })}
         </nav>
-        <div className="Page-Container">
+        {/* <div className="Page-Container"> */}
         <Suspense fallback={<div>'...Loading'</div>}>
           <Routes>
             {menulinks.map((menulinks, index) => (
@@ -95,14 +97,14 @@ const Nav = () =>{
             )}
           </Routes>
         </Suspense>
-        </div>
+        {/* </div> */}
       </div>
     );
 };
 
-function NavPage(){
+function NavBar(){
     return <Nav/>
 };
 
 
-export default NavPage;
+export default NavBar;
