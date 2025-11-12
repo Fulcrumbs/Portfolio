@@ -24,6 +24,7 @@ yarn-error.log*
 
 *.mp4
 *.png
+*.env
 ActualREADME.txt
 
 !Assets/

@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const API_URL = import.meta.env.VITE_API_URL
+
 export async function deleteBooking({selected, setBooking}){
     try{
-        await axios.delete('http://localhost:8080/api/appointment', {
+        await axios.delete(API_URL , {
             params: {id: selected.id}
             });
         console.log("deleted:", selected)
@@ -28,7 +30,7 @@ export async function fetchBooking({setBooking}){
 export async function registerBooking({formData, booking, setBooking}){
     e.preventDefault()
     try{
-        await axios.post('http://localhost:8080/api/appointment', {
+        await axios.post(API_URL , {
         first_name: formData.fname,
         last_name: formData.lname,
         time: formData.time,
@@ -46,7 +48,7 @@ export async function registerBooking({formData, booking, setBooking}){
 export async function updateBooking({formData, selected, setBooking}){
     try{
         console.log(selected);
-        await axios.put('http://localhost:8080/api/appointment', {
+        await axios.put(API_URL, {
             id: selected.id ,
             first_name: formData.fname || selected.fname,
             last_name: formData.lname || selected.lname,

@@ -4,6 +4,9 @@
 import express from 'express'
 import pkg from 'pg'
 import cors from 'cors'
+import dotenv from 'dotenv'
+dotenv.config()
+
 const {Pool} = pkg
 
 //Middleware?
@@ -12,13 +15,13 @@ const port = 8080;
 
 
 // const corsOptions = {
-//     origin: 'http://localhost:5173', // Your React app's address
+//     origin: '', // Your React app's address
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //     allowedHeaders: ['Content-Type'],
 // };
 
 const corsOptions = {
-    origin: 'https://portfolio-8625.onrender.com', // Your React app's address
+    origin: process.env.API_URL, // Your React app's address
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 };
@@ -28,14 +31,18 @@ app.use(express.json());
 
 //postgres connection
 const bookings = new Pool({
-    host: 'localhost',
+    host: process.env.DB_HOST,//'localhost',
     port: 5432, //default port apparently, I wonder if I can change it?
-    database: 'Bookings',
-    user: 'Fulcrumbs',
-    password: 'FerynysSeven7!',
+    database: process.env.DB_DATABASE,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
     idleTimeoutMillis: 1000,
     connectionTimeoutMillis: 1000
 });
+
+/**
+ * dpg-d481kiqli9vc7391com0-a.oregon-postgres.render.com
+ */
 
 const media = new Pool({
     host: 'localhost',
