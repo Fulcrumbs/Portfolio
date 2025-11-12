@@ -30,19 +30,18 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 //postgres connection
-const bookings = new Pool({
+const bookings = new Pool(
+process.env.NODE_ENV === "Production" ?
+    { connectionString: process.env.CONNECTION_STRING, ssl:{rejectUnauthorized: false}} : {
     host: process.env.DB_HOST,//'localhost',
-    port: 5432, //default port apparently, I wonder if I can change it?
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
+    port: 5432, //default port apparently, I wonder if I can change it?
     idleTimeoutMillis: 1000,
     connectionTimeoutMillis: 1000
-});
-
-/**
- * dpg-d481kiqli9vc7391com0-a.oregon-postgres.render.com
- */
+    }
+);
 
 const media = new Pool({
     host: process.env.DB_HOST,
