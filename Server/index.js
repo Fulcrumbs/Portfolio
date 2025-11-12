@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const {Pool} = pkg
-
+console.log(process.env.CONNECTION_STRING)
 //Middleware?
 const app = express();
 const port = 8080;
@@ -31,8 +31,8 @@ app.use(express.json());
 
 //postgres connection
 const bookings = new Pool(
-process.env.NODE_ENV === "Production" ?
-    { connectionString: process.env.CONNECTION_STRING, ssl:{rejectUnauthorized: false}} : {
+process.env.NODE_ENV === "production" ?
+    { connectionString:process.env.CONNECTION_STRING, ssl:{rejectUnauthorized: false}} : {
     host: process.env.DB_HOST,//'localhost',
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
