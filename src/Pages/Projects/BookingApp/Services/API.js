@@ -17,7 +17,7 @@ export async function deleteBooking({selected, setBooking}){
 };
 
 export async function fetchBooking({setBooking}){
-    axios.get('/api/appointment')
+    axios.get(`${API_URL}api/appointment`)
     .then((response) =>{
         setBooking(response.data)
     })

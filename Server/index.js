@@ -9,6 +9,7 @@ dotenv.config()
 
 const {Pool} = pkg
 console.log(process.env.CONNECTION_STRING)
+const API_URL=process.env.API_URL
 //Middleware?
 const app = express();
 const port = 8080;
@@ -32,7 +33,11 @@ app.use(express.json());
 //postgres connection
 const bookings = new Pool(
 process.env.NODE_ENV === "production" ?
-    { connectionString:process.env.CONNECTION_STRING, ssl:{rejectUnauthorized: false}} : {
+    { 
+    connectionString:process.env.CONNECTION_STRING, 
+    ssl:{rejectUnauthorized: false}} 
+    : 
+    {
     host: process.env.DB_HOST,//'localhost',
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
@@ -60,7 +65,7 @@ const media = new Pool({
  */
 
 
-app.get('/api/appointment', async(req,res)=>{ //this is the part where I believe I 'create' the api
+app.get(`${API_URL}api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
         const result = await bookings.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
         res.json(result.rows.map(row => ({
@@ -77,7 +82,7 @@ app.get('/api/appointment', async(req,res)=>{ //this is the part where I believe
     }
 });
 
-app.delete('/api/appointment', async(req,res) => {
+app.delete(`${API_URL}api/appointment`, async(req,res) => {
     try{
         console.log("Deleting data:", req.query);
         const {id} = req.query;
@@ -91,7 +96,7 @@ app.delete('/api/appointment', async(req,res) => {
     }
 });
 
-app.put('/api/appointment', async(req,res) =>{
+app.put(`${API_URL}api/appointment`, async(req,res) =>{
     try{
         console.log("Updating data:", req.body);
         const {id, first_name, last_name, time, date} = req.body;
@@ -105,7 +110,7 @@ app.put('/api/appointment', async(req,res) =>{
     }
 });
 
-app.post('/api/appointment', async(req, res)=>{
+app.post(`${API_URL}api/appointment`, async(req, res)=>{
     try{
         console.log("Data recieved:", req.body);
         const {first_name, last_name, time, date} = req.body;
