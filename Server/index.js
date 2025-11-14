@@ -1,6 +1,3 @@
-//const express = require('express');
-//const cors = require('cors');
-//const {Pool} = require('pg');
 import express from 'express'
 import pkg from 'pg'
 import cors from 'cors'
@@ -9,10 +6,9 @@ dotenv.config()
 
 const {Pool} = pkg
 console.log(process.env.CONNECTION_STRING)
-const API_URL=process.env.API_URL
 //Middleware?
 const app = express();
-const port = process.env.DB_PORT || 8080;
+const port = 8080;
 
 
 // const corsOptions = {
@@ -22,7 +18,7 @@ const port = process.env.DB_PORT || 8080;
 // };
 
 const corsOptions = {
-    origin: process.env.API_URL, // Your React app's address
+    origin: process.env.FRONTEND_URL, // Your React app's address
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 };
@@ -65,10 +61,13 @@ process.env.NODE_ENV === "production" ?
  */
 
 
-app.get(`${API_URL}/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
+app.get('/api/appointment', async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
         const result = await bookings.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
-        res.json(result.rows.map(row => ({
+        const rows = Array.isArray(result.rows) ? result.rows : [];
+        console.log(rows)
+        console.log(result)
+        res.json(rows.map(row => ({
             id: row.id,
             fname: row.first_name,
             lname: row.last_name,
@@ -82,7 +81,7 @@ app.get(`${API_URL}/api/appointment`, async(req,res)=>{ //this is the part where
     }
 });
 
-app.delete(`${API_URL}/api/appointment`, async(req,res) => {
+app.delete('/api/appointment', async(req,res) => {
     try{
         console.log("Deleting data:", req.query);
         const {id} = req.query;
@@ -96,7 +95,7 @@ app.delete(`${API_URL}/api/appointment`, async(req,res) => {
     }
 });
 
-app.put(`${API_URL}/api/appointment`, async(req,res) =>{
+app.put('/api/appointment', async(req,res) =>{
     try{
         console.log("Updating data:", req.body);
         const {id, first_name, last_name, time, date} = req.body;
@@ -110,7 +109,7 @@ app.put(`${API_URL}/api/appointment`, async(req,res) =>{
     }
 });
 
-app.post(`${API_URL}/api/appointment`, async(req, res)=>{
+app.post('/api/appointment', async(req, res)=>{
     try{
         console.log("Data recieved:", req.body);
         const {first_name, last_name, time, date} = req.body;

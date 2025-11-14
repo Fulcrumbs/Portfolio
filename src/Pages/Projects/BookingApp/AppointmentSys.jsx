@@ -42,17 +42,13 @@ function BookingApp(){
         {loginStatus !== true ? 
             <LoginPage setLoginStatus={setLoginStatus}/>
         :
-        <div className="appointments">
-               
+        <div className="appointments"> 
             <BookingContext.Provider value={contextValues}>
                 <FormSection/>
                 <BookingSelector/>
                 <BookingDisplay/>
-                
             </BookingContext.Provider>
-        
         </div>}
-        
         </>
     );
 };

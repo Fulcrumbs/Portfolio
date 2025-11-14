@@ -29,7 +29,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "concurrently \"vite\" \"node server/index.js\"",
+    "start": "concurrently \"vite\" \"node Server/index.js\"",
     "build": "vite build",
     "serve": "vite preview",
     "test": "vite test",
