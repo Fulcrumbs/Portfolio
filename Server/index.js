@@ -8,7 +8,7 @@ const {Pool} = pkg
 console.log(process.env.CONNECTION_STRING)
 //Middleware?
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 
 
 // const corsOptions = {
@@ -18,7 +18,7 @@ const port = 8080;
 // };
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URL, // Your React app's address
+    origin: process.env.VITE_FRONTEND_URL, // Your React app's address
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 };
@@ -128,7 +128,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port,() => {
-    console.log("Database running on port:8080");
+    console.log(`Server running on port:${port}`);
 });
 
 
