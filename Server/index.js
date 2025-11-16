@@ -5,10 +5,11 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const {Pool} = pkg
-console.log(process.env.CONNECTION_STRING)
+// console.log(process.env.CONNECTION_STRING)
 //Middleware?
 const app = express();
 const port = process.env.PORT;
+const API_URL = process.env.BACKEND_URL
 
 
 // const corsOptions = {
@@ -16,9 +17,13 @@ const port = process.env.PORT;
 //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //     allowedHeaders: ['Content-Type'],
 // };
+const allowedOrigins = [
+    process.env.FRONTEND_URL,
+    'http://localhost:5173'
+]
 
 const corsOptions = {
-    origin: process.env.VITE_FRONTEND_URL, // Your React app's address
+    origin: allowedOrigins, // Your React app's address
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
 };
@@ -28,12 +33,7 @@ app.use(express.json());
 
 //postgres connection
 const bookings = new Pool(
-process.env.NODE_ENV === "production" ?
-    { 
-    connectionString:process.env.CONNECTION_STRING, 
-    ssl:{rejectUnauthorized: false}} 
-    : 
-    {
+process.env.DEV ? {
     host: process.env.DB_HOST,//'localhost',
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
@@ -41,6 +41,11 @@ process.env.NODE_ENV === "production" ?
     port: 5432, //default port apparently, I wonder if I can change it?
     idleTimeoutMillis: 1000,
     connectionTimeoutMillis: 1000
+    }
+    :
+    { 
+    connectionString:process.env.CONNECTION_STRING, 
+    ssl:{rejectUnauthorized: false}
     }
 );
 
@@ -61,12 +66,12 @@ process.env.NODE_ENV === "production" ?
  */
 
 
-app.get('/api/appointment', async(req,res)=>{ //this is the part where I believe I 'create' the api
+app.get(`${API_URL}/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
         const result = await bookings.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
         const rows = Array.isArray(result.rows) ? result.rows : [];
-        console.log(rows)
-        console.log(result)
+        // console.log(rows)
+        // console.log(result)
         res.json(rows.map(row => ({
             id: row.id,
             fname: row.first_name,
@@ -76,7 +81,7 @@ app.get('/api/appointment', async(req,res)=>{ //this is the part where I believe
         })
         ));
     } catch(error){
-        console.error(error);
+        console.error('Error:', error);
         res.status(500).send('Server Error')
     }
 });
@@ -123,9 +128,9 @@ app.post('/api/appointment', async(req, res)=>{
     }
 });
 
-app.get('/', (req, res) => {
-    res.send('Server is running!');
-});
+// app.get('/', (req, res) => {
+//     res.send('Server is running!');
+// });
 
 app.listen(port,() => {
     console.log(`Server running on port:${port}`);

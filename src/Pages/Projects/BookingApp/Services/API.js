@@ -1,8 +1,13 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
+
+
+const api = axios.create({
+    baseURL: import.meta.env.DEV ? '/' : import.meta.env.BACKEND_URL
+})
 
 export async function deleteBooking({selected, setBooking}){
     try{
-        await axios.delete(`/api/appointment`, {
+        await api.delete(`/api/appointment`, {
             params: {id: selected.id}
             });
         console.log("deleted:", selected)
@@ -15,10 +20,10 @@ export async function deleteBooking({selected, setBooking}){
 };
 
 export async function fetchBooking({setBooking}){
-    axios.get(`/api/appointment`)
+    api.get(`/api/appointment`)
     .then((response) =>{
-        // console.log('fetch response', response.data)
-        setBooking(response.data)
+        console.log('fetch response', response.data)
+        setBooking(Array.isArray(response.data)? response.data : [])
     })
     .catch((error)=>{
         console.error('Error retreiving booking data: ', error)
@@ -29,7 +34,7 @@ export async function fetchBooking({setBooking}){
 export async function registerBooking({formData, booking, setBooking}){
     e.preventDefault()
     try{
-        await axios.post(`/api/appointment`, {
+        await api.post(`/api/appointment`, {
         first_name: formData.fname,
         last_name: formData.lname,
         time: formData.time,
@@ -47,7 +52,7 @@ export async function registerBooking({formData, booking, setBooking}){
 export async function updateBooking({formData, selected, setBooking}){
     try{
         console.log(selected);
-        await axios.put(`/api/appointment`, {
+        await api.put(`/api/appointment`, {
             id: selected.id ,
             first_name: formData.fname || selected.fname,
             last_name: formData.lname || selected.lname,
