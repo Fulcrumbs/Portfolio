@@ -14,7 +14,7 @@ export default function LoginPage({setLoginStatus}){
         }
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = () =>{
         login(credentials)
     }
 

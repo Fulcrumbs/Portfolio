@@ -30,7 +30,7 @@ export async function deleteBooking({selected, setBooking}){
     fetchBooking({setBooking})
 };
 
-export async function registerBooking({formData, booking, setBooking}){
+export async function registerBooking({e, formData, booking, setBooking}){
     e.preventDefault()
     try{
         await api.post(`/appointment`, {
