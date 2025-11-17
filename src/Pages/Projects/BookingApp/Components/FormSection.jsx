@@ -9,7 +9,7 @@ export default function FormSection(){
     };
     return(
         <>
-        <form className="form" onSubmit={(e)=>registerBooking(e, formData, booking, setBooking)}>
+        <form className="form" onSubmit={(e)=>registerBooking({e, formData, booking, setBooking})}>
             <fieldset>
                 <label>Enter First Name:</label><br/>
                 <input type="text" name="fname" placeholder="John" value={formData.fname} onChange={handleFormData} required></input><br/>
