@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.BACKEND_URL || '/'
-})
+    baseURL: import.meta.env.DEV ? '/api' : import.meta.env.BACKEND_URL
+});
 
 export async function fetchBooking({setBooking}){
-    api.get(`/api/appointment`)
+    api.get(`/appointment`)
     .then((response) =>{
         console.log('fetch response', response.data)
         setBooking(Array.isArray(response.data)? response.data : [])
@@ -18,7 +18,7 @@ export async function fetchBooking({setBooking}){
 
 export async function deleteBooking({selected, setBooking}){
     try{
-        await api.delete(`/api/appointment`, {
+        await api.delete(`/appointment`, {
             params: {id: selected.id}
             });
         console.log("deleted:", selected)
@@ -33,7 +33,7 @@ export async function deleteBooking({selected, setBooking}){
 export async function registerBooking({formData, booking, setBooking}){
     e.preventDefault()
     try{
-        await api.post(`/api/appointment`, {
+        await api.post(`/appointment`, {
         first_name: formData.fname,
         last_name: formData.lname,
         time: formData.time,
@@ -51,7 +51,7 @@ export async function registerBooking({formData, booking, setBooking}){
 export async function updateBooking({formData, selected, setBooking}){
     try{
         console.log(selected);
-        await api.put(`/api/appointment`, {
+        await api.put(`/appointment`, {
             id: selected.id ,
             first_name: formData.fname || selected.fname,
             last_name: formData.lname || selected.lname,
