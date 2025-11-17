@@ -9,7 +9,7 @@ const {Pool} = pkg
 //Middleware?
 const app = express();
 const port = process.env.PORT;
-const API_URL = process.env.BACKEND_URL
+// const API_URL = process.env.BACKEND_URL
 
 
 // const corsOptions = {
@@ -33,7 +33,7 @@ app.use(express.json());
 
 //postgres connection
 const bookings = new Pool(
-process.env.DEV ? {
+process.env.NODE_ENV === 'development' ? {
     host: process.env.DB_HOST,//'localhost',
     database: process.env.DB_DATABASE,
     user: process.env.DB_USER,
@@ -43,7 +43,7 @@ process.env.DEV ? {
     connectionTimeoutMillis: 1000
     }
     :
-    { 
+    {
     connectionString:process.env.CONNECTION_STRING, 
     ssl:{rejectUnauthorized: false}
     }
@@ -66,7 +66,7 @@ process.env.DEV ? {
  */
 
 
-app.get(`${API_URL}/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
+app.get(`/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
         const result = await bookings.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
         const rows = Array.isArray(result.rows) ? result.rows : [];

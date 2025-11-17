@@ -1,9 +1,20 @@
-import axios, { Axios } from "axios";
-
+import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.DEV ? '/' : import.meta.env.BACKEND_URL
+    baseURL: import.meta.env.BACKEND_URL || '/'
 })
+
+export async function fetchBooking({setBooking}){
+    api.get(`/api/appointment`)
+    .then((response) =>{
+        console.log('fetch response', response.data)
+        setBooking(Array.isArray(response.data)? response.data : [])
+    })
+    .catch((error)=>{
+        console.error('Error retreiving booking data: ', error)
+        setBooking([])
+    });
+};
 
 export async function deleteBooking({selected, setBooking}){
     try{
@@ -17,18 +28,6 @@ export async function deleteBooking({selected, setBooking}){
         alert("Failed to delete booking")
     }
     fetchBooking({setBooking})
-};
-
-export async function fetchBooking({setBooking}){
-    api.get(`/api/appointment`)
-    .then((response) =>{
-        console.log('fetch response', response.data)
-        setBooking(Array.isArray(response.data)? response.data : [])
-    })
-    .catch((error)=>{
-        console.error('Error retreiving booking data: ', error)
-        setBooking([])
-    });
 };
 
 export async function registerBooking({formData, booking, setBooking}){
