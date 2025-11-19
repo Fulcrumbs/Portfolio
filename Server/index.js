@@ -3,7 +3,7 @@ import pkg from 'pg'
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
-
+//BACKEND BACKEND BACKEND
 const {Pool} = pkg
 // console.log(process.env.CONNECTION_STRING)
 //Middleware?
