@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: import.meta.env.DEV ? '/api' : import.meta.env.BACKEND_URL
+    baseURL: import.meta.env.DEV ? '/api' : import.meta.env.VITE_BACKEND_URL
 });
 
 export async function fetchBooking({setBooking}){
@@ -30,7 +30,7 @@ export async function deleteBooking({selected, setBooking}){
     fetchBooking({setBooking})
 };
 
-export async function registerBooking({e, formData, booking, setBooking}){
+export async function registerBooking({e, formData, setBooking}){ //booking
     e.preventDefault()
     try{
         await api.post(`/appointment`, {
@@ -39,7 +39,7 @@ export async function registerBooking({e, formData, booking, setBooking}){
         time: formData.time,
         date: formData.date
         });
-        console.log("sent:", booking.data)
+        console.log("sent:", )
         alert("Booking submitted")
     } catch (error){
         console.log(error);

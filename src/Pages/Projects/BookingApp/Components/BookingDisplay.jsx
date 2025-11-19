@@ -10,9 +10,9 @@ export default function BookingDisplay(){
             <h1>Booking Details:</h1>
             {booking !== undefined && booking.length > 0 ? ( //booking is defined and has elements
                 <ul>
-                    {booking.map((booking) => (
-                        <li key={booking.id}> 
-                            {booking.fname} {booking.lname} {booking.time} {booking.date}  
+                    {booking.map((b) => (
+                        <li key={b.id}> 
+                            {b.fname} {b.lname} {b.time} {b.date}  
                         </li>
                     ))}
                 </ul>

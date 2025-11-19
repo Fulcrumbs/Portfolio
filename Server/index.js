@@ -8,7 +8,7 @@ const {Pool} = pkg
 // console.log(process.env.CONNECTION_STRING)
 //Middleware?
 const app = express();
-const port = process.env.PORT;
+const port = process.env.VITE_PORT;
 // const API_URL = process.env.BACKEND_URL
 
 
@@ -18,7 +18,7 @@ const port = process.env.PORT;
 //     allowedHeaders: ['Content-Type'],
 // };
 const allowedOrigins = [
-    process.env.FRONTEND_URL,
+    process.env.VITE_FRONTEND_URL,
     'http://localhost:5173'
 ]
 
@@ -44,8 +44,8 @@ process.env.NODE_ENV === 'development' ? {
     }
     :
     {
-    connectionString:process.env.CONNECTION_STRING, 
-    ssl:{rejectUnauthorized: false}
+    connectionString: process.env.VITE_CONNECTION_STRING, 
+    ssl: {rejectUnauthorized: false}
     }
 );
 
