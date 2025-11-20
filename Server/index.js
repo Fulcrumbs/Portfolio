@@ -69,16 +69,14 @@ process.env.NODE_ENV === 'development' ? {
 
 app.get(`/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
-        const result = await bookings.query("SELECT *, TO_CHAR(time, 'HH12:MI:SS') AS time, TO_CHAR(date, 'DD-MM-YYYY') AS date FROM appointments");
+        const result = await bookings.query("SELECT *, TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'DD-MM-YYYY') AS appointment_date FROM appointments");
         const rows = Array.isArray(result.rows) ? result.rows : [];
-        // console.log(rows)
-        // console.log(result)
         res.json(rows.map(row => ({
             id: row.id,
             fname: row.first_name,
             lname: row.last_name,
-            time: row.time,
-            date: row.date
+            time: row.appointment_time,
+            date: row.appointment_date
         })
         ));
     } catch(error){
@@ -104,9 +102,10 @@ app.delete('/api/appointment', async(req,res) => {
 app.put('/api/appointment', async(req,res) =>{
     try{
         console.log("Updating data:", req.body);
-        const {id, first_name, last_name, time, date} = req.body;
+        const {id, first_name, last_name, appointment_time, appointment_date} = req.body;
         const update = await bookings.query(
-            "UPDATE appointments SET first_name=$2, last_name=$3, time=$4, date=$5 WHERE id = $1", [id, first_name, last_name, time, date]
+            "UPDATE appointments SET first_name=$2, last_name=$3, appointment_time=$4, appointment_date=$5 WHERE id = $1", 
+            [id, first_name, last_name, appointment_time, appointment_date]
         );
         res.status(200).send({Message:"Updated booking for:", update});
     } catch(error){
@@ -118,13 +117,14 @@ app.put('/api/appointment', async(req,res) =>{
 app.post('/api/appointment', async(req, res)=>{
     try{
         console.log("Data recieved:", req.body);
-        const {first_name, last_name, time, date} = req.body;
+        const {first_name, last_name, appointment_time, appointment_date} = req.body;
         const result = await bookings.query(
-           "INSERT INTO appointments (first_name, last_name, time, date) VALUES($1,$2,$3,$4)" , [first_name, last_name, time, date]
+           "INSERT INTO appointments (first_name, last_name, appointment_time, appointment_date) VALUES($1,$2,$3,$4)", 
+           [first_name, last_name, appointment_time, appointment_date]
         );
         res.status(201).send({Message:"Submitted a booking for:", result});
     } catch(error){
-        console.error(error);
+        console.error('Post error', error);
         res.status(500).send('Server Error');
     }
 });

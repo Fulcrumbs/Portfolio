@@ -1,7 +1,7 @@
 import axios from "axios";
 //FRONTEND FRONTEND FRONTEND
 const api = axios.create({
-    baseURL: import.meta.env.DEV ? '/api' : import.meta.env.VITE_BACKEND_URL
+    baseURL: import.meta.env.DEV ? '/' : import.meta.env.VITE_BACKEND_URL
 });
 
 export async function fetchBooking({setBooking}){
@@ -36,8 +36,8 @@ export async function registerBooking({e, formData, setBooking}){ //booking
         await api.post(`/api/appointment`, {
         first_name: formData.fname,
         last_name: formData.lname,
-        time: formData.time,
-        date: formData.date
+        appointment_time: formData.time,
+        appointment_date: formData.date
         });
         console.log("sent:", )
         alert("Booking submitted")
@@ -55,8 +55,8 @@ export async function updateBooking({formData, selected, setBooking}){
             id: selected.id ,
             first_name: formData.fname || selected.fname,
             last_name: formData.lname || selected.lname,
-            time: formData.time || selected.time,
-            date: formData.date || selected.date
+            appointment_time: formData.time || selected.time,
+            appointment_date: formData.date || selected.date
             });
         console.log("Updated:", selected.data)
         alert("Booking updated")
