@@ -70,7 +70,7 @@ process.env.NODE_ENV === 'development' ? {
 app.get(`/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
         const result = await bookings.query(
-            "SELECT * from appointments"); // appointment_date , TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS appointment_date FROM appointments"
+            "SELECT *, TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'DD-MM-YYYY') AS appointment_date  FROM appointments"); // appointment_date , TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS appointment_date FROM appointments"
         const rows = Array.isArray(result.rows) ? result.rows : [];
         res.json(rows.map(row => ({
             id: row.id,
@@ -107,9 +107,9 @@ app.put(`/api/appointment`, async(req,res) =>{
         console.log("Updating data:", req.body);
         const {id, first_name, last_name, appointment_time, appointment_date} = req.body;
         // Fix appointment_time to always include seconds
-        const fixedTime = appointment_time.length === 5
-        ? appointment_time + ":00"
-        : appointment_time;
+        // const fixedTime = appointment_time.length === 5
+        // ? appointment_time + ":00"
+        // : appointment_time;
 
         // Fix appointment_date to include time if missing
         // const fixedDate = appointment_date.length === 10
@@ -117,7 +117,7 @@ app.put(`/api/appointment`, async(req,res) =>{
         // : appointment_date;
         const update = await bookings.query(
             "UPDATE appointments SET first_name=$2, last_name=$3, appointment_time=$4, appointment_date=$5 WHERE id = $1", 
-            [id, first_name, last_name, fixedTime, appointment_date]
+            [id, first_name, last_name, appointment_time, appointment_date]
         );
         res.status(200).send({Message:"Updated booking for:", update});
     } catch(error){
@@ -132,9 +132,9 @@ app.post(`/api/appointment`, async(req, res)=>{
         console.log("Data recieved:", req.body);
         const {first_name, last_name, appointment_time, appointment_date} = req.body;
         // Fix appointment_time to always include seconds
-        const fixedTime = appointment_time.length === 5
-        ? appointment_time + ":00"
-        : appointment_time;
+        // const fixedTime = appointment_time.length === 5
+        // ? appointment_time + ":00"
+        // : appointment_time;
 
         // Fix appointment_date to include time if missing
         // const fixedDate = appointment_date.length === 10
@@ -142,7 +142,7 @@ app.post(`/api/appointment`, async(req, res)=>{
         // : appointment_date;
         const result = await bookings.query(
            "INSERT INTO appointments (first_name, last_name, appointment_time, appointment_date) VALUES($1,$2,$3,$4)", 
-           [first_name, last_name, fixedTime, appointment_date]
+           [first_name, last_name, appointment_time, appointment_date]
         );
         res.status(201).send({Message:"Submitted a booking for:", result});
     } catch(error){
