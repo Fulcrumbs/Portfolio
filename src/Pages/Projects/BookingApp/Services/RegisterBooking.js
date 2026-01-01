@@ -1,6 +1,7 @@
 import axios from 'axios';
+import fetchBooking from './FetchBooking';
 
-export async function registerBooking({formData}){
+export async function registerBooking({formData, setBooking}){
     e.preventDefault()
     const {formData, _ } = formData
     try{
@@ -12,9 +13,10 @@ export async function registerBooking({formData}){
         });
         console.log("sent:", booking.data)
         alert("Booking submitted")
+        
     } catch (error){
         console.log(error);
         alert("Failed to create booking")
     }
-    fetchBooking()
+    fetchBooking({setBooking})
 };

@@ -1,3 +1,21 @@
+:root{
+  --background-color: rgba(239, 239, 239, 0.8); /*#333*/
+  --font: rgba(20, 28, 26, 1);
+  --primary-color:rgba(40, 63, 59, 1) ; 
+  /* --primary-color:linear-gradient(45deg,  , rgb(58, 96, 90) ); */
+  --secondary-color: rgba(37, 102, 132, 1);
+  --tertiary-color: rgba(124, 128, 155, 0.5);
+  --accent-one: rgba(101, 155, 94, 0.9); /*linear-gradient(45deg, #54874e, #659B5E)*/
+  --accent-two: rgba(37, 102, 94, 0.8); 
+  --practice: rgba(221,221,221,0.8);
+}
+
+:has(#green-theme-toggle:checked){
+  background-image: url(https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg);
+  --accent-one: rgba(101, 155, 94, 0.9);
+}
+
+
 *{
   box-sizing: border-box;
 }
@@ -25,9 +43,9 @@ html, body, h1, p, pre{
 /* }*/
 
 h1{ /*Global reference, will apply across all pages*/
-    padding: 0;
-    margin: 0; /*Top, Right, Bottom, Left
-    /* border: solid red; */
-    /* background-color: rgb(65, 65, 65); */
-    /* border-radius: 15px; */
+  padding: 0;
+  margin: 0; /*Top, Right, Bottom, Left
+  /* border: solid red; */
+  /* background-color: rgb(65, 65, 65); */
+  /* border-radius: 15px; */
 }

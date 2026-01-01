@@ -43,9 +43,9 @@ const menulinks = [
       Label: "Learning Material",
       Submenu: [
           {Path:"TicTacToe/TicTacToe.jsx", Element: <Board/>, Label: "React Tic-Tac-Toe Tutorial"},
-          {Path:"ReactCourse/ReactCourse.jsx", Element: <ReactCourse />, Label:"Beginner's React Course 2022"},
+          // {Path:"ReactCourse/ReactCourse.jsx", Element: <ReactCourse />, Label:"Beginner's React Course 2022"},
           {Path:"ResponsiveWebDesign/RWD.jsx", Element: <RWD/>, Label:"Responsive Web Design"},
-          {Path:"CSS_Practice/Page.jsx", Element:<CssPracticePage/>, Label:"CSS Visualizer"}
+          // {Path:"CSS_Practice/Page.jsx", Element:<CssPracticePage/>, Label:"CSS Visualizer"}
         ]
     },
     { Path: "/Projects/*",
@@ -82,7 +82,7 @@ const Nav = () =>{
             );
           })}
         </nav>
-        {/* <div className="Page-Container"> */}
+        <div className="Page-Container">
         <Suspense fallback={<div>'...Loading'</div>}>
           <Routes>
             {menulinks.map((menulinks, index) => (
@@ -97,7 +97,7 @@ const Nav = () =>{
             )}
           </Routes>
         </Suspense>
-        {/* </div> */}
+        </div>
       </div>
     );
 };

@@ -6,6 +6,12 @@
     padding:10px;
     grid-template-areas: "form edit display";
     border-image: linear-gradient(blue, red) 30;
+    font-family: 'Archivo Narrow';
+    background-color: rgba(0, 0, 0, 0.4);
+    /* background-image: url(https://cdn.stocksnap.io/img-thumbs/960w/industrial-aluminum_DUAHADNK7E.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    
 }
 
 .appointments button, select{
@@ -15,16 +21,47 @@
 .form{
     grid-area: form;
     max-height: 50%;
+    caret-color: white;
+}
+.form input{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2)
 }
 
 .display{
     max-height: 50%;
     grid-area: display;
 }
+
+.display h1{
+    font-family: 'julius sans one';
+}
 .selection{
     display: grid;
     grid-area: edit;
     max-height: 50%;
+    /* backdrop-filter: invert(60%); */
+    
+}
+
+.selection button{
+    color: white;
+    background-color: rgba(234, 225, 223, 1)
+}
+
+.selection option:checked{
+    box-shadow: inset 0px 0px 6px 2px rgba(101, 155, 94, 1); 
+    color: white;
+    background-color: transparent;
+}
+ .selection option::selection{
+    background-color: transparent;
+    color: red;
+    /* [_moz-menuactive="true"]: transparent;  */
+ }
+
+ .selection::-moz-selection {
+  background-color: transparent;
 }
 
 .loginPage{
@@ -42,6 +79,11 @@
 
 .logoutButton{
     max-height: 25px;
+}
+
+.selection select{
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white
 }
 /* .loginBar{
     align-items: ;

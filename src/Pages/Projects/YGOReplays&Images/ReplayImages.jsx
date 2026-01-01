@@ -1,7 +1,7 @@
 import './ReplayImages.css';
 import Modal from 'react-modal';
 import { useState } from 'react';
-
+import IncompleteBanner from '../../../Styles/IncompleteBanner';
 /*
 Just want this to be able to display my replays and screenshots in an appealing way for practice. 
 Simple layout practice for different media.
@@ -84,7 +84,9 @@ function ReplayImages(){
     const videoUrl = videoUrls[currentVidIndex];
 
     return(
+        
         <body className="container">
+            <IncompleteBanner/>
             <div className='videoGallery'>
                 <button className='btn leftarrow' onClick={previousVid} disabled={currentVidIndex === 0}/>
                 <video src={videoUrl} controls>

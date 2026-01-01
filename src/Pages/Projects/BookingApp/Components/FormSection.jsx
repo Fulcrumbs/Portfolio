@@ -3,7 +3,7 @@ import { registerBooking } from "../Services/API"
 import { BookingContext } from "../Services/BookingContext";
 
 export default function FormSection(){
-    const {formData , setFormData, booking, setBooking} = useContext(BookingContext)
+    const {formData , setFormData, setBooking} = useContext(BookingContext)
     const handleFormData = (e) => { 
         setFormData({...formData, [e.target.name]: e.target.value })
     };

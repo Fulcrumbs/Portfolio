@@ -2,21 +2,36 @@ import GenshinArtifact from "./Genshin/GenshinArtifact";
 import BinomialProb from "./Probability/BinominalProb";
 import styles from "./CalcPage.module.css"
 import { useState } from "react";
+import IncompleteBanner from "../../../Styles/IncompleteBanner";
 
 export default function CompiledCalcFunctions(){
-    const [clicked, setClicked] = useState(false)
+    const [components, setComponents] = useState({
+        GA: false, 
+        BP: false
+    })
+
     function clickHandler(e){
-        setClicked(!clicked)
+        const clicked = {};
+        const id = e.currentTarget.id
+        if (!id) return;
+        setComponents(prev => {
+            for(const key of Object.keys(prev)){
+                clicked[key] = key === id;
+            }
+        return clicked;
+        })
     }
+
     return(
         <div className={styles.page}>
-        
-            <div className={clicked ? styles.inactive : styles.active} onClick={clickHandler}>
-                <GenshinArtifact/>
+            <IncompleteBanner/>
+            <div id="GA" className={components.GA ? styles.active : styles.inactive } onClick={clickHandler}>
+                {/* <GenshinArtifact/> */}
+               {components.GA ?  <GenshinArtifact/> : <label style={{gridArea: 'inactiveGA'}}>Genshin Application</label>}
             </div>
             
-            <div className={clicked ? styles.inactive : styles.active} onClick={clickHandler}>
-                <BinomialProb/>
+            <div id="BP" className={components.BP ? styles.active : styles.inactive} onClick={clickHandler}>
+                {components.BP ? <BinomialProb/> : <label style={{gridArea: 'inactiveBP'}}>Binominal Probability Calculator</label>}
             </div>
         
         </div>

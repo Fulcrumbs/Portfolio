@@ -27,6 +27,7 @@ while assigning states.
 */
 
 function GenshinArtifact(){
+  
   const [artifact, setArtifact] = useState({
     ID: '',
     Piece: {Type:'', Stat:'', Value:''},
@@ -35,6 +36,7 @@ function GenshinArtifact(){
     Sub3: {Stat:'', Value:''},
     Sub4: {Stat:'', Value:''}
   });
+
   const emptyArtifact = {
       ID: '',
       Piece: {Type:'', Stat:'', Value:''},
@@ -43,7 +45,9 @@ function GenshinArtifact(){
       Sub3: {Stat:'', Value:''},
       Sub4: {Stat:'', Value:''}
   };
+
   const [data, setData] = useState([]); //On load this becomes an array of artifact objects
+
   const [selectedData, setSelectedData] = useState({
     ID: null,
     Piece: {Type:null, Stat:null, Value:null},
@@ -82,6 +86,7 @@ function GenshinArtifact(){
         return;
     }
   };
+
   useEffect(() => {
     if(artifact.Piece.Type){
       MainStat(artifact.Piece.Type)
@@ -131,6 +136,7 @@ function GenshinArtifact(){
         return;
     }
   };
+
   useEffect(() => {
     if(artifact.Piece.Stat){ 
       MainValue(artifact.Piece.Stat)
@@ -141,6 +147,7 @@ function GenshinArtifact(){
     load('artifact', setData)
     setLoaded(true)
   }, [])
+
   const [loaded, setLoaded] = useState(false)
   // const handleLoad = () => {
   //   load('artifact', setData)

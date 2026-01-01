@@ -5,18 +5,11 @@ import dotenv from 'dotenv'
 dotenv.config()
 //BACKEND BACKEND BACKEND
 const {Pool} = pkg
-// console.log(process.env.CONNECTION_STRING)
+
 //Middleware?
 const app = express();
 const port = process.env.PORT;
-// const API_URL = process.env.BACKEND_URL
 
-
-// const corsOptions = {
-//     origin: '', // Your React app's address
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type'],
-// };
 const allowedOrigins = [
     process.env.FRONTEND_URL,
     process.env.BACKEND_URL,
@@ -70,7 +63,7 @@ process.env.NODE_ENV === 'development' ? {
 app.get(`/api/appointment`, async(req,res)=>{ //this is the part where I believe I 'create' the api
     try{
         const result = await bookings.query(
-            "SELECT *, TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'DD-MM-YYYY') AS appointment_date  FROM appointments"); // appointment_date , TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'YYYY-MM-DD') AS appointment_date FROM appointments"
+            "SELECT *, TO_CHAR(appointment_time, 'HH12:MI:SS') AS appointment_time, TO_CHAR(appointment_date, 'DD-MM-YYYY') AS appointment_date  FROM appointments"); 
         const rows = Array.isArray(result.rows) ? result.rows : [];
         res.json(rows.map(row => ({
             id: row.id,
@@ -106,15 +99,6 @@ app.put(`/api/appointment`, async(req,res) =>{
     try{
         console.log("Updating data:", req.body);
         const {id, first_name, last_name, appointment_time, appointment_date} = req.body;
-        // Fix appointment_time to always include seconds
-        // const fixedTime = appointment_time.length === 5
-        // ? appointment_time + ":00"
-        // : appointment_time;
-
-        // Fix appointment_date to include time if missing
-        // const fixedDate = appointment_date.length === 10
-        // ? appointment_date + " 00:00:00"
-        // : appointment_date;
         const update = await bookings.query(
             "UPDATE appointments SET first_name=$2, last_name=$3, appointment_time=$4, appointment_date=$5 WHERE id = $1", 
             [id, first_name, last_name, appointment_time, appointment_date]
@@ -131,15 +115,6 @@ app.post(`/api/appointment`, async(req, res)=>{
     try{
         console.log("Data recieved:", req.body);
         const {first_name, last_name, appointment_time, appointment_date} = req.body;
-        // Fix appointment_time to always include seconds
-        // const fixedTime = appointment_time.length === 5
-        // ? appointment_time + ":00"
-        // : appointment_time;
-
-        // Fix appointment_date to include time if missing
-        // const fixedDate = appointment_date.length === 10
-        // ? appointment_date + " 00:00:00"
-        // : appointment_date;
         const result = await bookings.query(
            "INSERT INTO appointments (first_name, last_name, appointment_time, appointment_date) VALUES($1,$2,$3,$4)", 
            [first_name, last_name, appointment_time, appointment_date]
@@ -163,3 +138,25 @@ app.listen(port,() => {
 
 //Next time I commit staged changes, I gotta do this: 
 //git rm -r --cached .git add . >git commit -m"removed all files from gitignore" > git push origin master
+
+
+//BS ChatGPT fixes that didn't even need to happen, thanks for nothing, stupid robot.
+// Fix appointment_time to always include seconds
+// const fixedTime = appointment_time.length === 5
+// ? appointment_time + ":00"
+// : appointment_time;
+
+// Fix appointment_date to include time if missing
+// const fixedDate = appointment_date.length === 10
+// ? appointment_date + " 00:00:00"
+// : appointment_date;
+
+// Fix appointment_time to always include seconds
+// const fixedTime = appointment_time.length === 5
+// ? appointment_time + ":00"
+// : appointment_time;
+
+// Fix appointment_date to include time if missing
+// const fixedDate = appointment_date.length === 10
+// ? appointment_date + " 00:00:00"
+// : appointment_date;
