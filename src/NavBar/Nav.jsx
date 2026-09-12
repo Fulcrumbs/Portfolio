@@ -5,7 +5,7 @@ import { lazy, Suspense } from "react";
 import "./Nav.css"
 // import ThemeSelection from "./Settings.jsx";
 import CheckoutButton from "../Pages/Checkout.jsx";
-import NaviconMenu from "../navicon.jsx";
+import NaviconMenu from "../Navicon.jsx";
 import Settings from "./Settings.jsx";
 
 const CalcPages = lazy(() => import("../Pages/Projects/Calculators/CalcPage.jsx"))
