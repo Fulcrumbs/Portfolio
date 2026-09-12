@@ -1,6 +1,6 @@
 import styles from "./Settings.module.css"
 import CheckoutButton from "../Pages/Checkout"
-import NaviconMenu from "../navicon";
+import NaviconMenu from "../Navicon";
 
 export default function Settings(){
     
