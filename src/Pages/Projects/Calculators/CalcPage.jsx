@@ -1,37 +1,37 @@
 import GenshinArtifact from "./Genshin/GenshinArtifact";
-import BinomialProb from "./Probability/BinominalProb";
+import BinomialProb from "./Probability/BinomialProb";
 import styles from "./CalcPage.module.css"
 import { useState } from "react";
 import IncompleteBanner from "../../../Styles/IncompleteBanner";
 
 export default function CompiledCalcFunctions(){
-    const [components, setComponents] = useState({
+    const [activeComponent, setActiveComponent] = useState({
         GA: false, 
         BP: false
     })
 
     function clickHandler(e){
-        const clicked = {};
+        const clickedComponent = {};
         const id = e.currentTarget.id
         if (!id) return;
-        setComponents(prev => {
+        setActiveComponent(prev => {
             for(const key of Object.keys(prev)){
-                clicked[key] = key === id;
+                clickedComponent[key] = key === id; //Good for toggling a whole list when you only need 1 true statement, go through whole list 1 will evaluate true the rest will evaluate false.
             }
-        return clicked;
+        return clickedComponent;
         })
     }
 
     return(
         <div className={styles.page}>
             <IncompleteBanner/>
-            <div id="GA" className={components.GA ? styles.active : styles.inactive } onClick={clickHandler}>
+            <div id="GA" className={activeComponent.GA ? styles.active : styles.inactive } onClick={clickHandler}>
                 {/* <GenshinArtifact/> */}
-               {components.GA ?  <GenshinArtifact/> : <label style={{gridArea: 'inactiveGA'}}>Genshin Application</label>}
+               {activeComponent.GA ?  <GenshinArtifact/> : <label style={{gridArea: 'inactiveGA'}}>Genshin Application</label>}
             </div>
             
-            <div id="BP" className={components.BP ? styles.active : styles.inactive} onClick={clickHandler}>
-                {components.BP ? <BinomialProb/> : <label style={{gridArea: 'inactiveBP'}}>Binominal Probability Calculator</label>}
+            <div id="BP" className={activeComponent.BP ? styles.active : styles.inactive} onClick={clickHandler}>
+                {activeComponent.BP ? <BinomialProb/> : <label style={{gridArea: 'inactiveBP'}}>Binominal Probability Calculator</label>}
             </div>
         
         </div>

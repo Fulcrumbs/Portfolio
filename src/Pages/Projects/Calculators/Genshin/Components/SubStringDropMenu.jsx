@@ -1,26 +1,25 @@
 import SelectionValidation from "../Functions/SelectionValidation";
 import handleError from "../Functions/handleError";
 
-export default function SubStringDropMenu({handleValue, useArray, data, artifact}) {
-    return(
-      data ? 
-      <select>
-        <option key={data} value={data}>{data}</option>
-      </select>
-      :
-      <select onChange={(e) => {
-        SelectionValidation(e.target.value, artifact) ? 
-          handleValue(e)
-        : 
-          handleError(e, artifact)
-        }}>
 
+export default function SubStringDropMenu({handleValue, useArray, data, artifact, selectedOn}) {
+    return (
+      <select value={selectedOn ? data : ""}
+        onChange={(e) => {
+          SelectionValidation(e.target.value, artifact)
+            ? handleValue(e)
+            : handleError(e, artifact);
+        }}
+      >
         {useArray.map((stat) => (
-        <option key={stat} value={stat}>{stat}</option>))}
+          <option key={stat} value={stat}>
+            {stat}
+          </option>
+        ))}
       </select>
     );
   };
-/* Reformatting above code for simplifciation of below code.
+/* Reformatting above code for simplification of below code.
 main, sub1, sub2, sub3, sub4
 reset, load,
   if(reset){

@@ -92,7 +92,7 @@ export default function TodoApp() {
   const sensors = useSensors(
       useSensor(PointerSensor,{
         activationConstraint: {
-              delay: 150,
+              delay: 100,
               tolerance: 10,
           }
       })

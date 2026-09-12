@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter} from 'react-router-dom';
+import {createRoot} from 'react-dom/client';
+import { BrowserRouter} from 'react-router';
 import NavBar from './NavBar/Nav';
 
 import './Styles/Global.css'
 import './Styles/Utilities.css'
-
 import './index.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>

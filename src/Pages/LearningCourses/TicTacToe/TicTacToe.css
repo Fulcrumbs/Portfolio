@@ -1,5 +1,5 @@
 .game{
-  height: calc(100vh - 10vh);
+  height: calc(100vh - calc(var(--heading-height) * 2));
   display: flex;
 }
 
@@ -23,7 +23,7 @@
 }
 
 footer{
-  height: 5vh;
+  height: var(--heading-height);
   padding: 5px;
   border-radius: 5px;
   border: solid 1px #7C809B;

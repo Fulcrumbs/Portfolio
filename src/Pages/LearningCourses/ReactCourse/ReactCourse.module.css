@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  height: calc(100vh - 5vh);
+  height: calc(100vh - var(--heading-height));
 }
 
 .Appheader {

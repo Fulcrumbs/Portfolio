@@ -138,7 +138,11 @@
     background-position: center;
     background-color: rgba(0, 0, 0, 0);
 }
-
+.content{
+    max-width: 80%;
+    max-height: 80%;
+    text-align: center;
+}
 
 .osrsModalOverlay{
     position: fixed;
@@ -211,6 +215,7 @@ textarea{
     background-color: #9e8c76;
     width:fit-content;
 }
+
 
 @media (max-width:480px){
     

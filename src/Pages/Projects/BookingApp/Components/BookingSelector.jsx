@@ -1,10 +1,10 @@
 import { updateBooking } from "../Services/API";
 import { deleteBooking } from "../Services/API";
-import { BookingContext } from "../Services/BookingContext";
+import { DatabaseContext } from "../Services/BookingContext";
 import { useContext } from "react";
 
 export default function BookingSelector(){
-    const {formData, booking, setBooking, selected, setSelected} = useContext(BookingContext)
+    const {formData, booking, setBooking, selected, setSelected} = useContext(DatabaseContext)
     const handleSelect = (e) => {
         const choice = booking.find(booking => booking.id === Number(e.target.value )) 
         setSelected(choice);

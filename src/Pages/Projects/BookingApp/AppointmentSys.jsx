@@ -3,7 +3,7 @@ import { fetchBooking } from "./Services/API";
 import FormSection from "./Components/FormSection";
 import BookingDisplay from "./Components/BookingDisplay";
 import BookingSelector from "./Components/BookingSelector";
-import { BookingContext } from "./Services/BookingContext";
+import { DatabaseContext } from "./Services/BookingContext";
 import LoginPage from "./Components/LoginPage";
 import './AppointmentSys.css'
 
@@ -43,11 +43,11 @@ function BookingApp(){
             <LoginPage setLoginStatus={setLoginStatus}/>
         :
         <div className="appointments"> 
-            <BookingContext.Provider value={contextValues}>
+            <DatabaseContext.Provider value={contextValues}>
                 <FormSection/>
                 <BookingSelector/>
                 <BookingDisplay/>
-            </BookingContext.Provider>
+            </DatabaseContext.Provider>
         </div>}
         </>
     );

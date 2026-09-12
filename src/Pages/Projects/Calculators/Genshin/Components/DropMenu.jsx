@@ -1,16 +1,14 @@
 
-export default function DropMenu({handleValue, useArray, data}) {
-    return(
-      data ? 
-        <select>
-          <option key={data} value={data}>{data}</option>
+export default function DropMenu({handleValue, useArray, data, selectedOn}) { 
+      return (
+        <select value={selectedOn ? data : ""} onChange={handleValue}>
+          {useArray.map((stat) => (
+            <option key={stat} value={stat}>
+              {stat}
+            </option>
+          ))}
         </select>
-      :
-      <select onChange={handleValue}>
-      {useArray.map((stat) => (
-        <option key={stat} value={stat}>{stat}</option>))}
-      </select>
-    )
+      );
   };
   
   /*removed (load, data) from the props, I think these sections don't actually require these 
@@ -29,3 +27,12 @@ export default function DropMenu({handleValue, useArray, data}) {
     //   
     //   )
     // }*/
+    // // if(data){
+    //   return (
+    //     <select>
+    //       <option key={data} value={data}>
+    //         {data}
+    //       </option>
+    //     </select>
+    //   );
+    // }

@@ -1,9 +1,10 @@
 export default function SelectionValidation(value, artifact){
-    return(
-        value !== artifact.Piece.Stat && 
-        value !== artifact.Sub1.Stat && 
-        value !== artifact.Sub2.Stat && 
-        value !== artifact.Sub3.Stat && 
-        value !== artifact.Sub4.Stat && 
-        artifact.Piece.Stat !== '') ? true : false;
-};
+  const stats = [artifact.Piece.Stat, artifact.Sub1.Stat, artifact.Sub2.Stat, artifact.Sub3.Stat, artifact.Sub4.Stat]
+  const filteredStats = stats.filter(stat => stat !== "")
+  if (value === "") {
+    return console.log("Empty String entered"), true;
+  }
+  return console.log("True"), filteredStats.includes(value)
+}
+
+//I need this to be more generic, at the moment I can't use this when an artifact is loade

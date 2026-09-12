@@ -1,62 +1,286 @@
 
 .navpage{
-  /* background-image:linear-gradient(45deg, black ,#283F3B); */
-  background-image:linear-gradient(180deg, #7C809B, #010101) ;
-  color: #d4d4d4;
-  /* padding: 50px; */
+  background-color: var(--main-bg);
+  color: var(--body-text-color);
 }
 
-nav{
-  background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
-  min-height:5vh;
-  /* box-shadow: 0px 5px #333; */
+.navBar{
+  display: flex;
+  position:sticky;
+  top: 0;
+  min-height:var(--heading-height);
+}
+
+/* .headerbar{
+  display: flex;
+}
+.headerbar > svg{
+  align-self: center;
+} */
+.nav{
+  background-image:linear-gradient(to right,rgba(51, 51, 51,0.3), rgba(80, 78, 78, 0.3));
+  min-height:var(--heading-height);
+  display: grid;
+  max-width: max-content;
+  position: relative;
+  grid-template-columns: 1fr fit-content;
 }
 
 .menu-items{
-  display: inline-block;
   position: relative;
-  /* height: ; */
-}
-
-.menu-items:hover .submenu{
-  display: block;
-  z-index: 10;
+  background-color: var(--main-bg);
+  /* border: rgb(196, 196, 196) 1px solid; */
+  justify-content: left;
 }
 
 .submenu{
   display: none;
-  position: absolute;
+  position: relative;
   z-index: 10;
 }
 
-.submenu .tab-link{
-  min-width: 165px;
-  background-color: rgba(37, 102, 132, 0.5);
-  /* border: none; */
-  box-shadow:0px 8px 16px 0px #333;
-  border: 1px solid #ccc;
+.mainlist{
+  display: flex;
+  align-items: center;
+  min-width: 270px;
 }
+
 
 .tab-link {
-  display: inline-block;
+  display: grid;
+  flex:1;
   padding: 5px 20px;
-  background-color: rgba(37, 102, 132, 1);
-  border: 1px solid #ccc; 
-  /* min-height: 5vh; */
-  /* max-width: 165px; */
-  
-}
-  
-.tab-link:hover {
-  background-color: rgb(26, 84, 111, 1);
+  min-height:clamp(0vh, 5vh, 10vh);
 }
 
+.submenu{
+  /* min-width: 165px; */
+  background-color: rgba(58, 61, 60, 0.8);
+  /* box-shadow:0px 8px 16px 0px #333;
+  border: 1px solid #ccc; */
+}
+
+ 
+
 .tab-link:active {
-  background-color: #007bff; 
+  background-color: lime; 
 }
 
 .Page-Container{
-  /* flex: 1; */
   overflow-y: auto;
-  padding:0 40px 0 40px;
+  background-color: var(--secondary-bg);
 }
+
+@media screen and (max-width: 500px){
+  .nav{
+  background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
+  min-height:var(--heading-height);
+  /* box-shadow: 0px 5px #333; */
+  display: grid;
+  /* grid-template-rows: auto; */
+  /* min-width: 100%; */
+  position: absolute;
+  }
+
+  .menu-items{
+  /* position: relative; */
+  min-width: 100%;
+  }
+
+  .menu-items:hover .submenu{
+    z-index: 11;
+  }
+
+  .submenu{
+    position: absolute;
+    z-index: 10;
+    display: inline-block;
+  }
+
+  .submenu .tab-link{
+    min-width: 100%;
+    background-color: rgba(37, 102, 132, 0.5);
+    border: none;
+    box-shadow:0px 8px 16px 0px #333;
+    /* border: 1px solid #a73636; */
+  }
+
+  .tab-link {
+    /* display: inline-block; */
+    padding: 5px 20px;
+    background-color: rgb(153, 59, 59);
+    /* border: 1px solid #ccc;  */
+    /* min-height:clamp(0vh, 5vh, 10vh); */
+    /* max-width: 165px; */
+    min-width: 100%;
+    border: none;
+    
+  }
+}
+
+.navBar:has(#v2:checked) .old{
+  display: none;
+}
+
+.navBar:has(#v2:checked) .new{
+  display: flex;
+}
+
+.navBar:has(#v1:checked) .old{
+  display: flex;
+}
+
+.navBar:has(#v1:checked) .new{
+  display: none;
+}
+
+
+.navBar:has(#v1:checked) .old{
+  .navpage{
+    background-color: #121212;
+    color: #d4d4d4;
+    min-height:var(--heading-height);
+  }
+  .nav{
+    background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
+    min-height:var(--heading-height);
+    display: flex;
+  }
+  .menu-items{
+    display: inline-block;
+    position: relative;
+  } 
+
+  .menu-items:hover .submenu{
+    display: block;
+    z-index: 10;
+  }
+
+  .submenu{
+    display: none;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .submenu .tab-link{
+    min-width: 165px;
+    background-color: rgba(37, 102, 132, 1);
+    box-shadow:0px 8px 16px 0px #333;
+    border: 1px solid #ccc;
+  }
+
+  .tab-link {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: rgba(37, 102, 132, 1);
+    border: 1px #d4d4d4 solid ;
+   
+    min-height:var(--heading-height);
+  }
+    
+  .tab-link:hover {
+    background-color: rgb(26, 84, 111, 1);
+  }
+
+  .tab-link:active {
+    background-color: #007bff; 
+  }
+
+  .Page-Container{
+    overflow-y: auto;
+    padding:0 1em 0 1em;
+  } 
+}
+
+.navBar:has(#v2:checked) .new{
+
+/* .headerbar{
+  display: flex;
+}
+.headerbar > svg{
+  align-self: center;
+} */
+  .nav{
+    /* background-image:linear-gradient(to right,rgba(51, 51, 51,0.3), rgba(80, 78, 78, 0.3)); */
+    min-height:var(--heading-height);
+    display: grid;
+    max-width: max-content;
+    position: relative;
+    /* min-width: 250px; */
+    grid-template-columns: 1fr fit-content;
+    font-family: var(--body-font);
+  }
+
+  .menu-items{
+    position: relative;
+    /* background-color: var(--main-bg-color); */
+    justify-content: left;
+  }
+
+  .submenu{
+    display: none;
+    position: relative;
+    z-index: 10;
+  }
+
+  .mainlist{
+    display: flex;
+    align-items: center;
+    min-width: 270px;
+    border-bottom: 1px solid var(--secondary-bg);
+    border-top: 1px solid var(--secondary-bg); 
+  }
+  .mainlist:hover, .sublist:hover {
+    background-color: var(--hover);
+  }
+  
+  .checkBoxLabel{
+    margin-left: auto;
+    padding: 5px;
+    min-width: 40px;
+    text-align: center; 
+    color: var(--body-text-color);
+  }
+
+  .checkBoxLabel:hover, .mainlist:hover{
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .checkBoxToggle{
+    display: none;
+  }
+
+  .menu-items:has(.checkBoxToggle:checked) > .submenu{
+    display: grid;
+    z-index: 10;
+  }
+
+  .checkBoxToggle ~ .up{
+    display: none
+  }
+
+  .checkBoxToggle:checked ~ .up{
+    display: inline-block;
+  }
+
+  .checkBoxToggle ~ .down{
+    display: inline-block;
+  }
+  .checkBoxToggle:checked ~ .down{
+    display: none;
+  }
+
+  .tab-link {
+    display: grid;
+    flex:1;
+    padding: 5px 20px;
+    min-height:clamp(0vh, 5vh, 10vh);
+  }
+
+  .tab-link:active {
+    background-color: var(--active);; 
+  }
+}
+
+/** Old CSS, Gonna change it to a smaller slide out menu/*

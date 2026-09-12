@@ -46,13 +46,24 @@ process.env.NODE_ENV === 'development' ? {
 // const media = new Pool({
 //     host: process.env.DB_HOST,
 //     port: 5432, //default port apparently, I wonder if I can change it?
-//     database: 'ImagesAndVideos',
+//     database: process.env.DB_DATABASE_1,
 //     user: process.env.DB_USER,
 //     password: process.env.DB_PASSWORD,
 //     idleTimeoutMillis: 1000,
 //     connectionTimeoutMillis: 1000
 // });
 
+const health = new Pool({
+    host: process.env.DB_HOST,
+    port: 5432, //default port apparently, I wonder if I can change it?
+    database: process.env.DB_DATABASE_2,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    idleTimeoutMillis: 1000,
+    connectionTimeoutMillis: 1000
+});
+// SELECT * from Dietary_Values{
+// ID:ROW.ID ROW.Food, ROW.Kilojoule(kj) ,row.Protein(g), row.Carbohydrate(g), row.Fat(g) row.Volume(g/mls)}
 /**This my API for the Booking & AppointmentSys project
  * Should fetch the appointments table and grab all rows. 
  * How does it know what the columns are?
@@ -135,6 +146,29 @@ app.listen(port,() => {
     console.log(`Server running on port:${port}`);
 });
 
+
+app.get(`/api/foodDatabase`, async(req, res)=> {
+    try{
+        const result = await health.query(
+            'SELECT * FROM dietary_values'
+        )
+        const rows = Array.isArray(result.rows) ? result.rows : [];
+        res.json(rows.map(row => ({
+            id: row.id,
+            name: row.food_label,
+            calories: Math.round(row.kilojoule_kj / 4.184),
+            protein: row.protein_g,
+            carb: row.carbohydrate_g,
+            fat: row.fat_g,
+            volume: row.serving_size
+        })
+    ))
+    }
+    catch(error){
+        console.error(error)
+        res.status(500).send('server error')
+    }
+})
 
 //Next time I commit staged changes, I gotta do this: 
 //git rm -r --cached .git add . >git commit -m"removed all files from gitignore" > git push origin master

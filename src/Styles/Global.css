@@ -1,4 +1,4 @@
-:root{
+.oldroot{
   --background-color: rgba(239, 239, 239, 0.8); /*#333*/
   --font: rgba(20, 28, 26, 1);
   --primary-color:rgba(40, 63, 59, 1) ; 
@@ -8,13 +8,65 @@
   --accent-one: rgba(101, 155, 94, 0.9); /*linear-gradient(45deg, #54874e, #659B5E)*/
   --accent-two: rgba(37, 102, 94, 0.8); 
   --practice: rgba(221,221,221,0.8);
+  --heading: black;
+}
+/**/
+:root{ 
+  --primary-color:rgba(40, 63, 59, 1) ;
+  --secondary-color: rgba(37, 102, 132, 1);
+  --tertiary-color: rgba(124, 128, 155, 0.5);
+
+  --main-bg: oklch(0.24 0.01 17);
+  --secondary-bg: oklch(from var(--main-bg) calc(l + 0.26) c h);
+  --hover: oklch(from var(--main-bg) calc(l + 0.11) c h);
+  --active: oklch(from var(--main-bg) calc(l + 0.15) c h);
+  /* --background-color: rgba(82, 82, 82, 0.8); */
+  
+  /* --font: rgba(20, 28, 26, 1); */
+  
+  /* --primary-color:linear-gradient(45deg,  , rgb(58, 96, 90) ); */
+  
+  --accent-one: oklch(from var(--main-bg) calc(l - 0.04) c h ); /*linear-gradient(45deg, #54874e, #659B5E)*/
+  --accent-two: oklch(from var(--secondary-bg) calc(l + 0.15) c h ); /*0, 0%, 55% */
+  --accent-one-text-color: contrast-color(var(--accent-one));
+  --accent-two-text-color: contrast-color(var(--accent-two));
+
+  --heading-height: 38px;
+  --page-height: calc(100vh - var(--heading-height));
+  --body-font: Archivo Narrow;
+  --body-text-color: contrast-color(var(--main-bg));
+  --title-font: julius Sans One;
+  /* --title-color: rgb(255, 255, 255); */
+  
+  font-size: 1rem;
+}
+
+button{
+  /* background-color: var(--main-bg); */
+  /* color: var(--body-text-color); */
+  font-family: var(--body-font);
 }
 
 :has(#green-theme-toggle:checked){
-  background-image: url(https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg);
+  --background-image: url(https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg);
+  /* --background-color: rgba(239, 239, 239, 0.8); */
+  --main-bg: oklch(0.34 0.03 182);
   --accent-one: rgba(101, 155, 94, 0.9);
+  --accent-two: rgba(221,221,221,0.8);
+  /* --font:rgba(20, 28, 26, 1);  */
+  --heading: #E5EBEA;
 }
 
+:has(#corporate:checked){
+
+  --background-color: rgba(2, 43, 58, 1);
+  --accent-one: #1f7a8c;
+  --accent-two: rgba(191, 219, 247, 1);
+  --heading:#E5EBEA;
+  /* --font: var(--font);  */
+  /* --font: invert(var(--font)) */
+  /* --font: rgba(20, 28, 26, 1); */
+}
 
 *{
   box-sizing: border-box;
@@ -28,24 +80,4 @@ a{
 html, body, h1, p, pre{
   margin:0;
   padding:0;
-
-}
-/* input:invalid{
-  border: 1px solid red;
-} */
-
-  /*v removes the scrollbar from the pre sections v*/
-  /* overflow: none; */
-  /* overflow-x:hidden; */
-  /* overflow-y: scroll; */
-  /* scrollbar-width: none; Firefox */
-  /* -ms-overflow-style: none;  Internet Explorer 10+ */
-/* }*/
-
-h1{ /*Global reference, will apply across all pages*/
-  padding: 0;
-  margin: 0; /*Top, Right, Bottom, Left
-  /* border: solid red; */
-  /* background-color: rgb(65, 65, 65); */
-  /* border-radius: 15px; */
 }

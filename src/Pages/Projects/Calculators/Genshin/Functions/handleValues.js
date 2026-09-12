@@ -6,4 +6,11 @@ export default function handleArtifactValues(e, parentKey, childKey){
       [childKey]: e.target.value
       }}
     )
+    setSelectedData({
+      ...selectedData, 
+      [parentKey]:{
+      ...selectedData[parentKey],
+      [childKey]: e.target.value
+      }}
+    )
   };

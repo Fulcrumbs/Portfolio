@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { registerBooking } from "../Services/API"
-import { BookingContext } from "../Services/BookingContext";
+import { DatabaseContext } from "../Services/BookingContext";
 
 export default function FormSection(){
-    const {formData , setFormData, setBooking} = useContext(BookingContext)
+    const {formData , setFormData, setBooking} = useContext(DatabaseContext)
     const handleFormData = (e) => { 
         setFormData({...formData, [e.target.name]: e.target.value })
     };

@@ -96,14 +96,14 @@ export default function TodoView({columns, setColumns, task, modalState}){
     )
    // &#10060;
    const content = (
-        <>
+        <div className="content">
         <h2 className="viewTitle">Title: {task.Title}</h2>
         <p>Description: {task.Desc}</p>
         {/* <h3>GoalStart: {task.GoalStart}</h3> */}
         <h3>Deadline: {task.Deadline}</h3>
         
         <button className="osrsButtonSml" onClick={() => setEdit(true)}>Edit Task</button>
-        </>
+        </div>
     )
 return(
     <ModalFunction content={edit ? editContent: content} modalState={modalState}/>

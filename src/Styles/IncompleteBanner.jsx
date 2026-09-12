@@ -17,6 +17,6 @@ export default function IncompleteBanner(){
                         justifySelf:'center',
                         alignSelf:'center',
                         textShadow:'0 0 5px black, 0 0 5px black, 0 0 5px black'
-                }}>SECTION INCOMPLETE</h1>
+                }}>SECTION IN PROGRESS</h1>
         </div>
 )}

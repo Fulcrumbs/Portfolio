@@ -1,0 +1,68 @@
+/* .navicon{
+    min-height:var(--heading-height) ;
+    max-width: fit-content;
+} */
+
+.naviconContent{
+    inset: auto;
+    position-area: bottom; /*THIS WAS ALL I NEEDED!?*/
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.naviconButton{
+    /* This is what gave some annoyance with css, couldn't figure out what element was meant to have the min-height to fill the navbar. It's this */
+    min-height:var(--heading-height); 
+    display: flex; /*Also necessary for now*/
+    background-color: transparent;
+    /* background-color: rgba(37, 102, 132, 0.8); */
+    font-family:var(--body-font) ;
+    font-size: 1rem;
+    border: none;
+    color: #ccc;
+    padding: 0px 1em;
+    max-width: fit-content;
+    position: relative;
+    z-index: 11;
+    align-items: center;
+}
+
+.naviconButton:hover{
+    background-color: hsl(from var(--main-bg) h s calc(l - 5));
+    border-radius: 100vw;
+}
+
+/* .content{
+    display: none;
+    z-index: 11;
+} */
+/* .content{
+    max-width: max-content;
+    position: absolute;
+} */
+
+.wide{
+    display: inline-block;
+}
+
+.narrow{
+    display: none;
+}
+
+@media screen and (max-width:600px){
+    .narrow{
+        display: inline-block;
+    }
+    .wide{
+        display: none;
+    }
+}
+
+/* .checkbox{
+    display: none;
+}
+.checkbox:checked + .content{
+    display: grid;
+} */
+

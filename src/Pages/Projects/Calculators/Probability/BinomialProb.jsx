@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./BinominalProb.module.css"
+import styles from "./BinomialProb.module.css"
 
 export default function BinomialProb(){
 //b(x; n, P) = nCx * Px * (1 – P)n – x
@@ -21,9 +21,9 @@ export default function BinomialProb(){
     }
 
     function coefficient(n, k) {
-        if (k < 0 || k > n) return 0;
+        if (k < 0 || k > n) return 0; //Obviously cannot have more success than your attempts
         if (k === 0 || k === n) return 1;
-        if (k > n - k) k = n - k; // symmetry
+        if (k > n - k) k = n - k;
         let result = 1;
         for (let i = 1; i <= k; i++) {
             result *= (n - (k - i));
@@ -47,10 +47,19 @@ export default function BinomialProb(){
 
     return(
         <div className={styles.page}>
+        <p>The formula for calculating the odds of achieving a success within a certain amount of tries is calculated as such:<br/>
+            P&#40;X=k&#41;=&#40;<sup>n</sup><sub>k</sub>&#41;p<sup>k</sup>&#40;1-p&#41;<sup>n-k</sup>
+        </p>
             <form onSubmit={handleSubmit}>
-                <input type="number" onChange={handleChange} name='attempts' placeholder="Number of Attempts"></input>
-                <input type='number' step='any' onChange={handleChange} name='probability' placeholder="Probability"></input>
-                <input type="number" onChange={handleChange} name='successes' placeholder="Number of Successes"></input>
+                <input type="number" onChange={handleChange} name='attempts' placeholder="Number of Attempts"/>
+                <p>The number of attempts = n</p>
+                <input type='number' step='any' onChange={handleChange} name='probability' placeholder="Probability"/>
+                <p>The probability of a successful outcome, given as a decimal fraction.<br/>
+                100%  would be 1.<br/>
+                50% would be 0.5.<br/>
+                2% would be 0.02.<br/>
+                0.5% would be 0.005 etc</p>
+                <input type="number" onChange={handleChange} name='successes' placeholder="Number of Successes"/>
                 <button>Submit</button>
             </form>
             <p>Answer:{answer}</p>

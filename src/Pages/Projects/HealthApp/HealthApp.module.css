@@ -1,0 +1,30 @@
+.page{
+    height: var(--page-height);
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: max-content;
+    font-family: var(--body-font);
+}
+
+table{
+    min-width: 100%;
+}
+
+.tableRow{
+    /* display: grid;
+    grid-template-columns: repeat(8, 1fr); */
+    text-wrap: nowrap;
+    
+}
+.tableRow > td {
+    border: solid 1px rgb(173, 180, 178);
+    padding: 5px;
+    
+}
+
+td > input[type=number]{
+    max-width: 4ch;
+    -webkit-appearance: textfield;
+    -moz-appearance:    textfield;
+    appearance:         textfield;
+}

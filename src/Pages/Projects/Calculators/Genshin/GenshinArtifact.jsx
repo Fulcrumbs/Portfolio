@@ -1,14 +1,16 @@
 import './GenshinArtifact.css';
 import { useState, useEffect } from 'react';
+import { Fragment } from 'react';
 import IntegerInputBox from './Components/IntergerInputBox.jsx';
 import SubStringDropMenu from './Components/SubStringDropMenu.jsx';
 import MainSelectionDropMenu from './Components/MainSelectionDropMenu.jsx';
 import DropMenu from './Components/DropMenu.jsx';
-import save from './Functions/Save.js';
+
 import load from './Functions/Load.js';
 import CritValue from './Functions/CritValue.js';
 import Arrays from './Functions/Arrays.js';
-
+import OptionMenu from './Components/OptionMenu.jsx';
+import { sub } from 'date-fns';
 /*
 This is my main state functionality practice, moving states around and working with them in different ways and trying to keep it neat and tidy
 Most complicated thing I'm working on currently.
@@ -28,49 +30,70 @@ while assigning states.
 
 function GenshinArtifact(){
   
+
+  // class artifact {
+  //   constructor(ID, Piece, Sub1, Sub2, Sub3, Sub4){
+  //     this.ID = ID,
+  //     this.Piece = {Type:'', Stat:'', Value:''},
+  //     this.Sub1 = {Stat:'', Value:''},
+  //     this.Sub2 = {Stat:'', Value:''},
+  //     this.Sub3 = {Stat:'', Value:''},
+  //     this.Sub4 = {Stat:'', Value:''}
+  //   }
+  // }
   const [artifact, setArtifact] = useState({
-    ID: '',
-    Piece: {Type:'', Stat:'', Value:''},
-    Sub1: {Stat:'', Value:''},
-    Sub2: {Stat:'', Value:''},
-    Sub3: {Stat:'', Value:''},
-    Sub4: {Stat:'', Value:''}
+    ID: "",
+    Piece: {Type:"", Stat:"", Value:""},
+    Sub1: {Stat:"", Value:""},
+    Sub2: {Stat:"", Value:""},
+    Sub3: {Stat:"", Value:""},
+    Sub4: {Stat:"", Value:""}
   });
 
   const emptyArtifact = {
-      ID: '',
-      Piece: {Type:'', Stat:'', Value:''},
-      Sub1: {Stat:'', Value:''},
-      Sub2: {Stat:'', Value:''},
-      Sub3: {Stat:'', Value:''},
-      Sub4: {Stat:'', Value:''}
+      ID: "",
+      Piece: {Type:"", Stat:"", Value:""},
+      Sub1: {Stat:"", Value:""},
+      Sub2: {Stat:"", Value:""},
+      Sub3: {Stat:"", Value:""},
+      Sub4: {Stat:"", Value:""}
   };
 
   const [data, setData] = useState([]); //On load this becomes an array of artifact objects
 
   const [selectedData, setSelectedData] = useState({
-    ID: null,
-    Piece: {Type:null, Stat:null, Value:null},
-    Sub1: {Stat:null, Value:null},
-    Sub2: {Stat:null, Value:null},
-    Sub3: {Stat:null, Value:null},
-    Sub4: {Stat:null, Value:null}
+    ID: "",
+    Piece: {Type:"", Stat:"", Value:""},
+    Sub1: {Stat:"", Value:""},
+    Sub2: {Stat:"", Value:""},
+    Sub3: {Stat:"", Value:""},
+    Sub4: {Stat:"", Value:""}
   });
   
   const handleValueReset = () =>{
-    setLoaded(false)
+    setSelectedOn(false)
     setArtifact(emptyArtifact)
     setSelectedData(emptyArtifact)
   };
 
   const handleArtifactValues = (e, parentKey, childKey) => {
-    setArtifact({
+    console.log(selectedOn)
+    selectedOn ?
+    setSelectedData(prev => ({
+      ...prev, 
+      [parentKey]:{
+      ...prev[parentKey],
+      [childKey]: e.target.value
+      }}
+    ))
+    : 
+    setArtifact(({
       ...artifact, 
       [parentKey]:{
       ...artifact[parentKey],
       [childKey]: e.target.value
       }}
-    )
+    )) 
   };
   
   function MainStat(piece){
@@ -145,137 +168,110 @@ function GenshinArtifact(){
   
   useEffect(() => {
     load('artifact', setData)
-    setLoaded(true)
   }, [])
-
-  const [loaded, setLoaded] = useState(false)
-  // const handleLoad = () => {
-  //   load('artifact', setData)
-  //   setLoaded(true)
-  // };
+  // This is a repurposed loaded/setLoaded state, removed loaded from the useEffect to load data. Should only be set to true when using the loaded artifact menu.
+  const [selectedOn, setSelectedOn] = useState(false) 
+ 
   useEffect(()=>{
-    if(selectedData && loaded){
+    if(selectedData && selectedOn){
       setArtifact(selectedData)
       console.log('Option selected, loaded:', selectedData)
     }
   },[selectedData]);
   
+
+  const subKeys =["Sub1", "Sub2", "Sub3", "Sub4"]
+
   const [cv, setCv] = useState(0);
   useEffect(()=>{
     setCv(CritValue(artifact));
   },[artifact]);
   
-  return (
-    !artifact ? 'Loading...' :
+  return !artifact ? (
+    "Loading..."
+  ) : (
     <div className="app">
       <div className="LrgCont">
         <div className="MedCont">
           <div className="SmlCont">
             <div className="">
-            <form>
-              <fieldset>
-                <legend>Artifact Entry</legend>
-                <div>
-                  <label htmlFor='piece'>Enter piece: </label>
-                  <DropMenu
-                    handleValue={(e) => handleArtifactValues(e, "Piece", "Type")} //handlePieceSelection
-                    useArray={Arrays().artPieces}
-                    data={selectedData.Piece.Type}/>
+              <form>
+                <fieldset>
+                  <legend>Artifact Entry</legend>
+                  <div>
+                    <label htmlFor="piece">Enter piece: </label>
+                    <DropMenu
+                      handleValue={(e) =>
+                        handleArtifactValues(e, "Piece", "Type")
+                      }
+                      useArray={Arrays().artPieces}
+                      selectedOn={selectedOn}
+                      data={selectedData.Piece.Type}
+                    />
 
-                  <MainSelectionDropMenu
-                    piece={artifact.Piece.Type}//Piece //would probably access this similar to parentKey ChildKey?
-                    handleValue={(e) => handleArtifactValues(e, "Piece", "Stat")} //handleMainSelection
-                    statArrays={Arrays()}
-                    data={selectedData.Piece.Stat}/>
-                </div>
-              <label htmlFor='Subs'>Substats:</label>
-              <div>
-                <SubStringDropMenu
-                  artifact={artifact} //See if we can remove the next four lines - Coolio finally have a data structure which saves all these characters              
-                  useArray={Arrays().substats}
-                  data={selectedData.Sub1.Stat}
-                  handleValue={(e) => handleArtifactValues(e, "Sub1", "Stat")} //handleSelectedStat1
-                />
-                {artifact.Sub1.Stat !== "" && (
-                  <IntegerInputBox
-                    selectedStat={artifact.Sub1.Stat} //selectedStat1
-                    handleValue={(e) => handleArtifactValues(e, "Sub1", "Value")} //handleStatValue1
-                    data={selectedData.Sub1.Value}
-                  />
-                )}
-              </div>
-              <div>
-                <SubStringDropMenu
-                  artifact={artifact}
-                  useArray={Arrays().substats}
-                  data={selectedData.Sub2.Stat}//
-                  handleValue={(e) => handleArtifactValues(e, "Sub2", "Stat")} //handleSelectedStat2
-                />
-                {artifact.Sub2.Stat !== "" && (
-                  <IntegerInputBox
-                    selectedStat={artifact.Sub2.Stat} //selectedStat2
-                    handleValue={(e) => handleArtifactValues(e, "Sub2", "Value")} //handleStatValue2
-                    data={selectedData.Sub2.Value} //selectedData.SubValue2
-                  />
-                )}
-              </div>
-              <div>
-                <SubStringDropMenu
-                  artifact={artifact}
-                  useArray={Arrays().substats}
-                  data={selectedData.Sub3.Stat} //SubName3
-                  handleValue={(e) => handleArtifactValues(e, "Sub3", "Stat")} //handleSelectedStat3
-                />
-                {artifact.Sub3.Stat !== "" && (
-                  <IntegerInputBox
-                    selectedStat={artifact?.Sub3?.Stat} //selectedStat3
-                    handleValue={(e) => handleArtifactValues(e, "Sub3", "Value")}//handleStatValue3
-                    data={selectedData.Sub3.Value} 
-                  />
-                )}
-              </div>
-              <div>
-                <SubStringDropMenu
-                  artifact={artifact}
-                  useArray={Arrays().substats}
-                  data={selectedData.Sub4.Stat}
-                  handleValue={(e) => handleArtifactValues(e, "Sub4", "Stat")} //handleSelectedStat4
-                />
-                {artifact.Sub4.Stat !== "" && (
-                  <IntegerInputBox
-                    selectedStat={artifact.Sub4.Stat} //selectedStat4
-                    handleValue={(e) => handleArtifactValues(e, "Sub4", "Value")} //handleStatValue4
-                    data={selectedData.Sub4.Value} 
-                  />
-                )}
-              </div>
-            </fieldset>
-            </form>
+                    <MainSelectionDropMenu
+                      artifact={artifact} //Piece //would probably access this similar to parentKey ChildKey?
+                      statArrays={Arrays()}
+                      data={selectedData.Piece.Stat}
+                      handleValue={(e) =>
+                        handleArtifactValues(e, "Piece", "Stat")
+                      } //handleMainSelection
+                    />
+                  </div>
+
+                  <label htmlFor="Subs">Substats:</label>
+                  <div>
+                    {subKeys.map((subKey) => (
+                    <div key={subKey}>
+                    <SubStringDropMenu
+                      selectedOn={selectedOn}
+                      artifact={artifact}
+                      useArray={Arrays().substats}
+                      data={selectedData[subKey].Stat}
+                      handleValue={(e) =>
+                        handleArtifactValues(e, subKey, "Stat")
+                      }
+                    />
+                    {artifact[subKey].Stat !== "" && (
+                      <IntegerInputBox
+                        selectedStat={artifact[subKey].Stat}
+                        handleValue={(e) =>
+                          handleArtifactValues(e, subKey, "Value")
+                        }
+                        data={selectedData[subKey].Value}
+                      />
+                      )}
+                      </div>))}
+                      </div>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+
+          <div className="SmlCont">
+            <img
+              src={"/images/Icon_Flower_of_Life.png"}
+              alt="flower icon"
+              width="60px"
+              height="60px"
+            />
+            
+              <LoadedArtifactMenu
+                savedArray={data}
+                setSelectedData={setSelectedData}
+                setSelectedOn={setSelectedOn}
+                // filter={word}
+              />
+            
+            <DisplayArtifact artifact={artifact} critVal={cv} filter="Flower" />
           </div>
         </div>
-
-        <div className="SmlCont">
-            <img src={'/images/Icon_Flower_of_Life.png'} alt='flower icon' width="60px" height="60px"/>
-            <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Flower"/>
-            <DisplayArtifact artifact={artifact} critVal={cv} filter="Flower" /> 
-        </div>
-     
+        <OptionMenu props={{ artifact, handleValueReset }} />
       </div>
-        <div className="optionsMenu">
-          <button onClick={() => save("artifact", artifact)}>Save</button>
-          {/* <button onClick={handleLoad}>Load</button> */}
-          <button onClick={handleValueReset}>Clear</button>
-        </div>
-        <div>
-        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Feather"/>
-        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Timepiece"/>
-        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Goblet"/>
-        <LoadedArtifactMenu savedArray={data} setSelectedData={setSelectedData} setLoaded={setLoaded} filter="Circlet"/>
-      </div>
-    </div>
     </div>
   );
 };
+
 
 
 function DisplayArtifact({artifact, critVal, filter}){
@@ -293,30 +289,115 @@ function DisplayArtifact({artifact, critVal, filter}){
   )}
 };
 
-function LoadedArtifactMenu({savedArray, filter, setSelectedData, setLoaded}){
+function LoadedArtifactMenu({savedArray, filter, setSelectedData, setSelectedOn}){//setLoaded
+  const filterwords = ["Feather", "Flower", "Timepiece", "Goblet", "Circlet"]
   const handleOptions = (e) =>{
     const selectedOption = Number(e.target.value); //The option I've selected in the option ket
     const selectedArtifact = savedArray.find(artifact => artifact.ID === selectedOption) // Compare the selected one and see if it's in the array
     if(selectedArtifact){
       setSelectedData(selectedArtifact)
-      setLoaded(true)
+      setSelectedOn(true)
     }
     else{
       console.log('No match for', selectedOption)
-      console.log('valid options:',savedArray)
+      console.log('valid options:', savedArray)
     }
   };
-  return(
-    <select onChange={handleOptions}>
-      {savedArray
-      .filter((artifact) => artifact.Piece.Type === filter)
-      .map((artifact, index) => (
-      <option key={artifact.ID} value={artifact.ID}>
-      {index} - {artifact.Piece.Type}
-      </option>
-    ))}
-    </select>
-  )
+  return (
+    <>
+      {filterwords.map((word) => (
+        <div key={word}>
+        <select key={word} defaultValue={""} onChange={handleOptions}>
+          {savedArray
+            .filter((artifact) => artifact.Piece.Type === word)
+            .map((artifact, index) => (
+              <option key={artifact.ID} value={artifact.ID}>
+                {index} - {artifact.Piece.Type}
+              </option>
+            ))}
+        </select>
+        </div>
+      ))}
+    </>
+  );
 };
 
 export default GenshinArtifact;
+
+
+                  {/* <div>
+                    <SubStringDropMenu
+                      artifact={artifact} //See if we can remove the next four lines - Coolio finally have a data structure which saves all these characters
+                      useArray={Arrays().substats}
+                      data={selectedData.Sub1.Stat}
+                      handleValue={(e) =>
+                        handleArtifactValues(e, "Sub1", "Stat")
+                      } //handleSelectedStat1
+                    />
+                    {artifact.Sub1.Stat !== "" && (
+                      <IntegerInputBox
+                        selectedStat={artifact.Sub1.Stat} //selectedStat1
+                        handleValue={(e) =>
+                          handleArtifactValues(e, "Sub1", "Value")
+                        } //handleStatValue1
+                        data={selectedData.Sub1.Value}
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <SubStringDropMenu
+                      artifact={artifact}
+                      useArray={Arrays().substats}
+                      data={selectedData.Sub2.Stat}
+                      handleValue={(e) =>
+                        handleArtifactValues(e, "Sub2", "Stat")
+                      }
+                    />
+                    {artifact.Sub2.Stat !== null && (
+                      <IntegerInputBox
+                        selectedStat={artifact.Sub2.Stat} //selectedStat2
+                        handleValue={(e) =>
+                          handleArtifactValues(e, "Sub2", "Value")
+                        } //handleStatValue2
+                        data={selectedData.Sub2.Value} //selectedData.SubValue2
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <SubStringDropMenu
+                      artifact={artifact}
+                      useArray={Arrays().substats}
+                      data={selectedData.Sub3.Stat} //SubName3
+                      handleValue={(e) =>
+                        handleArtifactValues(e, "Sub3", "Stat")
+                      } //handleSelectedStat3
+                    />
+                    {artifact.Sub3.Stat !== null && (
+                      <IntegerInputBox
+                        selectedStat={artifact?.Sub3?.Stat} //selectedStat3
+                        handleValue={(e) =>
+                          handleArtifactValues(e, "Sub3", "Value")
+                        } //handleStatValue3
+                        data={selectedData.Sub3.Value}
+                      />
+                    )}
+                  </div>
+                  <div>
+                    <SubStringDropMenu
+                      artifact={artifact}
+                      useArray={Arrays().substats}
+                      data={selectedData.Sub4.Stat}
+                      handleValue={(e) =>
+                        handleArtifactValues(e, "Sub4", "Stat")
+                      } //handleSelectedStat4
+                    />
+                    {artifact.Sub4.Stat !== null && (
+                      <IntegerInputBox
+                        selectedStat={artifact.Sub4.Stat} //selectedStat4
+                        handleValue={(e) =>
+                          handleArtifactValues(e, "Sub4", "Value")
+                        } //handleStatValue4
+                        data={selectedData.Sub4.Value}
+                      />
+                    )}
+                  </div> */}

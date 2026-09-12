@@ -1,8 +1,8 @@
 import { useContext} from "react"
-import { BookingContext } from "../Services/BookingContext";
+import { DatabaseContext } from "../Services/BookingContext";
 
 export default function BookingDisplay(){
-    const {booking} = useContext(BookingContext);
+    const {booking} = useContext(DatabaseContext);
     return(
         <div className="display">
             <h1>Booking Details:</h1>

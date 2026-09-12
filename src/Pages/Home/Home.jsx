@@ -1,9 +1,8 @@
 import styles from "./Home.module.css"
 
-
 function ResumePage () {
     return(
-        <div className={styles.homepage}>
+        <div className={styles.page}>
             
             {/* <div className="pfp-wrap"> */}
             <div className={styles.pfp}>
@@ -11,10 +10,8 @@ function ResumePage () {
                 <h1>Jason Callaghan-Barrett</h1>
             </div>
             {/* </div> */}
-            <div >
-                <div className={styles.title}>
-                    <h2>About</h2>
-                </div>
+            <div className={styles.section}>
+                <h2 className={styles.title}>About</h2>
                 <p className={`${styles.about} ${styles.content}`}> 
                     I have been working as a disibility support worker for 9 years which has been a life enriching and character growing career.<br/>
                     I am currently seeking a switch in career path, completing a certIV in IT{'(Programming)'} at TAFE
@@ -30,9 +27,7 @@ function ResumePage () {
                 </p>
             </div>
             <div className={styles.section} >
-                <div className={styles.title}>
-                    <h2 >Skills & Experience</h2>
-                </div>
+                <h2 className={styles.title}>Skills & Experience</h2>
                 <p className={`${styles.skills} ${styles.content}`}>
                     As a beginner, I have been developing my skills in a broad spectrum in an attempt to grasp as many different aspects of the profession
                     in a reasonably practical sense as quickly as possible.<br/>
@@ -51,10 +46,7 @@ function ResumePage () {
                     </ul>
                         <li>React has been my JavaScript library of choice.</li>
                         <li>Node.js and Express for backend and server capabilities.</li>
-                        <li>Database: PostgreSQL - Utilised within my mock Booking application</li>
-                
-                    
-                    
+                        <li>Database: PostgreSQL - Utilised within my mock Booking application</li>   
                 </p>
             </div>
             {/* <div className="project">
@@ -64,7 +56,7 @@ function ResumePage () {
                 suddenly starts to make sense. I also find it fun to go back to my code and sort it out, format it in more organised ways.
                 i have utilised Playwright for end to end testing in my calculator applications as it can be pr 
             </div> */}
-        <input type='checkbox' id='green-theme-toggle'></input>
+        
         </div>
     )
 }
