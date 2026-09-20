@@ -8,18 +8,25 @@
 
 table{
     min-width: 100%;
+    /* background-color: var(--secondary-bg); */
 }
-
-.tableRow{
-    /* display: grid;
-    grid-template-columns: repeat(8, 1fr); */
+tr{
     text-wrap: nowrap;
     
 }
-.tableRow > td {
+
+td,th{
     border: solid 1px rgb(173, 180, 178);
     padding: 5px;
-    
+}
+
+th{
+    background-color: var(--accent-one);
+    color: var(--accent-one-text-color);
+}
+td {
+    background-color: var(--accent-two);
+    color: var(--accent-two-text-color);
 }
 
 td > input[type=number]{

@@ -18,7 +18,6 @@ export interface Food{
 }
 interface FoodQueryProp{
   query: UseQueryResult<Food[]>
-  
 }
 
 // export interface FullLog{
@@ -27,21 +26,19 @@ interface FoodQueryProp{
 //Could be useful if I decide to use localStorage?
 
 export interface DailyTable{
-  id: string;
-  rows: Row[];
-  totals: Totals;
+  id: string; // This will be the date of creation, since it's the id, only one for each day should be able to exist.
+  rows: Row[]; 
+  //each row will be made of two numbers [[1, 3.4], [3 , 4.5]] being like id and serving size. 
+  //With that info the calorietotal column can be obtained by querying the id and retunring the calories column
+  totals: Totals; 
+  //Similar here, becomes redundant because we can add up all the calorietotal columns similar to the above.
+  //query table, return all rows
+  
 }
 
 interface Row{
   id: number;
-  name: string;
-  calories: number;
-  protein: number;
-  fat: number;
-  carb: number;
-  volume: number;
   servingsize: number;
-  calorietotal: number;
 }
 
 interface Totals{
@@ -53,7 +50,9 @@ interface Totals{
 function LoadTable(){
   //
 }
+
 function SaveTable(){
+  //save each rows food.id, table id = todaysdate
 
 }
 
@@ -73,6 +72,7 @@ function RemoveRow(){
   // ...table,
   // rows: [...updatedRows]  
 }
+
 function LogDisplay() {
   const foodQuery = useQuery({
     queryKey: ['foodData'],
@@ -82,8 +82,11 @@ function LogDisplay() {
     queryKey: ['tableLogs'],
     queryFn: fetchLogs
   })
+
+  
   const date = new Date()
   const todaysDate = date.toLocaleDateString()
+  
   const [currentTable, setCurrentTable] = useState('')
   const displayTable = logQuery.data?.find(table => table.id === currentTable)
 
@@ -91,6 +94,8 @@ function LogDisplay() {
     LoadTable() //setCurrentTable(table)
   },[])
 
+
+  //make this a based on the query
   let newTableTotals = {
     dailyProteinIntake: 0,
     dailyCarbIntake: 0,
@@ -98,11 +103,14 @@ function LogDisplay() {
     dailyCalorieIntake: 0
   }
 
+
+
   let rows = 1;
   
   
   return(
     <div className={styles.page}>
+      
       {logQuery.data?.map((element, index) =>(
        <select id={String(index)} onChange={(e) => setCurrentTable(e.target.value)}>{element.id}</select>
       )
@@ -113,6 +121,10 @@ function LogDisplay() {
           <InputRow props={{query: foodQuery}}/>) || <InputRow props={{query: foodQuery}}/>} 
       <ColumnTotals totals={displayTable?.totals || newTableTotals}/>
       </table>
+      <button>Add item</button>
+      <button>Save Table</button>
+
+
     </div>
   )
 }
@@ -120,13 +132,13 @@ function LogDisplay() {
 //todo make inputrow display at least min 1 row and able to display the loaded table rows.
 
 function ColumnTitles({date}: {date:string}){
-  const columnTitles = ['Consumable', 'Serving Size(g/mls)', 'Servings','Calories', 'Protein', 'Fat', 'Carb', 'Calorie Total']
+  const columnTitles = ['Consumable', 'Serving Size','Calories per serving size', 'Servings', 'Protein', 'Fat', 'Carb', 'Calorie Total']
   return(
   <thead>
     <p>{date}</p>
-    <tr className={styles.tableRow}>
+    <tr>
       {columnTitles.map(title =>
-        <td>{title}</td>
+        <th>{title}</th>
       )}
     </tr>
   </thead>
@@ -135,18 +147,18 @@ function ColumnTitles({date}: {date:string}){
 
 function ColumnTotals({totals} : {totals : Totals}){
   return(
-  <>
-  <tr className={styles.tableRow}>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>Protein Total: {totals.dailyProteinIntake}</td>
-    <td>Fat Total: {totals.dailyFatIntake}</td>
-    <td>Carb Total: {totals.dailyCarbIntake}</td>
-    <td></td>
-    <td>Daily Calorie Total: {totals.dailyCalorieIntake}</td>
-  </tr>
-  </>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Protein Total: {totals.dailyProteinIntake}</td>
+      <td>Fat Total: {totals.dailyFatIntake}</td>
+      <td>Carb Total: {totals.dailyCarbIntake}</td>
+      <td>Daily Calorie Total: {totals.dailyCalorieIntake}</td>
+    </tr>
+  </tfoot>
   )
 }
 
@@ -174,10 +186,6 @@ function CreateDailyTable(dailyLog: DailyTable){
   })
 }
 
-
-// const [entry, setEntry] = useState([])
-// const [selectedRow, setSelectedRow] = useState()
-
 function InputRow({props} : {props : FoodQueryProp}){
   const [foodName, setFoodName] = useState('')
   const foodItem = props.query.data?.find(food => food.name === foodName);
@@ -193,17 +201,20 @@ function InputRow({props} : {props : FoodQueryProp}){
     </datalist>
     
     <tr className={styles.tableRow}>
-      <td><input name='foodname' type='text' list='foodDatabase' onChange={(e) => setFoodName(e.target.value)}/></td>
-      {foodItem === undefined ? <td>Not Found </td>: (
+      <td><input name='foodname' type='text' list='foodDatabase' placeholder='Enter food/drink' onChange={(e) => setFoodName(e.target.value)}/></td>
+      {foodItem === undefined ? <td>Not Found</td>: (
         <React.Fragment key={foodItem?.id}>
           <td>{foodItem.volume}</td>
-          <td><input name='quantity' type='number' onChange={(e) => (setCalorieTotal(Math.round(foodItem.calories * e.target.valueAsNumber)))}/></td>
           <td>{foodItem.calories}</td>
+          <td><input name='quantity' type='number'  onChange={(e) => (setCalorieTotal(Math.round(foodItem.calories * e.target.valueAsNumber)))}/></td>
+          
           <td>{foodItem.protein}</td>
           <td>{foodItem.fat}</td>
           <td>{foodItem.carb}</td>
           <td>{calorieTotal}</td>
-        </React.Fragment> 
+          <button>Edit</button>
+          <button>Delete</button>
+        </React.Fragment>
       )}
     </tr>
     </>

@@ -71,19 +71,15 @@
   background-color: var(--secondary-bg);
 }
 
-@media screen and (max-width: 500px){
+/* @media screen and (max-width: 500px){
   .nav{
   background-image:linear-gradient(to right,#333, rgb(80, 78, 78));
   min-height:var(--heading-height);
-  /* box-shadow: 0px 5px #333; */
   display: grid;
-  /* grid-template-rows: auto; */
-  /* min-width: 100%; */
   position: absolute;
   }
 
   .menu-items{
-  /* position: relative; */
   min-width: 100%;
   }
 
@@ -102,21 +98,17 @@
     background-color: rgba(37, 102, 132, 0.5);
     border: none;
     box-shadow:0px 8px 16px 0px #333;
-    /* border: 1px solid #a73636; */
+
   }
 
   .tab-link {
-    /* display: inline-block; */
     padding: 5px 20px;
     background-color: rgb(153, 59, 59);
-    /* border: 1px solid #ccc;  */
-    /* min-height:clamp(0vh, 5vh, 10vh); */
-    /* max-width: 165px; */
     min-width: 100%;
     border: none;
     
   }
-}
+} */
 
 .navBar:has(#v2:checked) .old{
   display: none;

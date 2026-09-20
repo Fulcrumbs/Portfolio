@@ -1,0 +1,38 @@
+.carousel{
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    height: 50px;
+    width: inherit;
+    mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);/*I don't fully understand this, but I the linear gradient is setting the boundaries for the effect to take place.*/
+}
+.carouselContent{
+    display: flex;
+    gap: 1rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+}
+.primary{
+    animation: primaryScroll 20s infinite linear;
+}
+.copy{
+    animation: copyScroll 20s infinite linear;
+}
+@keyframes primaryScroll {
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0);
+    }
+}
+@keyframes copyScroll {
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(100%);
+    }
+}

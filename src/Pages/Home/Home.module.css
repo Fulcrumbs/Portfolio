@@ -6,32 +6,36 @@
     https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzJ4Z28xdmJtcHBieWd0OXdsdzBiYjl2djVubGN0NHg2N2V2ZzkxdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cjojgtiigyloyCg3r9/giphy.gif*/
     /* overflow-y: scroll; */
     /* filter: hue-rotate(225deg); */
-    height: var(--page-height);
+    /* height: var(--page-height); */
     display: grid;
     grid-template-areas:
-    "about pfp skills";
-    grid-template-columns: repeat(3, 1fr);
+    "pfp about" "skills";
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-auto-rows: max-content;
     gap: 20px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 30px 50px 30px 50px;
+    background: var(--background-image) center / cover no-repeat var(--main-bg); /*background-image position size repeat color*/
+    /* background-repeat: no-repeat;
+    background-size: cover; */
+    /* padding: 30px 50px; */
+    padding: 1rem clamp(1rem, 15vw, 15rem );
     font-family: var(--body-font);
+    /* background: var(--gradient-bg); */
+    /* background: var(--background-image);
+    background-color: var(--main-bg); */
     
-    background-color: var(--secondary-bg);
-    background-image: var(--background-image);
     color: var(--body-text-color);
     
 }
 
-.section{
+/* .section{
     overflow-y: hidden;
-}
+} */
 .section ul{
     backdrop-filter: invert(10%) ;
-    border-radius: 5%;
+    border-radius: 100vw;
     box-shadow: 0 0 4px 0px;
     margin: 8px;
-    padding: 20px;
+    padding: 2rem;
 }
 
 .page h1,h2{
@@ -41,24 +45,25 @@
 
 .title{
     
-    background-color: var(--accent-one);
+    background-color: oklch(from var(--accent-one) l c h / 0.5);
+    backdrop-filter: blur(12px);
     box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
     padding:15px;
-    margin: 0 0 3px 0;
+    /* margin: 0 0 3px 0; */
     
     text-align: center;
     
-    border-radius: 10px;
+    border-radius: 100vw;
 }
 
 .content{
-    min-height: 90%;
-    max-height: 90%;
-    color: var(--accent-two-text-color);
-    background-color: var(--accent-two);
+    /* min-height: 90%;
+    max-height: 90%; */
+    color: var(--body-text-color);
+    /* background-color: var(--accent-two); */
     /* box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638); */
     padding:15px;
-    border-radius: 5% 5% 5% 5%;
+    /* border-radius: 5% 5% 5% 5%; */
     line-height: 1.7em;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -67,6 +72,7 @@
 
 .about{
     grid-area: about;
+    text-align: left;
 }
 
 .skills{
@@ -83,23 +89,27 @@
     border-radius: 5% 5% 5% 5%;
 }
 
-.pfp{
+/* p img{
   grid-area: pfp;
   display: grid;
   padding:clamp(0.5rem, 1.5rem, 2rem);
-  justify-items: center;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
-  background-color: var(--accent-two);
+  justify-items: center; */
+  /* align-items: center; */
+  /* text-align: center; */
+  /* box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638); */
+  /* background-color: var(--accent-two); */
   /* background-image: var(--primary-color); */
   /* background-image:linear-gradient(45deg, #54874e, #659B5E); */
-  border-radius: 5% 5% 5% 5%;
+  /* border-radius: 5% 5% 5% 5%; */
   /* border: solid 3px rgba(36, 88, 56, 0.863); */
   /* clip-path: polygon(50% 25%, 75% 50%, 50% 75%, 25% 50%); */
+/* } */
+
+
+
+.landing{
+    height: calc(var(--page-height) - 1rem);
 }
-
-
 .pfp h1{
     font-family: 'julius sans one';
     font-weight: bold;
@@ -111,12 +121,19 @@
     padding:3px;
 }
 
-.pfp img{
-   border-radius: 50%;
+.profileImage{
+   
    height: 250px;
    width: 250px;
+   float: left;
+   border-radius: 50%;
+   shape-outside: circle(50%);
+   margin: 1rem;
+   
+   /* display: block; */
+   /* object-fit: cover; */
    /* justify-self: center; */
-   filter: drop-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.638)); 
+   /* filter: drop-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.638));  */
    
 }
 
@@ -129,24 +146,23 @@
     "about"
     "skills" 
     "project";
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    overflow-y: scroll;
-    height: calc(100vh - 5vh);
+    grid-auto-columns: 1fr;
+    /* overflow-y: scroll; */
+    height: var(--page-height);
     gap: 10px;
     padding: 10px;
     }
 
     .content{
-    min-height: 90%;
-    max-height: 90%;
+    /* min-height: 90%;
+    max-height: 90%; */
     color: var(--font);
     background-color: var(--accent-two);
     box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
     padding:15px;
-    border-radius: 5% 5% 5% 5%;
+    border-radius: 5%;
     line-height: 1.7em;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     scrollbar-width: none;
     /* -ms-overflow-style: none; */
     }

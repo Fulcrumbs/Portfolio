@@ -17,7 +17,9 @@
   --tertiary-color: rgba(124, 128, 155, 0.5);
 
   --main-bg: oklch(0.24 0.01 17);
-  --secondary-bg: oklch(from var(--main-bg) calc(l + 0.26) c h);
+  --secondary-bg: oklch(from var(--main-bg) calc(l + 0.1) c h);
+  --gradient-bg:linear-gradient(90deg, oklch(from var(--main-bg) l c h / 0.9 ), oklch(from var(--secondary-bg) l c h / 0.9));
+  --background-image: var(--gradient-bg), url('Assets/Images/cardboard-texture-2.jpg');
   --hover: oklch(from var(--main-bg) calc(l + 0.11) c h);
   --active: oklch(from var(--main-bg) calc(l + 0.15) c h);
   /* --background-color: rgba(82, 82, 82, 0.8); */
@@ -48,7 +50,9 @@ button{
 }
 
 :has(#green-theme-toggle:checked){
-  --background-image: url(https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg);
+
+  --background-image: var(--gradient-bg) , url('Assets/Images/starry.jpg');
+  /* --background-image: url(https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg); */
   /* --background-color: rgba(239, 239, 239, 0.8); */
   --main-bg: oklch(0.34 0.03 182);
   --accent-one: rgba(101, 155, 94, 0.9);
