@@ -1,6 +1,6 @@
 import "./TodoApp.css"; // Import the CSS file for styling
-import { useState, useMemo, useEffect } from "react";
-import { DndContext, DragOverlay, closestCenter, closestCorners, pointerWithin, rectIntersection, useSensor, useSensors, PointerSensor, useDndMonitor} from "@dnd-kit/core";
+import { useState, useEffect } from "react";
+import { DndContext, DragOverlay, rectIntersection, useSensor, useSensors, PointerSensor, useDndMonitor} from "@dnd-kit/core";
 // import Draggable from "./Components/Draggable";
 // import Droppable from "./Components/Droppable";
 // import { arrayMove } from "@dnd-kit/sortable";
@@ -124,21 +124,19 @@ export default function TodoApp() {
   
 
   return (
-    
     <>
-    <DndContext sensors={sensors} onDragOver={handleDragOver} collisionDetection={rectIntersection}>
-      <DragMonitor setColumns={setColumns} activeID={activeID} setActiveID={setActiveID}/>
-       <div className="Page"> 
-        <Column items={columns.Focus} columnName='Focus' activeID={activeID} columns={columns} setColumns={setColumns}/>
-        <Column items={columns.Incomplete} columnName='Incomplete' activeID={activeID} columns={columns} setColumns={setColumns}/>
-        <Column items={columns.Unstarted} columnName='Unstarted' activeID={activeID} columns={columns} setColumns={setColumns}/>   
-        <Column items={columns.Completed} columnName='Completed' activeID={activeID} columns={columns} setColumns={setColumns}/>
-      </div>
-      <DragOverlay>
-        {activeID ? <TaskCopy task={findTask(columns, activeID)}/> : null}
-      </DragOverlay>
-    </DndContext>
-    {/* <LoadButton setColumns={setColumns}/> */}
+      <DndContext sensors={sensors} onDragOver={handleDragOver} collisionDetection={rectIntersection}>
+        <DragMonitor setColumns={setColumns} activeID={activeID} setActiveID={setActiveID}/>
+        <div className="Page"> 
+          <Column items={columns.Focus} columnName='Focus' activeID={activeID} columns={columns} setColumns={setColumns}/>
+          <Column items={columns.Incomplete} columnName='Incomplete' activeID={activeID} columns={columns} setColumns={setColumns}/>
+          <Column items={columns.Unstarted} columnName='Unstarted' activeID={activeID} columns={columns} setColumns={setColumns}/>   
+          <Column items={columns.Completed} columnName='Completed' activeID={activeID} columns={columns} setColumns={setColumns}/>
+        </div>
+        <DragOverlay>
+          {activeID ? <TaskCopy task={findTask(columns, activeID)}/> : null}
+        </DragOverlay>
+      </DndContext>
     </>
   );
   
@@ -156,10 +154,6 @@ export default function TodoApp() {
     }
     return null;
   };
-  
-  // function handleDragStart(e){
-  //   setActiveID(e.active.id)
-  // };
 
   function handleDragOver(e){
     const {active, over} = e;

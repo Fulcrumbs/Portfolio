@@ -19,7 +19,7 @@
   --main-bg: oklch(0.24 0.01 17);
   --secondary-bg: oklch(from var(--main-bg) calc(l + 0.1) c h);
   --gradient-bg:linear-gradient(90deg, oklch(from var(--main-bg) l c h / 0.9 ), oklch(from var(--secondary-bg) l c h / 0.9));
-  --background-image: var(--gradient-bg), url('Assets/Images/cardboard-texture-2.jpg');
+  --background-image: var(--gradient-bg), url('/Assets/Images/cardboard-texture-2.jpg');
   --hover: oklch(from var(--main-bg) calc(l + 0.11) c h);
   --active: oklch(from var(--main-bg) calc(l + 0.15) c h);
   /* --background-color: rgba(82, 82, 82, 0.8); */

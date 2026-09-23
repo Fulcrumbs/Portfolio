@@ -2,31 +2,23 @@
 /* TodoApp.css */
 @font-face {
     font-family: 'osrsBold';
-    src: url(/Assets/Fonts/runescape_bold.ttf) format('truetype');
-    /*  runescape_uf.ttf*/
-    /* src\Assets\Fonts\ SYNNovaVFGX.ttf*/
+    src: url('/Assets/Fonts/runescape_bold.ttf') format('truetype');
 }
 @font-face {
     font-family: 'osrsSmall';
-    src: url(/Assets/Fonts/runescape_small.ttf) format('truetype');
-    /*  runescape_uf.ttf*/
-    /* src\Assets\Fonts\ SYNNovaVFGX.ttf*/
+    src: url('/Assets/Fonts/runescape_small.ttf') format('truetype');
 }
 @font-face {
     font-family: 'osrs';
-    src: url(/Assets/Fonts/runescape.ttf) format('truetype');
-    /*  runescape_uf.ttf*/
-    /* src\Assets\Fonts\ SYNNovaVFGX.ttf*/
+    src: url('/Assets/Fonts/runescape.ttf') format('truetype');
 }
 
-
 .Page {
-    font-size: 16px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1em; /*Adjust spacing between columns*/
-    height: calc(100vh - 5vh);
-    padding: 0.3125em 2.5em;
+    gap: 1rem;
+    height: var(--page-height);
+    padding: 0.5rem 2rem;
 }
 
 .todo-column {
@@ -34,10 +26,9 @@
     background-color: #332b21;
     padding: 1em;
     box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1);
-    /* min-height: 100%; */
 }
 
-.todo-column>h1{
+.todo-column > h1{
     font-family: 'osrsBold';
     font-weight: bold;
     color: #ee922d;
@@ -49,23 +40,14 @@
     min-height: 100%;
 } */
 
-.border1{
-    border-image-slice: 6 6 6 6;
-    border-image-width: 10px 10px 10px 10px;
-    border-image-outset: 0px 0px 0px 0px;
-    border-image-repeat: stretch stretch;
-    border-image-source: url(/Assets/Images/Border1.png); 
-    /*  (/Assets/Images/Border1.png)*/
+.borderOuter{
+    border-image: url('/Assets/Images/osrsBorderOuter.png') 6 / 10px;
 }
 
-.border2{
+.borderInner{
     padding: 10px;
-    border-image-slice: 6 6 6 6;
-    border-image-width: 10px 10px 10px 10px;
-    border-image-outset: 0px 0px 0px 0px;
-    border-image-repeat: stretch stretch;
-    border-image-source: url(/Assets/Images/Border2.png);
     border-style: solid;
+    border-image: url('/Assets/Images/osrsBorderInner.png') 6 / 10px;    
 }
 
 
@@ -85,58 +67,64 @@
     min-height: 18.75em;
     height: max-content;
     box-shadow: #0c0a08 3px 3px 6px 0px inset, rgba(23, 18, 18, 0.5) -3px -3px 6px 1px inset;
-    /* border: 2px solid red ; */
 }
 
 .osrsButton{
     font-family: 'osrsBold';
-    width:100%;
     font-size: 15px;
     border-radius: 2px;
     background-color: #554c41;
     border-color: #726451;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    /* outline: 2px dashed red; */
+}
+.todo-list .osrsButton{
+    width: 100%;
+}
+.osrsModal .osrsButton{
+    background-color: #9e8c76;
+    width:fit-content;
 }
 
-.osrsButtonSml{
-    font-family: 'osrsBold';
-    
-    font-size: 15px;
-    border-radius: 2px;
-    background-color: #554c41;
-    border-color: #726451;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    /* outline: 2px dashed red; */
-}
 
+/* .innerModal{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+} */
 .osrsExit{
-    position: absolute;
-    top: 15%;
-    right: 11%;
+    position: relative;
+    align-self: flex-end;
+    /* margin-bottom: auto; */
     height: 23px;
     width: 23px;
     border: none;
-    background-image: url(/Assets/Images/osrsExit.png);   
+    background-image: url('/Assets/Images/osrsExit.png');   
 }
-/*  /Images/osrsExit.png*/
+
 .osrsModal{
-    position: relative;
-    height: 100%;
-    width: auto;
-    aspect-ratio: 100/65.5;
-    padding: 2rem;
     display: flex;
     flex-direction: column;
+    position: relative;
+    width: clamp(400px, 100vw, 65.5vw);
+    aspect-ratio: 3/2;
+    padding: 7rem 8rem;
+    
     align-items: center;
     justify-content: center;
 
     font-family: 'osrs';
-    background-image:url(/Assets/Images/QuestScroll2.png);
+    background-image:url('/Assets/Images/QuestScroll2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: rgba(0, 0, 0, 0);
+
+    @media (width < 450px) {
+        background-image: url('/Assets/Images/QuestScroll2Rotated.png');
+        aspect-ratio: 1/2;
+        padding: 9rem 4rem;
+    }
 }
 .content{
     max-width: 80%;
@@ -149,6 +137,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
     top: 0;
     left: 0;
     right: 0;
@@ -161,91 +150,74 @@
     background-color: #b9a469;
     border: none;
     padding:10px;
-    border-image-slice: 6 6 6 6;
-    border-image-width: 5px 5px 5px 5px;
-    border-image-outset: 0px 0px 0px 0px;
-    border-image-repeat: stretch stretch;
-    border-image-source: url(/Assets/Images/Border1.png);
+    border-image: url('/Assets/Images/osrsBorderOuter.png') 6 / 5px;
 }
 
 .osrsModal > .viewTitle, .osrsModal > .editTitle{
     font-family: 'osrsBold';
-    width:300px;
-    font-size: 25px;
+    width:80%;
+    font-size: clamp(1rem, 1.5rem - 4vw, 2rem);
     text-align: center;
     border: none;
     padding:10px;
 }
+
 .osrsModal > .editTitle{
-    /* font-family: 'osrsBold';
-    width:300px;
-    font-size: 25px;
-    text-align: center;
-    border: none;
-    padding:10px; */
-    border-image-slice: 6 6 6 6;
-    border-image-width: 5px 5px 5px 5px;
-    border-image-outset: 0px 0px 0px 0px;
-    border-image-repeat: stretch stretch;
-    border-image-source: url(/Assets/Images/Border1.png);
-    /* background-color: #b9a469;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-image: url("../../../Assets/Images/osrsTitleBannerEmpty.png"); */
+    /* Condensing my border-image CSS into the shorthand, follows this order:
+    source | slice | width | outset | repeat */
+    border-image: url('/Assets/Images/osrsBorderOuter.png') 6 / 5px ;
+    
+    /* border-image-slice: 6;
+    border-image-width: 5px;
+    border-image-outset: 0px; //this is a default value, pointless delcaration 
+    border-image-repeat: stretch; //this too
+    border-image-source: url('/Assets/Images/Border1.png'); */
 }
 
 .titleBanner:focus{
     outline: none;
 }
+
 .osrsModal form{
     display: flex;
     flex-direction: column;
+    height: 70%;
+    /* width: 60%; */
 }
 
 .buttonrow{
     flex-direction: row;
 }
+
 textarea{
-    height: 12.5em;
-    width: 18.75em;
-    resize: none;
+   height: 60% ;
+    /* width: 90%; */
+    /* resize: none; */
+    @media (width < 450px){
+        height: 80%;
+    }
 }
 
-.osrsModal .osrsButtonSml{
-    background-color: #9e8c76;
-    width:fit-content;
-}
-
-
-@media (max-width:480px){
+/* @media (max-width:480px){
     
     .Page {
         display: grid;
-        grid-template-columns: repeat(4, 100vw);
-        gap: 16px;
-        height: calc(100vh - 5vh);
+        grid-template-columns: repeat(4, 100%);
+        grid-auto-columns: max-content;
+        gap: 1rem;
+        height: var(--page-height);
         padding: 5px 0px;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-
-    }    */
-    .page{
-        display: grid;
-        grid-template-columns: repeat(4, 100vw);
-
         overflow-y: scroll;
-
+        scroll-snap-type: y mandatory;
     }
     .osrsModal{
-        max-width: 100vw;
         font-size: 12em;
     }
     .todo-column{
         display: inline-block;
         overflow-y: scroll;
-        width:100em;
     }
-}
+} */
 
 /* @media (max-width: 811px){
     

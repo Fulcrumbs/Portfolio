@@ -8,7 +8,7 @@ export default function ModalFunction({content, modalState}){
     };
 
     return(
-    <>
+   <> 
         <Modal className='osrsModal' overlayClassName='osrsModalOverlay' isOpen={isOpen} onRequestClose={closeModal}>
             <button className='osrsExit' onClick={closeModal}></button>
             {content}

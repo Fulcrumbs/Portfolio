@@ -86,23 +86,21 @@ export default function TodoView({columns, setColumns, task, modalState}){
         <>
             <input className="editTitle" autoComplete="off" type='text' onChange={handleChange} name='Title' id="Title" placeholder="Title" maxLength={30} value={editedTodo.Title}></input>
             <textarea type='text' autoComplete="off" onChange={handleChange} name='Desc' id='Desc' placeholder="Description" value={editedTodo.Desc}></textarea>
-            {/* <h3>Start Date: {task.GoalStart} - Finish by: {task.Deadline}</h3> */}
+
             <div className="buttonrow">
-            <button className='osrsButtonSml' onClick={editTask}>Confirm Edit</button>
-            <button className='osrsButtonSml' onClick={() => {setEdit(false)}}>Cancel Edit</button>
-            <button className='osrsButtonSml' onClick={() => deleteTask(task, columns, setColumns)}>Delete Task</button>
+                <button className='osrsButton' onClick={editTask}>Confirm Edit</button>
+                <button className='osrsButton' onClick={() => {setEdit(false)}}>Cancel Edit</button>
+                <button className='osrsButton' onClick={() => deleteTask(task, columns, setColumns)}>Delete Task</button>
             </div>
         </>
     )
    // &#10060;
    const content = (
         <div className="content">
-        <h2 className="viewTitle">Title: {task.Title}</h2>
-        <p>Description: {task.Desc}</p>
-        {/* <h3>GoalStart: {task.GoalStart}</h3> */}
-        <h3>Deadline: {task.Deadline}</h3>
-        
-        <button className="osrsButtonSml" onClick={() => setEdit(true)}>Edit Task</button>
+            <h2 className="viewTitle">Title: {task.Title}</h2>
+            <p>Description: {task.Desc}</p>
+            <h3>Deadline: {task.Deadline}</h3>
+            <button className="osrsButton" onClick={() => setEdit(true)}>Edit Task</button>
         </div>
     )
 return(

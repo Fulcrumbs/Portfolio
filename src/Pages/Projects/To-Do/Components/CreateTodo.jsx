@@ -21,7 +21,7 @@ export default function CreateTodo({columns, setColumns}){
             <input type='text' autoComplete="off" onChange={handleChange} name='Title' id="Title" placeholder="Title" maxLength={30}></input>
             <textarea type='text' autoComplete="off" onChange={handleChange} name='Desc' id='Desc' placeholder="Description"></textarea>
             <input type='date' onChange={handleChange} name='Deadline' id='Deadline'/>
-            <button className="osrsButtonSml">Create</button>
+            <button className="osrsButton">Create</button>
         </form>
         </>
     );
@@ -61,7 +61,7 @@ export default function CreateTodo({columns, setColumns}){
 
     return(
         <>
-        <button className='osrsButtonSml' onClick={() => setIsOpen(true)}>Create Task</button>
+        <button className='osrsButton' onClick={() => setIsOpen(true)}>Create Task</button>
         <ModalFunction content={content} modalState={{isOpen: isOpen, setIsOpen: setIsOpen}} className='add'/> 
         </>
     )

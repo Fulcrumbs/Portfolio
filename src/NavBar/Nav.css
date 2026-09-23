@@ -2,6 +2,7 @@
 .navpage{
   background-color: var(--main-bg);
   color: var(--body-text-color);
+  position: relative;
 }
 
 .navBar{
@@ -68,7 +69,8 @@
 
 .Page-Container{
   overflow-y: auto;
-  background-color: var(--secondary-bg);
+  background: var(--background-image) center / cover no-repeat var(--main-bg);
+  /* background-color: var(--secondary-bg); */
 }
 
 /* @media screen and (max-width: 500px){
