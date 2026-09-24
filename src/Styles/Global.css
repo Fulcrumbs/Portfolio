@@ -1,3 +1,23 @@
+@font-face {
+  font-family: 'Archivo Narrow';
+  src: url('/Assets/Fonts/ArchivoNarrow.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Archivo Narrow';
+  src: url('/Assets/Fonts/ArchivoNarrow-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Julius Sans One';
+  src: url('/Assets/Fonts/JuliusSansOne-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
 .oldroot{
   --background-color: rgba(239, 239, 239, 0.8); /*#333*/
   --font: rgba(20, 28, 26, 1);
@@ -35,9 +55,9 @@
 
   --heading-height: 38px;
   --page-height: calc(100vh - var(--heading-height));
-  --body-font: Archivo Narrow;
+  --body-font: 'Archivo Narrow';
   --body-text-color: contrast-color(var(--main-bg));
-  --title-font: julius Sans One;
+  --title-font: 'Julius Sans One';
   /* --title-color: rgb(255, 255, 255); */
   
   font-size: 1rem;
@@ -50,8 +70,8 @@ button{
 }
 
 :has(#green-theme-toggle:checked){
-
-  --background-image: var(--gradient-bg) , url('Assets/Images/starry.jpg');
+  --gradient-bg:linear-gradient(90deg, oklch(from var(--main-bg) l c h / 0.4 ), oklch(from var(--secondary-bg) l c h / 0.4));
+  --background-image: var(--gradient-bg), url('https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg');
   /* --background-image: url(https://unblast.com/wp-content/uploads/2021/01/Space-Background-Image-10.jpg); */
   /* --background-color: rgba(239, 239, 239, 0.8); */
   --main-bg: oklch(0.34 0.03 182);
@@ -62,8 +82,10 @@ button{
 }
 
 :has(#corporate:checked){
-
-  --background-color: rgba(2, 43, 58, 1);
+  --main-bg: oklch(28.242% 0.04554 242.094);
+  --gradient-bg:linear-gradient(90deg, oklch(from var(--main-bg) l c h / 0.8), oklch(from var(--secondary-bg) l c h / 0.8));
+  --background-image: var(--gradient-bg), url('/Assets/Images/digital-background.jpg');
+  /* --background-color: oklch(27.039% 0.05099 228.107); */
   --accent-one: #1f7a8c;
   --accent-two: rgba(191, 219, 247, 1);
   --heading:#E5EBEA;

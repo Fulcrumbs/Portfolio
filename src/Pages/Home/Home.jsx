@@ -11,7 +11,7 @@ function ResumePage () {
                     I appreciate your visit to my portfolio site. It's a work in progress and I make iterations every now and again.
                 </p><br/>
                 <p>
-                    I love organisation, and making the functional applications.
+                    I love organisation, and making functional applications.
                     However, CSS is definitely not a strong suit for me, 90% of the time I've spent on my applications is spent on CSS haha!<br/> 
                     I can spend hours trying to work out how to move something to a specific area, how to
                     resize something consistently across screen sizes, what kind of colours I should use and why something is off by ONE pixel.            

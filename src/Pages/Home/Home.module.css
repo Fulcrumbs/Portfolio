@@ -112,7 +112,7 @@
     height: calc((var(--page-height)/2 )- 1rem);
 }
 .pfp h1{
-    font-family: 'julius sans one';
+    font-family: 'Julius sans one';
     font-weight: bold;
     font-size: clamp(1.5rem, calc(1.5rem + 2vw), 2vw);
     color: var(--font);
