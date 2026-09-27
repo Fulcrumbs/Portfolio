@@ -103,7 +103,7 @@ a{
   text-decoration: none;  /*Remove underline from links*/
 }
 
-html, body, h1, p, pre{
+html, body, h1, h2, h3, p, pre{
   margin:0;
   padding:0;
 }

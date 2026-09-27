@@ -2,6 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import {CSS} from '@dnd-kit/utilities'
 import { useState } from 'react';
 import TodoView from './TodoView';
+import styles from "../TodoApp.module.css"
 
 export default function Sortable(props){
     const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function Sortable(props){
     
     return(
         <>
-        <button onClick={() => setIsOpen(true)} className="osrsButton" ref={setNodeRef} style={style} {...listeners} {...attributes}>
+        <button onClick={() => setIsOpen(true)} className={styles.osrsButton} ref={setNodeRef} style={style} {...listeners} {...attributes}>
            {props.task.Title}
         </button>
         <TodoView columns={props.columns} setColumns={props.setColumns} task={props.task} modalState={{isOpen:isOpen, setIsOpen:setIsOpen}}/>

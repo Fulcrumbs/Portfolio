@@ -1,6 +1,7 @@
 import { useState } from "react";
 import save from "../Functions/Save";
 import ModalFunction from "./Modal";
+import styles from "../TodoApp.module.css"
 
 export default function CreateTodo({columns, setColumns}){
     // const {columns, setColumns} = columnState;
@@ -21,7 +22,7 @@ export default function CreateTodo({columns, setColumns}){
             <input type='text' autoComplete="off" onChange={handleChange} name='Title' id="Title" placeholder="Title" maxLength={30}></input>
             <textarea type='text' autoComplete="off" onChange={handleChange} name='Desc' id='Desc' placeholder="Description"></textarea>
             <input type='date' onChange={handleChange} name='Deadline' id='Deadline'/>
-            <button className="osrsButton">Create</button>
+            <button className={styles.osrsButton}>Create</button>
         </form>
         </>
     );
@@ -61,7 +62,7 @@ export default function CreateTodo({columns, setColumns}){
 
     return(
         <>
-        <button className='osrsButton' onClick={() => setIsOpen(true)}>Create Task</button>
+        <button className={styles.osrsButton} onClick={() => setIsOpen(true)}>Create Task</button>
         <ModalFunction content={content} modalState={{isOpen: isOpen, setIsOpen: setIsOpen}} className='add'/> 
         </>
     )

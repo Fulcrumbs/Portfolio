@@ -7,15 +7,21 @@ function ResumePage () {
             
             <div className={styles.landing}>
                 <h1>Welcome, Thanks for visiting!</h1>
+                <br/>
                 <p>
-                    I appreciate your visit to my portfolio site. It's a work in progress and I make iterations every now and again.
-                </p><br/>
+                    I appreciate your visit to my portfolio site. I'm a new father working on building up my proficency in a multitude of software development 
+                    areas. It's a really interesting field that I love learning about. 
+                    The site is a work in progress and I make iterations frequently but between reading theory I like to implement the somewhat messy practical
+                    here. Just getting the reps in and prettying it up over time.
+                </p>
                 <p>
-                    I love organisation, and making functional applications.
-                    However, CSS is definitely not a strong suit for me, 90% of the time I've spent on my applications is spent on CSS haha!<br/> 
-                    I can spend hours trying to work out how to move something to a specific area, how to
-                    resize something consistently across screen sizes, what kind of colours I should use and why something is off by ONE pixel.            
-                </p><br/>
+                    I love being organised and making functional applications to assist with that, helps solve a problem or is just interesting!<br/>
+                    CSS not a strong interest for me
+                    BUT... Spending hours trying to work out how to move something to a specific area, how to
+                    resize something consistently across screen sizes, what kind of colours I should use and why something is off by ONE pixel has 
+                    made for an intense learning experience and I'm definitely getting better at it now that I'm trying to prepare the site for show.        
+                </p>
+                <br/>
                 <p>
                     Currently working on making my site more responsive for mobile, as I've only recently stumbled upon the concept of 
                     Mobile First Development and it spoke a lot of sense to me. 
@@ -46,32 +52,69 @@ function ResumePage () {
                 </p>
             </div>
             <div className={styles.section} >
-                <h2 className={styles.title}>Skills & Experience</h2>
+                <h2 className={styles.title}>Skills & Projects</h2>
                 <p className={`${styles.skills} ${styles.content}`}>
                     
                     Here are some of the languages, libraries, tools and frameworks I've gained experience and understanding in so far:<br/>
                     {`(Yes, I sought out as many svg icons as I could so I too could do the cool scrolling thing (Marquee? Who granted that title?) that everybody does to show off the tech they use)`}
                 </p>
                 <CarouselScroll/>
-                <ul>
+                <br/>
+                <p>And here are some of the projects utilizing some of those mysterious symbols.</p>
+                <div className={styles.projectCards}>
+            
+                    <div className={styles.card}>
+                        <a href="TodoApp/TodoApp.jsx">
+                            <img src={'/Assets/Images/Screenshot 2026-09-26 190236.jpg'}/>
+                            <h3>Kanban Style Task Manager</h3>
+                        </a>
+                        <p>
+                            This is the most complete project I have. I wanted to have at least one project that I would consider
+                            'good enough'-complete. Not forever but good enough to move back {`(or forward)`} to some other projects.<br/>
+                            <ul>
+                            <li>Stylised in tribute to one of my favourite games of all time.</li>
+                            <li>Utilises the users localstorage to store and recall tasks.</li>
+                            <li>Uses dnd-kit to allow users to prioritize and arrange them into columns.</li>
+                            <li>Allows the ability to rearrange tasks in their columns through defined droppable areas and sortable components.</li>
+                            <li>Basic CRUD operations on tasks.</li>
+                            </ul>
+                        </p>
+                    </div>
+
+
+                    {/* <div className={styles.card}>
+                        <a href="TodoApp/TodoApp.jsx">
+                            <img src={'/Assets/Images/Screenshot 2026-09-26 190236.jpg'}/>
+                        </a>
+                        <h3>Kanban Style Task Manager</h3>
+                    </div>
+                    <div className={styles.card}>
+                        <h3>Kanban Style Task Manager</h3>
+                        <a href="TodoApp/TodoApp.jsx">
+                            <img src={'/Assets/Images/Screenshot 2026-09-26 190236.jpg'}/>
+                        </a>
+                        
+                    </div> */}
+                </div>
+                
+                {/* <ul>
                     <b>Languages:</b>
                     <ol>
-                        <li>JavaScript has been my main focus as Web Development has been great immediate and visual feedback during development.</li>
-                        <li>C# was the main language utilized during my studies and while I don't focus on it much currently, I have some experience with it.</li>
-                        <li>Python was my second language I began using as its popularity and famed ease of use were appealing selling points to a beginner such as myself.</li>
+                        <li>As I've been enjoying Web Development, I've become very familar with HTML, CSS and JavaScript and expanding into TypeScript.</li>
+                        <li>C# was the first and main language utilized during my studies.</li>
+                        <li>Python was the second language I began learning as part of my studies.</li>
                     </ol>
-                </ul>
-                <ul>
                     <b>Libraries:</b>
                     <ol>
                         <li>React has been my JavaScript library of choice.</li>
-
+                        <li>dnd-kit </li>
                     </ol>
-                </ul>
-                    
-                    <li>Node.js and Express for backend and server capabilities.</li>
-                    <li>Database: PostgreSQL - Utilised within my mock Booking application</li>   
-                
+                    <b>Backend</b>
+                    <ol>
+                        <li>Node.js and Express for server capabilities.</li>
+                        <li>PostgreSQL is my Database of choice as Render is my web host of choice and offers native management for Postgres</li>
+                    </ol>   
+                </ul> */}
             </div>
             {/* <div className="project">
                 <h2>Projects</h2>

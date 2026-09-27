@@ -14,7 +14,7 @@
     grid-auto-rows: max-content;
     gap: 20px;
      /*background-image position size repeat color*/
-    height: 100vh;
+    height: var(--page-height);
     /* background-repeat: no-repeat;
     background-size: cover; */
     /* padding: 30px 50px; */
@@ -69,6 +69,37 @@
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+.projectCards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    /* flex: 1; */
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.card{
+   display: flex;
+   gap: 1rem;
+}
+.card a{
+    max-width: 50%;
+}
+.card h3{
+    background: oklch(from var(--accent-one) calc(l + 0.1) c h / 0.6);
+    border-radius: 100vw;
+    font-family: 'Julius Sans One';
+    text-align: center;
+}
+.projectCards img{
+    filter: grayscale(0.4);
+    /* object-fit:contain;
+    object-position: center; */
+    width: 100%;
+    
+    border-radius: 10px; 
+    border: var(--accent-two) solid;
 }
 
 .about{

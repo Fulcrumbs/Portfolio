@@ -1,6 +1,7 @@
 import ModalFunction from "./Modal";
 import { useState } from "react";
 import save from "../Functions/Save";
+import styles from "../TodoApp.module.css"
 
 /**
  * This function will be for the Sortable components, which are buttons, that when clicked, I guess this function will populate the
@@ -77,33 +78,36 @@ export default function TodoView({columns, setColumns, task, modalState}){
             save('todoList', updatedColumns);
             return
         }
-        window.alert('Deletion cancelled')
+        window.alert('Edit cancelled')
         setEdit(false)
         return
     }
 
     const editContent = (
         <>
-            <input className="editTitle" autoComplete="off" type='text' onChange={handleChange} name='Title' id="Title" placeholder="Title" maxLength={30} value={editedTodo.Title}></input>
+            <input className={styles.editTitle} autoComplete="off" type='text' onChange={handleChange} name='Title' id="Title" placeholder="Title" maxLength={30} value={editedTodo.Title}></input>
             <textarea type='text' autoComplete="off" onChange={handleChange} name='Desc' id='Desc' placeholder="Description" value={editedTodo.Desc}></textarea>
 
-            <div className="buttonrow">
-                <button className='osrsButton' onClick={editTask}>Confirm Edit</button>
-                <button className='osrsButton' onClick={() => {setEdit(false)}}>Cancel Edit</button>
-                <button className='osrsButton' onClick={() => deleteTask(task, columns, setColumns)}>Delete Task</button>
+            <div className={styles.buttonrow}>
+                <button className={styles.osrsButton} onClick={editTask}>Confirm</button>
+                <button className={styles.osrsButton} onClick={() => {setEdit(false)}}>Cancel</button>
+                
             </div>
         </>
     )
    // &#10060;
    const content = (
-        <div className="content">
-            <h2 className="viewTitle">Title: {task.Title}</h2>
+        <div className={styles.content}>
+            <h2 className={styles.viewTitle}>{task.Title}</h2>
             <p>Description: {task.Desc}</p>
             <h3>Deadline: {task.Deadline}</h3>
-            <button className="osrsButton" onClick={() => setEdit(true)}>Edit Task</button>
+            <div className={styles.buttonrow}>
+                <button className={styles.osrsButton} onClick={() => setEdit(true)}>Edit Task</button>
+                <button className={styles.osrsButton} onClick={() => deleteTask(task, columns, setColumns)}>Delete Task</button>
+            </div>
         </div>
     )
 return(
-    <ModalFunction content={edit ? editContent: content} modalState={modalState}/>
+    <ModalFunction content={edit ? editContent : content} modalState={modalState}/>
 )
 };

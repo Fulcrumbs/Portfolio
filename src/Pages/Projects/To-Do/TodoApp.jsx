@@ -1,4 +1,4 @@
-import "./TodoApp.css"; // Import the CSS file for styling
+import styles from "./TodoApp.module.css"; // Import the CSS file for styling
 import { useState, useEffect } from "react";
 import { DndContext, DragOverlay, rectIntersection, useSensor, useSensors, PointerSensor, useDndMonitor} from "@dnd-kit/core";
 // import Draggable from "./Components/Draggable";
@@ -127,14 +127,14 @@ export default function TodoApp() {
     <>
       <DndContext sensors={sensors} onDragOver={handleDragOver} collisionDetection={rectIntersection}>
         <DragMonitor setColumns={setColumns} activeID={activeID} setActiveID={setActiveID}/>
-        <div className="Page"> 
+        <div className={styles.Page}> 
           <Column items={columns.Focus} columnName='Focus' activeID={activeID} columns={columns} setColumns={setColumns}/>
           <Column items={columns.Incomplete} columnName='Incomplete' activeID={activeID} columns={columns} setColumns={setColumns}/>
           <Column items={columns.Unstarted} columnName='Unstarted' activeID={activeID} columns={columns} setColumns={setColumns}/>   
           <Column items={columns.Completed} columnName='Completed' activeID={activeID} columns={columns} setColumns={setColumns}/>
         </div>
         <DragOverlay>
-          {activeID ? <TaskCopy task={findTask(columns, activeID)}/> : null}
+          {activeID ? <TaskCopy className={styles.taskCopy} task={findTask(columns, activeID)}/> : null}
         </DragOverlay>
       </DndContext>
     </>
@@ -143,7 +143,7 @@ export default function TodoApp() {
   function TaskCopy({task}){
     if(!task) return null;
     return(
-      <button className="osrsButton">{task.Title}</button>
+      <button className={`${styles.osrsButton} ${styles.dndCopy}`}>{task.Title}</button>
     )
   };
 

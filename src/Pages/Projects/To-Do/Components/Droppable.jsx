@@ -1,4 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
+import styles from "../TodoApp.module.css"
 
 export default function Droppable(props){
     const {isOver, setNodeRef} = useDroppable({
@@ -8,7 +9,7 @@ export default function Droppable(props){
         color: isOver ? 'green' : undefined,
     };
     return(
-        <div className='droparea' ref={setNodeRef} style={style}> 
+        <div className={styles.droparea} ref={setNodeRef} style={style}> 
             {props.children}
         </div>
     );
