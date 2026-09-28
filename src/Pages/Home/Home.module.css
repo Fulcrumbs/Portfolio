@@ -31,13 +31,13 @@
 /* .section{
     overflow-y: hidden;
 } */
-.section ul{
+/* .section ul{
     backdrop-filter: invert(10%) ;
-    /* border-radius: 100vw; */
+    
     box-shadow: 0 0 4px 0px;
     margin: 8px;
     padding: 2rem;
-}
+} */
 
 .page h1,h2{
     color:var(--accent-one-text-color);
@@ -82,6 +82,11 @@
 .card{
    display: flex;
    gap: 1rem;
+   backdrop-filter: invert(10%);
+    /* box-shadow: 0 0 4px 0px; */
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 5px;
 }
 .card a{
     max-width: 50%;
@@ -155,8 +160,8 @@
 
 .profileImage{
    
-   height: 15rem;
-   width: 15rem;
+   width: clamp(1rem, 10rem, 15rem);
+   aspect-ratio: 1;
    float: left;
    border-radius: 50%;
    shape-outside: circle(50%);

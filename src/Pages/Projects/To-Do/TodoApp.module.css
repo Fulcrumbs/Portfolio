@@ -77,6 +77,7 @@
     width: fit-content;
     background-color: #554c41;
     border-color: #726451;
+    color: black;
 }
 
 .droparea .osrsButton, .dndCopy{
