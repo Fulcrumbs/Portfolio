@@ -116,10 +116,10 @@ function LogDisplay() {
       )
     )}
       <table id={displayTable?.id || todaysDate}>
-      <ColumnTitles date={displayTable?.id || todaysDate}/>
-        {displayTable?.rows.map((row, index) => 
-          <InputRow props={{query: foodQuery}}/>) || <InputRow props={{query: foodQuery}}/>} 
-      <ColumnTotals totals={displayTable?.totals || newTableTotals}/>
+        <ColumnTitles date={displayTable?.id || todaysDate}/>
+          {displayTable?.rows.map((row, index) => 
+            <InputRow props={{query: foodQuery}}/>) || <InputRow props={{query: foodQuery}}/>} 
+        <ColumnTotals totals={displayTable?.totals || newTableTotals}/>
       </table>
       <button>Add item</button>
       <button>Save Table</button>
@@ -165,7 +165,10 @@ function ColumnTotals({totals} : {totals : Totals}){
 function consumableInfo({item}: {item: Food} ){
   //This is going to replace my current layout to make the table more succinct, if users are curious about how much an individual item contains.
   return(
+    <>
+    <input popover=''>Info</input>
     <p> Each {item.name} contains: {item.calories} Calories, {item.protein}gs of Protein, etc etc</p>
+  </>
   )
 }
 

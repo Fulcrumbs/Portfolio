@@ -1,6 +1,6 @@
 
 .navpage{
-  background-color: var(--main-bg);
+  background-color: var(--base-bg);
   color: var(--body-text-color);
   position: relative;
 }
@@ -29,7 +29,7 @@
 
 .menu-items{
   position: relative;
-  background-color: var(--main-bg);
+  background-color: var(--base-bg);
   /* border: rgb(196, 196, 196) 1px solid; */
   justify-content: left;
 }
@@ -38,6 +38,10 @@
   display: none;
   position: relative;
   z-index: 10;
+}
+
+.sublist{
+  background: var(--secondary-bg);
 }
 
 .mainlist{
@@ -63,13 +67,13 @@
 
  
 
-.tab-link:active {
+/* .tab-link:active {
   background-color: lime; 
-}
+} */
 
 .Page-Container{
   overflow-y: auto;
-  background: var(--background-image) center / cover no-repeat var(--main-bg);
+  background: var(--background-image) center / cover no-repeat var(--base-bg);
   /* background-color: var(--secondary-bg); */
 }
 
@@ -273,7 +277,7 @@
   }
 
   .tab-link:active {
-    background-color: var(--active);; 
+    background-color: var(--active);
   }
 }
 

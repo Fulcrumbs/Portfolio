@@ -8,11 +8,11 @@
     /* filter: hue-rotate(225deg); */
     /* height: var(--page-height); */
     display: grid;
-    grid-template-areas:
-    "pfp about" "skills";
+    /* grid-template-areas:
+    "pfp about" "skills"; */
     /* grid-template-columns: repeat(3, 1fr); */
     grid-auto-rows: max-content;
-    gap: 20px;
+    gap: 1rem;
      /*background-image position size repeat color*/
     height: var(--page-height);
     /* background-repeat: no-repeat;
@@ -23,7 +23,7 @@
     /* background: var(--gradient-bg); */
     /* background: var(--background-image);
     background-color: var(--main-bg); */
-    
+    font-size: var(--font-size);
     color: var(--body-text-color);
     
 }
@@ -67,8 +67,8 @@
     /* border-radius: 5% 5% 5% 5%; */
     line-height: 1.7em;
     overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    /* scrollbar-width: none;
+    -ms-overflow-style: none; */
 }
 
 .projectCards{
@@ -80,36 +80,88 @@
 }
 
 .card{
-   display: flex;
-   gap: 1rem;
-   backdrop-filter: invert(10%);
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+    background: oklch(from var(--accent-one) l c h / 0.5);
+    backdrop-filter: blur(3px);
+    /* backdrop-filter: invert(10%); */
     /* box-shadow: 0 0 4px 0px; */
     border-radius: 10px;
-    border: 1px solid;
-    padding: 5px;
+    /* border: var(--tertiary-hue) 2px solid; */
+    padding: 0.5rem;
+    /* max-width: 33%; */
+    border: 1px solid var(--accent-two);
+    text-wrap: wrap;
+    box-shadow: 2px 5px 0.5rem rgba(0, 0, 0, 0.6);
+
+    @media (width < 600px){
+        grid-auto-flow: row;
+        
+    }
 }
-.card a{
-    max-width: 50%;
+
+.imageOverlayWrapper{
+    display: grid;
+    place-items: center;
+    border-radius: 10px; 
+    border: 1px var(--accent-two) solid;
+    overflow: hidden;
+    min-width: 50%;
+    /* padding:5px; */
+    /* box-shadow: inset 0 5px 5px rgba(0, 0, 0, 0.6) ; */
+    /* border-image: linear-gradient(rgba(116, 114, 114, 0) , rgba(0, 0, 0, 0.3)) 1 fill; */
 }
-.card h3{
-    background: oklch(from var(--accent-one) calc(l + 0.1) c h / 0.6);
-    border-radius: 100vw;
+
+.imageOverlayWrapper > * {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+}
+
+.card:hover .projectPreview{
+    transform: scale(1.05);
+    filter: grayscale(0.2); 
+    /* animation-duration: 0.5s; */
+} 
+.projectPreview{
+    /* object-fit: none; */
+    
+    /* min-width:400px; */
+    /* height: 200px; */
+    /* mask-image: linear-gradient(oklch(0 0 0 / 1) , oklch(0 0 0 / 0.6)); */
+    /* mask-size: 40px;
+    mask-position: center; */
+    
+    /* object-position: center; */
+    /* min-width: 50%; */
+    filter: grayscale(1);
+    object-fit: cover;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* .cardOverlay{
+    z-index: 1;
+    background-image: linear-gradient(rgba(195, 195, 195, 0) 80%, rgba(255, 255, 255, 0.084) );
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+   height: 100%;
+} */
+.imageOverlayWrapper > h3{
+    /* background: oklch(from var(--accent-one) calc(l + 0.1) c h / 0.6);
+    border-radius: 100vw; */
     font-family: 'Julius Sans One';
     text-align: center;
+    z-index: 3;
 }
-.projectCards img{
-    filter: grayscale(0.4);
-    /* object-fit:contain;
-    object-position: center; */
-    width: 100%;
-    
-    border-radius: 10px; 
-    border: var(--accent-two) solid;
-}
+
+
 
 .about{
     grid-area: about;
-    text-align: left;
+    /* text-align: left; */
 }
 
 .skills{
@@ -119,7 +171,7 @@
 .project{
     grid-area: project;
     overflow-y: scroll;
-    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.638);
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.6);
     padding: 15px;
     color: #333;
     background-color: beige;
@@ -163,14 +215,15 @@
    width: clamp(1rem, 10rem, 15rem);
    aspect-ratio: 1;
    float: left;
-   border-radius: 50%;
+   border: var(--tertiary-hue) 1px solid;
+   border-radius: 0 50% 50% 0;
    shape-outside: circle(50%);
    margin: 1rem;
    
    /* display: block; */
    /* object-fit: cover; */
    /* justify-self: center; */
-   /* filter: drop-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.638));  */
+   filter: drop-shadow(0 0.125em 0.25em rgba(0, 0, 0, 0.638)); 
    
 }
 

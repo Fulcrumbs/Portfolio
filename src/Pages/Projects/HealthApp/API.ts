@@ -7,7 +7,7 @@ const api = axios.create({
 
 export const fetchFood = async(): Promise<Food[]> => {
     try{
-    const response = await api.get(`/api/foodDatabase`);
+    const response = await api.get(`/api/foodList`);
     return Array.isArray(response.data) 
         ? response.data
         : [];

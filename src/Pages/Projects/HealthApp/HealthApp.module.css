@@ -1,9 +1,14 @@
 .page{
     height: var(--page-height);
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: max-content;
+    
+    /* grid-template-columns: repeat(8, 1fr); */
+    /* grid-template-rows: max-content; */
     font-family: var(--body-font);
+    color: var(--body-text-color);
+    place-items: center;
+    /* grid-auto-flow: column; */
+    padding:1rem clamp(1rem, 15vw, 15rem );
+    /* justify-items: center; */
 }
 
 table{
@@ -20,11 +25,11 @@ td,th{
     padding: 5px;
 }
 
-th{
+th, input, input::placeholder{
     background-color: var(--accent-one);
     color: var(--accent-one-text-color);
 }
-td {
+td, button {
     background-color: var(--accent-two);
     color: var(--accent-two-text-color);
 }

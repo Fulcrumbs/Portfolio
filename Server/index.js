@@ -147,7 +147,7 @@ app.listen(port,() => {
 });
 
 
-app.get(`/api/foodDatabase`, async(req, res)=> {
+app.get(`/api/foodList`, async(req, res)=> {
     try{
         const result = await health.query(
             'SELECT * FROM dietary_values'
@@ -168,6 +168,25 @@ app.get(`/api/foodDatabase`, async(req, res)=> {
         console.error(error)
         res.status(500).send('server error')
     }
+})
+
+app.get('/api/userLogs', async(req, res) => {
+    try{
+        const {id} = req.body
+        const result = await health.query(
+            'SELECT * FROM logs WHERE user_id = $1' , id
+        )
+        const rows = Array.isArray(result.rows) ? result.rows : [];
+        res.json(rows.map(row => ({
+            log: row.log_id,
+            date: row.log_date
+        })
+    ))
+   }
+   catch(error){
+    console.error(error);
+    res.status(500).send('Server Error')
+   }
 })
 
 //Next time I commit staged changes, I gotta do this: 

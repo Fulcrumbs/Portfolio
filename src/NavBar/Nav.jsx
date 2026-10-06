@@ -44,18 +44,18 @@ const menulinks = [
     },
     { Path: "/LearningCourses/*",
       Element: <Home/>, //CourseRoutes
-      Label: "Learning Material",
-      SmallLabel: ['▼', '▲'],
+      Label: "Guided Projects",
+      SmallLabel: ['+', '-'], //'▼', '▲'
       Submenu: [
           {Path:"TicTacToe/TicTacToe.jsx", Element: <Board/>, Label: "React Tic-Tac-Toe Tutorial"},
           // {Path:"ReactCourse/ReactCourse.jsx", Element: <ReactCourse />, Label:"Beginner's React Course 2022"},
-          {Path:"ResponsiveWebDesign/RWD.jsx", Element: <RWD/>, Label:"Responsive Web Design"},
+          {Path:"ResponsiveWebDesign/RWD.jsx", Element: <RWD/>, Label:"freeCodeCamp's Basic HTML"},
           // {Path:"CSS_Practice/Page.jsx", Element:<CssPracticePage/>, Label:"CSS Visualizer"}
         ]
     },
     { Path: "/Projects/*",
       Element: <Home/>, //ProjectRoutes if i need to revert 
-      Label: "Projects",//
+      Label: "Personal Projects",//
       SmallLabel: ['+', '-'],
       Submenu: [
           // {Path:"Calculators/GenshinArtifact.jsx", Element: <GenshinArtifact/>, Label:"Artifact Calculator"},
